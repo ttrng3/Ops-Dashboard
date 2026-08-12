@@ -185,7 +185,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:12px;color
 
 <footer class="wrap">
   Tài liệu nội bộ đã ẩn danh · Tên cá nhân, email, số tài khoản và tên pháp nhân đã được thay bằng vai trò và mã.<br>
-  Cập nhật dữ liệu tại <code>data/periods.js</code>.
+  Cập nhật dữ liệu trong KHU VỰC DỮ LIỆU ở đầu file. Kỳ gần nhất: tháng 7/2026, chốt 12/08/2026.
 </footer>
 
 <script>
@@ -215,82 +215,103 @@ window.SERIES = [
   { m: "T4/26",  cash: 26080362038, net: 8916477561,    plan: false },
   { m: "T5/26",  cash: 33677439510, net: 7597077472,    plan: false },
   { m: "T6/26",  cash: 38876331030, net: 5198891520,    plan: false },
-  { m: "T7/26",  cash: 33514597824, net: -5068724406,   plan: true  }
+  { m: "T7/26",  cash: 33807606624, net: -5068724406,   plan: true  }
 ];
+
+/* --- Biến động tiền theo tháng (MoM) ------------------------
+   cash = ngân hàng + tiền mặt + sổ tiết kiệm
+   net  = dòng tiền thực chất (đã loại gửi/rút TK và cho vay/thu hồi)
+   Số tháng cầm cự tính trên chi lõi 6.973.153.449 đ và
+   chi thực chất 9.679.624.017 đ (bình quân H1/2026). */
+window.MOM_CASH = [
+  { m:"T12/25", cash:28656057577, net:null },
+  { m:"T1/26",  cash:20178696322, net:-8477361255 },
+  { m:"T2/26",  cash:7419634572,  net:-12759061750, note:"Đáy thanh khoản của năm — chỉ còn 1,06 tháng cầm cự" },
+  { m:"T3/26",  cash:17163884477, net:9744249905 },
+  { m:"T4/26",  cash:26080362038, net:8916477561 },
+  { m:"T5/26",  cash:33677439510, net:7597077472,  note:"Tháng phát sinh khoản cho vay 20 tỷ ra–vào" },
+  { m:"T6/26",  cash:38876331030, net:5198891520,  note:"Đỉnh tiền của năm" },
+  { m:"T7/26",  cash:33807606624, net:-5068724406, plan:true, note:"Ước tính theo kế hoạch — TCKT chưa phát hành số thực tế" }
+];
+window.MOM_CASH_NOTE = "Cột T7/26 là ƯỚC TÍNH: tiền thực tế 30/06 (38.876.331.030 đ) cộng dòng tiền thực chất theo kế hoạch T7 (−5.068.724.406 đ). Bản thân file kế hoạch ghi 33.514.597.824 đ, thấp hơn 293.008.800 đ, vì kế hoạch cuốn chiếu từ số dư KẾ HOẠCH cuối tháng 6 (8.539.012.230 đ) chứ không phải số THỰC TẾ (8.876.331.030 đ). Cả hai đều là ước tính, chưa kiểm chứng.";
 
 /* --- Các kỳ báo cáo (mới nhất lên đầu) --------------------- */
 window.PERIODS = [
 {
   id: "2026-07",
   label: "Tháng 7/2026",
-  asOf: "11/08/2026",
-  scan: "07/07/2026 – 11/08/2026 (36 ngày)",
+  asOf: "12/08/2026",
+  scan: "08/07/2026 – 12/08/2026 (36 ngày)",
 
   verdict: {
     level: "red",
-    head: "KHÔNG ĐỦ DỮ LIỆU ĐỂ ĐÁNH GIÁ THÁNG 7",
-    body: "TCKT chưa phát hành bất kỳ số liệu tài chính tháng 7/2026 nào. Hai file nguồn trong thư mục làm việc đều dừng ở tháng 6; toàn bộ cột T7.26 bằng 0."
+    head: "KHÔNG ĐỦ DỮ LIỆU ĐỂ ĐÁNH GIÁ THÁNG 7 — VÀ DÒNG TIỀN QUÝ 3 ĐANG BỊ TREO",
+    body: "TCKT chưa phát hành bất kỳ số liệu tài chính tháng 7/2026 nào; cả ba file nguồn đều dừng ở tháng 6. Đồng thời phát sinh rủi ro mới trong kỳ: CĐT chưa chốt báo cáo ngân sách H1, kéo theo 48,69 tỷ đ phí dịch vụ vận hành Quý 3 chưa được giải ngân."
   },
 
   kpi: [
-    { label: "Tiền sẵn có cuối kỳ", value: "Không có số thực tế", sub: "Ước tính theo KH: ~33,5 tỷ đ", level: "red", icon: "cash" },
-    { label: "Số tháng cầm cự", value: "~3,46 tháng", sub: "Gồm thuế & capex · ngưỡng ĐỎ: dưới 3", level: "amber", icon: "clock" },
-    { label: "Dòng tiền thực chất", value: "−5,07 tỷ đ", sub: "Theo kế hoạch · T6 thực tế: +5,20 tỷ", level: "amber", icon: "flow" },
-    { label: "Tuân thủ báo cáo", value: "0 / 2", sub: "Số BC đã đến hạn được phát hành", level: "red", icon: "doc" }
+    { label: "Tiền sẵn có cuối kỳ", value: "Không có số thực tế", sub: "Ước tính: ~33,81 tỷ đ · MoM −5,07 tỷ (−13,0%)", level: "red", icon: "cash" },
+    { label: "Số tháng cầm cự", value: "~3,49 tháng", sub: "Gồm thuế & capex · T6: 4,02 · ngưỡng ĐỎ dưới 3", level: "amber", icon: "clock" },
+    { label: "Dòng tiền thực chất", value: "−5,07 tỷ đ", sub: "Theo KH · T6 thực tế +5,20 tỷ · đảo chiều 10,27 tỷ", level: "red", icon: "flow" },
+    { label: "Tuân thủ báo cáo", value: "0 / 2", sub: "Đã đến hạn nhưng chưa phát hành · trễ 5 ngày", level: "red", icon: "doc" },
+    { label: "Phí DVVH Quý 3 đang treo", value: "48,69 tỷ đ", sub: "CĐT chưa chốt BC ngân sách H1", level: "red", icon: "cash" },
+    { label: "Chênh AOP nhân sự lũy kế", value: "27,60 tỷ đ", sub: "Căn cứ để CĐT cắt ngân sách · chưa đối chiếu độc lập", level: "amber", icon: "doc" }
   ],
 
   summary: [
-    { level: "red", t: "Không thể trả lời câu hỏi “tiền tăng hay giảm trong tháng 7”. Đến 11/08/2026 không có báo cáo tài chính T7 nào được phát hành; cả file Cashflow lẫn file Kế hoạch dòng tiền đều dừng ở tháng 6." },
-    { level: "red", t: "0/2 báo cáo đã đến hạn được phát hành. BC dòng tiền và BC so sánh KH vs TT cùng có hạn 07/08/2026 — trễ 4 ngày. Đây là kỳ ĐẦU TIÊN áp dụng cam kết bằng văn bản ngày 24/07/2026 của TCKT." },
-    { level: "info", t: "Dữ liệu T7 duy nhất kiểm chứng được đến từ P. HCNS chứ không phải TCKT: chi phí nhân sự 6.046.145.761 đ (AOP 11.116.640.715 đ); lương chi trong tháng 5.064.459.618 đ; 477 lao động, tăng 17 người." },
-    { level: "amber", t: "Theo kế hoạch, T7 là tháng âm dòng tiền thực chất −5.068.724.406 đ. Nếu bám kế hoạch, tiền sẵn có 31/07 khoảng 33,5 tỷ và số tháng cầm cự giảm từ 4,02 xuống 3,46 — sát ngưỡng ĐỎ. Ước tính, chưa kiểm chứng." },
-    { level: "info", t: "Báo cáo tài chính duy nhất phát hành trong kỳ là BC so sánh Ngân sách vs Thực tế kỳ T1–T6/2026 (gửi 09/08, gửi lại 11/08). Đây là báo cáo bán niên gửi CĐT; KSNB chỉ nhận CC — không thay thế báo cáo tháng 7." },
-    { level: "red", t: "Khoản chi cho vay 20.000.000.000 đ tháng 5/2026 và thu hồi cùng tháng đến nay vẫn không có hợp đồng, tên bên vay, phê duyệt hay ghi chú trong bất kỳ tài liệu nào đã rà soát. Đã 3 tháng." },
-    { level: "amber", t: "Chênh lệch 94.908.000 đ giữa hai file (134.298.017.554 đ so với 134.203.109.554 đ) vẫn chưa được xử lý ở phiên bản file hiện có." },
-    { level: "red", t: "Hợp đồng ủy quyền mua sắm & thanh toán giữa Công ty và Bên liên quan B gửi ngày 16/07/2026 chưa có phản hồi hay bản ký, trong khi email TCKT xác nhận Công ty “đã thực hiện thanh toán trước” các khoản thuộc ngân sách CĐT." }
+    { level: "red", t: "Vẫn không trả lời được câu hỏi “tiền tăng hay giảm trong tháng 7”. Đến 12/08/2026, TCKT chưa phát hành bất kỳ số liệu tài chính T7 nào; toàn bộ cột T7.26 trong file Cashflow, PnL và Kế hoạch dòng tiền đều bằng 0." },
+    { level: "red", t: "0/2 báo cáo đã đến hạn được phát hành. BC dòng tiền và BC so sánh KH vs TT cùng hạn 07/08/2026 — trễ 5 ngày. Đây là kỳ ĐẦU TIÊN áp dụng cam kết bằng văn bản ngày 24/07/2026 của TCKT." },
+    { level: "red", t: "MỚI — rủi ro lớn nhất kỳ này: ngày 09/08 TCKT xin CĐT phản hồi trước 12/08 “để đảm bảo tiến độ thanh toán phí DVVH Quý 3”. Ngày 12/08 CĐT phản hồi KHÔNG chốt, mà kiến nghị giảm định biên nửa cuối năm và điều chuyển một phần chi phí nhân sự H1 sang chi phí vận hành Q3. Kế hoạch thu phí DVVH Q3 là 48.686.314.649 đ." },
+    { level: "amber", t: "Chốt chặn đàm phán đã lộ rõ: theo báo cáo lương P. HCNS, lũy kế chênh giữa AOP nhân sự và thực tế là 27.603.431.530 đ; riêng T7 thực chi thấp hơn AOP 47,0% (6.046.145.761 đ so với 11.116.640.715 đ). Đây chính là con số CĐT dùng làm căn cứ cắt ngân sách." },
+    { level: "red", t: "Khoản cho vay 20 tỷ đ tháng 5 nay đã truy được trọn chuỗi giao dịch: giải ngân 08/05 cho một CÁ NHÂN, thu hồi đủ gốc 12/05, lãi thu 6.720.430 đ — quy đổi chỉ 3,07%/năm. Cùng ngày 08/05 công ty rút 2 sổ tiết kiệm trước hạn 10 tỷ đ, mất 39.198.630 đ lãi. Chênh kinh tế âm 32.478.200 đ. Cột hợp đồng, khế ước và ghi chú đều trống." },
+    { level: "red", t: "Chi mua sắm tài sản ngoài kế hoạch đã định danh: mua ô tô, tổng 1.525.120.000 đ trong tháng 6 (cọc, tiền xe, biển số, bảo hiểm). Dòng “Chi mua sắm CCDC, TTB dài hạn” trong kế hoạch dòng tiền bằng 0 ở cả 12 tháng." },
+    { level: "amber", t: "Dòng tiền thực chất đảo chiều mạnh: từ +5,20 tỷ đ thực tế tháng 6 sang −5,07 tỷ đ theo kế hoạch tháng 7 — biến động 10,27 tỷ đ trong một tháng. Nguyên nhân: thu phí DVVH kế hoạch chỉ 7,0 tỷ so với 15,0 tỷ tháng 6, cộng kế hoạch nộp thuế TNDN 2,0 tỷ." },
+    { level: "amber", t: "Chất lượng hồ sơ chưa cải thiện: 89/90 giao dịch từ 500 triệu đ trở lên trong H1 không có ghi chú (98,9%). Chênh 94.908.000 đ giữa các file nay đã truy được nguyên nhân gốc là lỗi công thức tổng, nhưng vẫn chưa được sửa." }
   ],
 
   compliance: {
-    note: "Căn cứ email cam kết của KTT ngày 24/07/2026, áp dụng từ kỳ tháng 7/2026.",
+    note: "Căn cứ email cam kết của KTT ngày 24/07/2026, áp dụng từ kỳ tháng 7/2026. Chốt dữ liệu 12/08/2026.",
     rows: [
-      { n: 1, name: "Báo cáo dòng tiền",                            due: "07/08/2026", got: "—", status: "late",    tag: "Trễ 4 ngày" },
-      { n: 2, name: "BC so sánh kế hoạch dòng tiền và thực tế",      due: "07/08/2026", got: "—", status: "late",    tag: "Trễ 4 ngày" },
-      { n: 3, name: "Báo cáo Kết quả Kinh doanh (PnL)",              due: "15/08/2026", got: "—", status: "pending", tag: "Còn 4 ngày" },
-      { n: 4, name: "BC phân tích giữa lãi/lỗ và dòng tiền",         due: "18/08/2026", got: "—", status: "pending", tag: "Còn 7 ngày" },
-      { n: 5, name: "BC so sánh ngân sách kế hoạch và thực tế",      due: "18/08/2026", got: "—", status: "pending", tag: "Còn 7 ngày" }
+      { n: 1, name: "Báo cáo dòng tiền",                       due: "07/08/2026", got: "—", status: "late",    tag: "Trễ 5 ngày" },
+      { n: 2, name: "BC so sánh kế hoạch dòng tiền và thực tế", due: "07/08/2026", got: "—", status: "late",    tag: "Trễ 5 ngày" },
+      { n: 3, name: "Báo cáo Kết quả Kinh doanh (PnL)",         due: "15/08/2026", got: "—", status: "pending", tag: "Còn 3 ngày" },
+      { n: 4, name: "BC phân tích giữa lãi/lỗ và dòng tiền",    due: "18/08/2026", got: "—", status: "pending", tag: "Còn 6 ngày" },
+      { n: 5, name: "BC so sánh ngân sách kế hoạch và thực tế", due: "18/08/2026", got: "—", status: "pending", tag: "Còn 6 ngày" }
     ]
   },
 
   timeline: [
     { d: "16/07", t: "Dự thảo Hợp đồng ủy quyền mua sắm & thanh toán với Bên liên quan B", who: "KTT", level: "red",
-      note: "Email nêu rõ Công ty “đã thực hiện thanh toán trước” các khoản thuộc ngân sách CĐT. Đến 11/08 chưa thấy phản hồi hay bản ký." },
+      note: "Email nêu rõ Công ty “đã thực hiện thanh toán trước” các khoản thuộc ngân sách CĐT. Đến 12/08 vẫn chưa thấy phản hồi hay bản ký." },
     { d: "16/07", t: "Xin ý kiến chi phí phát triển giai đoạn 2 phần mềm quản lý khu đô thị (~328 triệu đ)", who: "KTT", level: "info",
       note: "Đang xin ý kiến CĐT. Chưa rõ nguồn ngân sách." },
     { d: "27/07", t: "Triển khai trình ký điện tử trên hệ thống ERP cho nghiệp vụ liên quan CĐT", who: "KTT", level: "good",
-      note: "Cải thiện kiểm soát — ghi nhận tích cực." },
+      note: "Cải thiện kiểm soát — ghi nhận tích cực. Đề nghị mở rộng bắt buộc cho MỌI giao dịch từ 500 triệu đ." },
     { d: "27/07", t: "Phổ biến Thông tư 89/2026/TT-BTC về khấu trừ thuế GTGT (hiệu lực 01/07/2026)", who: "KTT", level: "amber",
-      note: "Hóa đơn từ 5 triệu đ: chưa thanh toán không dùng tiền mặt đúng hạn thì phải điều chỉnh giảm GTGT đầu vào đã khấu trừ. Rủi ro thật với mô hình chi hộ." },
+      note: "Phổ biến sau ngày hiệu lực 26 ngày. Hóa đơn phát sinh 01/07–27/07 cần rà soát lại tính tuân thủ. Chưa đánh giá được phạm vi ảnh hưởng." },
     { d: "28/07", t: "Cập nhật ngân sách vận hành Quý 3/2026 theo tiến độ bàn giao", who: "KTT", level: "good",
-      note: "Dự án B giảm 660.521.511 đ (−4,6%); Dự án A tăng 117 triệu đ (+0,1%), tự cân đối. Đề xuất giảm phí DVVH Q3 tương ứng — đúng nguyên tắc." },
-    { d: "01/08", t: "Hóa đơn môi giới BĐS xuất 23/06, điều chỉnh nội dung địa chỉ 01/07", who: "Đối tác", level: "amber",
-      note: "Hóa đơn điều chỉnh sau kỳ kê khai cần rà soát tính hợp lệ khấu trừ. Chưa kiểm chứng giá trị và bên chịu chi phí." },
+      note: "Dự án B giảm 660.521.511 đ (−4,6%); Dự án A tăng 117 triệu đ (+0,1%). Đề xuất giảm phí DVVH Q3 tương ứng — đúng nguyên tắc." },
+    { d: "01/08", t: "Hóa đơn tư vấn môi giới BĐS xuất 23/06, điều chỉnh nội dung địa chỉ 01/07", who: "Đối tác", level: "amber",
+      note: "Khoản thanh toán đợt đầu 300 triệu đ chưa VAT. Pháp chế đang rà soát. Hóa đơn điều chỉnh sau phát hành là điểm cơ quan thuế thường soi." },
     { d: "05/08", t: "Trình duyệt lương tháng 07/2026", who: "P. HCNS", level: "info",
-      note: "Nguồn dữ liệu tháng 7 duy nhất. CPNS 6.046.145.761 đ so với AOP 11.116.640.715 đ; 477 lao động (+17)." },
+      note: "Nguồn dữ liệu T7 duy nhất. CPNS 6.046.145.761 đ so với AOP 11.116.640.715 đ; 477 lao động (+17). Bảng có 3 lỗi số học — xem mục 5." },
     { d: "07/08", t: "HẠN phát hành BC dòng tiền T7 và BC so sánh KH vs TT", who: "TCKT", level: "red",
       note: "Không có báo cáo nào được phát hành. Không có email giải thích lý do chậm." },
     { d: "09/08", t: "BC so sánh Ngân sách vs Thực tế chi phí kỳ T1–T6/2026", who: "KTT", level: "info",
-      note: "Gửi TỚI CĐT; TGĐ và PTGĐ TT chỉ nhận CC. Là báo cáo bán niên, không thay thế báo cáo tháng 7." },
+      note: "Gửi TỚI CĐT; TGĐ và PTGĐ TT chỉ nhận CC. Đề nghị CĐT phản hồi trước 12/08 để giải ngân phí DVVH Q3." },
     { d: "11/08", t: "Gửi lại BC trên, bổ sung tổng quan theo nhóm chi phí và thuế TNDN tạm tính Q1+Q2 (4,3 tỷ đ)", who: "KTT", level: "info",
-      note: "Đề nghị CĐT phản hồi trước 12/08 để đảm bảo tiến độ thanh toán phí DVVH Quý 3." }
+      note: "Ngoài hai nội dung bổ sung, báo cáo không điều chỉnh gì khác." },
+    { d: "12/08", t: "CĐT phản hồi: KHÔNG chốt báo cáo, kiến nghị điều chỉnh định biên và chi phí nhân sự", who: "CĐT", level: "red",
+      note: "Nguyên văn: “chi phí nhân sự lập ngân sách lớn hơn thực tế nhiều… cân nhắc điều chỉnh lại định biên nhân sự cho 6 tháng cuối năm 2026 và điều chỉnh giảm 1 phần chi phí nhân sự của 6 tháng đầu năm 2026 vào chi phí vận hành quý 3 năm 2026.” Ghi rõ căn cứ là bảng kê chứng từ, “không kiểm tra hồ sơ”. Phí DVVH Q3 do đó chưa được giải ngân." }
   ],
 
   cash: {
-    note: "Cột “thực tế 31/07” trống vì sheet Số dư Bank ở khối tháng 7 không có số dư đầu kỳ, phát sinh nợ, phát sinh có.",
+    note: "Cột “thực tế 31/07” trống vì sheet Số dư Bank ở khối tháng 7 không có số dư đầu kỳ, phát sinh nợ hay phát sinh có. Lưu ý thêm: ô “Tổng tiền sẵn có” trong sheet CF_YTD ghi 38.832.021.030 đ, bỏ sót quỹ tiền mặt 44.310.000 đ — giá trị đúng là 38.876.331.030 đ.",
     rows: [
       { k: "Tiền gửi ngân hàng", a: "13.656.057.577", b: "8.832.021.030",  c: null, d: "8.470.287.824" },
       { k: "Tiền mặt",           a: "—",              b: "44.310.000",     c: null, d: "—" },
       { k: "Sổ tiết kiệm",       a: "15.000.000.000", b: "30.000.000.000", c: null, d: "25.000.000.000" },
-      { k: "Tổng tiền sẵn có",   a: "28.656.057.577", b: "38.876.331.030", c: null, d: "~33.470.287.824", total: true }
+      { k: "Tổng tiền sẵn có",   a: "28.656.057.577", b: "38.876.331.030", c: null, d: "~33.807.606.624", total: true }
     ]
   },
 
@@ -301,116 +322,143 @@ window.PERIODS = [
       { k: "Tổng chi",  raw: "27.258.724.406", adj: "−15.000.000.000 (gửi TK)", real: "12.258.724.406" },
       { k: "Thu − Chi", raw: "−68.724.406",    adj: "",                          real: "−5.068.724.406", total: true }
     ],
-    comment: "Tháng 6/2026 thực tế có dòng tiền thực chất DƯƠNG 5.198.891.520 đ. Kế hoạch T7 đảo chiều do thu phí DVVH chỉ 7 tỷ đ (Bên liên quan A 3 tỷ + Bên liên quan B 4 tỷ) so với 15 tỷ đ tháng 6, đồng thời kế hoạch nộp thuế TNDN 2 tỷ đ."
+    comment: "So với tháng liền trước: tháng 6/2026 thực tế có dòng tiền thực chất DƯƠNG 5.198.891.520 đ (thu thực chất 15.190.981.009 đ, chi thực chất 9.992.089.489 đ). Kế hoạch T7 đảo chiều 10.267.615.926 đ do thu phí DVVH chỉ 7,0 tỷ đ (Bên liên quan A 3,0 tỷ + Bên liên quan B 4,0 tỷ) so với 15,0 tỷ đ tháng 6, đồng thời chi thực chất tăng 2.266.634.917 đ (+22,7%) chủ yếu vì kế hoạch nộp thuế TNDN 2,0 tỷ đ."
   },
 
   runway: [
-    { k: "Tiền sẵn có",                          a: "38.876.331.030", b: "~33.514.597.824", th: "Dưới 25 tỷ = CAM", level: "ok" },
-    { k: "Cầm cự theo chi lõi (6,97 tỷ/tháng)",   a: "5,58 tháng",     b: "4,81 tháng",      th: "Dưới 4 = CAM; dưới 3 = ĐỎ", level: "ok" },
-    { k: "Cầm cự gồm thuế & capex (9,68 tỷ/th)",  a: "4,02 tháng",     b: "3,46 tháng",      th: "Dưới 3 tháng = ĐỎ", level: "amber" }
+    { k: "Tiền sẵn có",                          a: "38.876.331.030", b: "~33.807.606.624", th: "Dưới 25 tỷ = CAM; dưới 15 tỷ = ĐỎ", level: "ok" },
+    { k: "Cầm cự theo chi lõi (6,97 tỷ/tháng)",   a: "5,58 tháng",     b: "~4,85 tháng",     th: "Dưới 4 = CAM; dưới 3 = ĐỎ", level: "ok" },
+    { k: "Cầm cự gồm thuế & capex (9,68 tỷ/th)",  a: "4,02 tháng",     b: "~3,49 tháng",     th: "Dưới 3 tháng = ĐỎ", level: "amber" }
   ],
 
-  receivables: "Tại 30/06/2026: Bên liên quan A còn phải thu 3.498.534.044 đ; Bên liên quan B đã thanh toán đủ Q1 và Q2 (8.132.686.783 + 11.952.956.127 = 20.085.642.910 đ). Số ngày phải thu khoảng 10 ngày — không phải vấn đề. Chưa có số liệu 31/07/2026. Rủi ro cần theo dõi: nếu CĐT chậm phản hồi báo cáo ngân sách H1, khoản thu Q3 theo kế hoạch (15 tỷ + 11,7 tỷ trong tháng 8) sẽ bị đẩy lùi trong khi tiền sẵn có đang giảm.",
+  receivables: "Tại 30/06/2026: Bên liên quan A còn phải thu 3.498.534.044 đ (toàn bộ là quý 2); Bên liên quan B đã thanh toán đủ Q1 và Q2 (8.132.686.783 + 11.952.956.127 = 20.085.642.910 đ). Số ngày phải thu khoảng 9,8 ngày — không phải vấn đề. Chưa có số liệu 31/07/2026. RỦI RO ĐÃ HIỆN THỰC HÓA trong kỳ này: CĐT chưa chốt báo cáo ngân sách H1 nên phí DVVH Q3 theo kế hoạch (7,0 tỷ T7 + 26,7 tỷ T8 + 15,0 tỷ T9 = 48.686.314.649 đ) chưa được giải ngân, trong khi tiền sẵn có đang giảm.",
 
   variance: {
     t7: [
       { k: "Chi lương, thưởng (dòng tiền)",  plan: "5.602.458.717",  act: "5.064.459.618", diff: "−537.999.099 (−9,6%)",   level: "ok" },
-      { k: "Chi phí nhân sự (AOP kế toán)",  plan: "11.116.640.715", act: "6.046.145.761", diff: "−5.070.494.954 (−45,6%)", level: "info" }
+      { k: "Chi phí nhân sự (AOP kế toán)",  plan: "11.116.640.715", act: "6.046.145.761", diff: "−5.070.494.954 (−45,6%)", level: "info" },
+      { k: "  – Khối hỗ trợ (14 người)",     plan: "715.474.801",    act: "788.842.317",   diff: "+73.367.516 (+10,3%) — VƯỢT AOP", level: "red" },
+      { k: "  – BQL Dự án A (311 người)",    plan: "7.052.391.628",  act: "3.531.692.116", diff: "−3.520.699.512 (−49,9%)", level: "info" },
+      { k: "  – BQL Dự án B (151 người)",    plan: "3.348.774.285",  act: "1.725.611.328", diff: "−1.623.162.957 (−48,5%)", level: "info" }
     ],
-    t7note: "Chênh lệch −45,6% so với AOP không phải tiết kiệm thực chất mà phản ánh AOP lập trên giả định tuyển dụng nhanh hơn thực tế. Tổng 477 người (+17: tuyển mới 40, nghỉ 23). CPNS tăng 278.925.890 đ so với tháng 6.",
+    t7note: "Chênh −45,6% so với AOP không phải tiết kiệm thực chất mà phản ánh AOP lập trên giả định tuyển dụng nhanh hơn thực tế. Tổng 477 người (+17: tuyển mới 40, nghỉ 23); CPNS tăng 278.925.890 đ so với tháng 6. Khối hỗ trợ là khối DUY NHẤT vượt AOP trong khi hai khối vận hành đều thấp hơn trên 48%. CẢNH BÁO CHẤT LƯỢNG SỐ LIỆU: bảng của P. HCNS có 3 lỗi — (a) thiếu hẳn mục II; (b) cộng dọc 3 khối ra 476 người nhưng dòng tổng ghi 477; (c) cột “AOP − thực tế” dòng tổng ghi 5.222.505.738 đ trong khi phép trừ ra 5.070.494.954 đ, lệch 152.010.784 đ không giải thích được. Do lỗi (c), con số lũy kế 27.603.431.530 đ CHƯA đối chiếu độc lập được — cần HCNS xác nhận trước khi dùng để đàm phán với CĐT.",
     carry: [
-      { k: "Chi mua sắm CCDC, TTB dài hạn & TSCĐ (mua ô tô)", plan: "0",             act: "1.525.120.000", diff: "+1.525.120.000 — ngoài kế hoạch hoàn toàn", level: "red" },
-      { k: "Chi khác cho người lao động (team building đợt 1)", plan: "331.560.414", act: "1.768.914.883", diff: "+1.437.354.469 (+433%)", level: "red" },
-      { k: "Chi khác cho hoạt động kinh doanh",               plan: "884.161.103",   act: "381.397.556",   diff: "−502.763.547 (−56,9%)", level: "ok" },
-      { k: "BHXH, BHYT, BHTN, KPCĐ",                          plan: "663.120.827",   act: "0",             diff: "−663.120.827 (chuyển sang T7)", level: "info" }
+      { k: "Chi mua sắm CCDC, TTB dài hạn (mua ô tô)",          plan: "0",           act: "1.525.120.000", diff: "+1.525.120.000 — ngoài kế hoạch hoàn toàn", level: "red" },
+      { k: "Chi khác cho người lao động (team building đợt 1)", plan: "331.560.414", act: "1.768.914.883", diff: "+1.437.354.469 (+433,5%)", level: "red" },
+      { k: "Chi khác cho hoạt động kinh doanh",                 plan: "884.161.103", act: "381.397.556",   diff: "−502.763.547 (−56,9%)", level: "ok" },
+      { k: "BHXH, BHYT, BHTN, KPCĐ",                            plan: "663.120.827", act: "0",             diff: "−663.120.827 — dồn sang kỳ sau", level: "info" },
+      { k: "Thuế TNCN",                                         plan: "276.300.345", act: "0",             diff: "−276.300.345 — dồn sang kỳ sau", level: "info" }
     ],
-    carrynote: "Hai khoản ĐỎ vượt đồng thời cả hai ngưỡng trọng yếu (trên 20% VÀ trên 500 triệu đ). Kế hoạch capex 2026 bằng 0 cho cả 12 tháng nhưng đã chi 1.525.120.000 đ. Chưa tìm thấy văn bản phê duyệt trước cho cả hai khoản trong phạm vi email đã rà soát."
+    carrynote: "Hai khoản ĐỎ vượt đồng thời cả hai ngưỡng trọng yếu (trên 20% VÀ trên 500 triệu đ). NGHĨA VỤ CHUYỂN TIẾP SANG THÁNG 7: BHXH 663.120.827 đ + thuế TNCN 276.300.345 đ chưa nộp trong tháng 6, cộng phần chi phí gắn kết đã ghi nhận nhưng chưa chi tiền khoảng 1.010.021.941 đ — tổng khoảng 1,95 tỷ đ không nằm trong kế hoạch dòng tiền tháng 7. Chưa kiểm chứng được vì thiếu số liệu T7."
   },
 
   pnl: {
-    note: "Không có PnL tháng 7 — file PnL dừng ở tháng 6, toàn bộ cột tháng 7 bằng 0. Hạn phát hành: 15/08/2026.",
+    note: "Không có PnL tháng 7 — file PnL dừng ở tháng 6, toàn bộ cột tháng 7 bằng 0. Hạn phát hành: 15/08/2026 (còn 3 ngày).",
     rows: [
-      { k: "Doanh thu",             h1: "64.495.117.616", t6: "12.615.075.689", c: "Tháng 6 cao nhất H1" },
-      { k: "Lợi nhuận trước thuế",  h1: "21.689.908.963", t6: "3.471.776.697",  c: "Biên LNTT H1: 33,6%" },
-      { k: "Lợi nhuận sau thuế",    h1: "17.352.000.000", t6: "—",              c: "Ước theo thuế suất 20%" },
-      { k: "Chi phí nhân sự",       h1: "38.108.123.643", t6: "8.599.525.692",  c: "59,1% doanh thu H1" },
-      { k: "Doanh thu bên thứ ba",  h1: "130.369.806",    t6: "—",              c: "0,20% tổng doanh thu" }
+      { k: "Doanh thu",             h1: "64.495.117.616", t6: "12.615.075.689", c: "Tháng 6 cao nhất H1 (+13,9% so với T5)" },
+      { k: "Tổng chi phí",          h1: "42.805.208.653", t6: "9.143.298.992",  c: "T6 tăng 30,0% so với T5" },
+      { k: "Lợi nhuận trước thuế",  h1: "21.689.908.963", t6: "3.471.776.697",  c: "Biên H1 33,63%; riêng T6 chỉ 27,52%" },
+      { k: "Chi phí nhân sự",       h1: "38.108.123.643", t6: "8.599.525.692",  c: "59,09% DT H1; riêng T6 68,17% — vượt ngưỡng CAM 65%" },
+      { k: "Doanh thu bên thứ ba",  h1: "94.908.000",     t6: "94.908.000",     c: "0,147% tổng doanh thu" }
     ],
-    comment: "Doanh thu bên thứ ba gồm DV Club house 63.703.142 đ và hợp tác kinh doanh trạm sạc điện 66.666.664 đ theo sheet PnL_Total. Con số 94.908.000 đ (0,14%) dùng ở các kỳ trước là số dòng tiền thực thu, không phải doanh thu ghi nhận. Cả hai cách tính đều cho cùng kết luận: phụ thuộc gần như tuyệt đối vào hai bên liên quan."
+    comment: "Định nghĩa doanh thu bên thứ ba đang có ba cách tính cho ba kết quả: theo dòng tiền 94.908.000 đ (0,147%); theo PnL riêng mã DV Club house 63.703.142 đ (0,099%); tính cả phí thẻ và hợp tác trạm sạc thì 164.529.406 đ (0,26%). Đề nghị TCKT chốt một định nghĩa duy nhất. Dù tính cách nào, kết luận không đổi: phụ thuộc gần như tuyệt đối vào hai bên liên quan."
   },
 
   flags: [
-    { n: 1, title: "Chi cho vay / thu hồi cho vay (mã 1103.03 / 1104.03)", level: "red", since: "31/05/2026",
-      detail: "Tháng 5/2026: chi 20.000.000.000 đ và thu hồi 20.000.000.000 đ trong cùng tháng. Kế hoạch dòng tiền 2026 cho hai khoản mục này bằng 0. Đến 11/08/2026 chưa tìm thấy hợp đồng vay, tên bên vay, mã số thuế, chứng từ phê duyệt hay ghi chú trong bất kỳ file/email nào đã rà soát. Tháng 6 không phát sinh thêm; tháng 7 không có dữ liệu." },
+    { n: 1, title: "Chi cho vay / thu hồi cho vay (mã 1103.03 / 1104.03) — đã truy được trọn chuỗi", level: "red", since: "08/05/2026",
+      detail: "TIẾN TRIỂN TRONG KỲ: nay đã truy được đầy đủ từ sheet giao dịch chi tiết. Ngày 08/05/2026 chi 20.000.000.000 đ cho MỘT CÁ NHÂN (mã khách hàng nội bộ), hạch toán qua tài khoản phải thu khác. Ngày 12/05/2026 thu hồi đủ gốc và thu lãi 6.720.430 đ — lãi suất quy đổi 3,07%/năm, THẤP HƠN lãi tiết kiệm kỳ hạn 1 tháng của chính công ty (4,75%/năm). CÙNG NGÀY 08/05 công ty rút 2 sổ tiết kiệm trước hạn tổng 10 tỷ đ, lãi thực nhận 493.151 đ so với lãi kế hoạch 39.691.781 đ, mất 39.198.630 đ. Chênh lệch kinh tế: −32.478.200 đ. Ngày 19/05 có phiếu thu TIỀN MẶT 39.690.000 đ từ một cá nhân là nhân sự nội bộ, diễn giải “Thu lãi tiền gửi ngắn hạn” — lệch đúng 1.781 đ so với khoản lãi đã mất; KSNB ghi nhận sự trùng khớp giá trị nhưng CHƯA kiểm chứng được có mối liên hệ hay không. Cột hợp đồng, khế ước và ghi chú của cả 3 bút toán đều TRỐNG. Giá trị khoản vay bằng 76,7% tiền sẵn có tại 30/04/2026." },
     { n: 2, title: "Giao dịch từ 500 triệu đ ngoài ngân sách, không phê duyệt trước", level: "red", since: "30/06/2026",
-      detail: "Hai khoản tháng 6 chưa được giải trình: mua ô tô 1.525.120.000 đ và chi team building 1.768.914.883 đ (vượt kế hoạch 1.437.354.469 đ). Không kiểm chứng được cho tháng 7 do thiếu dữ liệu." },
-    { n: 3, title: "Chi mua sắm tài sản (capex) ngoài kế hoạch dòng tiền", level: "red", since: "30/06/2026",
-      detail: "Dòng “Chi mua sắm CCDC, TTB dài hạn & TSCĐ” trong kế hoạch 2026 bằng 0 cho cả 12 tháng. Thực tế tháng 6 phát sinh 1.525.120.000 đ. Kế hoạch capex chưa được cập nhật lại sau sự kiện này." },
+      detail: "Tháng 7: KHÔNG ĐO ĐƯỢC do thiếu dữ liệu. H1/2026: có 90 giao dịch từ 500 triệu đ trở lên; KSNB chưa có quyền truy cập hồ sơ phê duyệt nên chưa đối chiếu được từng giao dịch. MẪU HÌNH MỚI PHÁT HIỆN: ngày 04/06/2026, hai khoản chi cho cùng một nhà cung cấp sự kiện, theo CÙNG một hợp đồng, CÙNG diễn giải “TT lần 1”, được tách thành 422.240.000 đ và 499.000.000 đ (tổng 921.240.000 đ). Cả hai đều nằm dưới ngưỡng 500 triệu đ; khoản thứ hai thấp hơn ngưỡng đúng 1.000.000 đ. KSNB mô tả sự việc, không kết luận về nguyên nhân." },
+    { n: 3, title: "Chi mua sắm tài sản (capex) ngoài kế hoạch dòng tiền — đã định danh", level: "red", since: "19/06/2026",
+      detail: "Đã bóc tách được chi tiết: cọc xe 50.000.000 đ (19/06), thanh toán tiền xe 1.420.120.000 đ (22/06), biển số 40.100.000 đ (22/06), bảo hiểm 14.900.000 đ (26/06) — tổng 1.525.120.000 đ cho một xe ô tô 7 chỗ. Dòng “Chi mua sắm CCDC, TTB dài hạn” trong kế hoạch dòng tiền 2026 bằng 0 cho cả 12 tháng, tức 100% ngoài kế hoạch. Chưa tìm thấy tờ trình chủ trương hay biên bản lựa chọn nhà cung cấp trong phạm vi đã rà soát. Kế hoạch capex vẫn chưa được cập nhật lại sau sự kiện này." },
     { n: 4, title: "Dòng giá trị lớn bị bỏ trống cột ghi chú", level: "red", since: "31/05/2026",
-      detail: "Sheet Báo cáo dòng tiền: OUT_16 Chi cho vay 20 tỷ — ghi chú trống; IN_04 Thu hồi cho vay 20 tỷ — ghi chú trống; OUT_17 Tiền gửi tiết kiệm 61 tỷ lũy kế — ghi chú trống. Đối chiếu: các khoản nhỏ hơn nhiều như thanh toán OT tháng 4–5 lại có ghi chú đầy đủ." },
-    { n: 5, title: "Đối chiếu số liệu giữa các file", level: "red", since: "30/06/2026",
-      detail: "Chênh lệch 94.908.000 đ VẪN TỒN TẠI. File Cashflow ghi dòng tiền vào lũy kế 134.298.017.554 đ (khớp đúng tổng 6 tháng). File Kế hoạch, sheet Dòng tiền thực tế, ghi 134.203.109.554 đ — cột Total bỏ sót dòng Thu DV tiện ích 94.908.000 đ dù dòng này có số ở cột T6.26. Lỗi công thức cộng, không phải khác biệt bản chất." },
-    { n: 6, title: "Mất lãi do rút sổ tiết kiệm trước hạn", level: "amber", since: "08/05/2026",
-      detail: "Lũy kế H1: 39.198.630 đ đã xác nhận (hai sổ rút trước hạn ngày 08/05/2026, mất 19.136.986 đ và 20.061.644 đ). Ngoài ra một sổ gửi 24/12/2025 tất toán tháng 2–3/2026 có chênh lãi kế hoạch so với thực nhận 103.186.302 đ — chưa được TCKT thuyết minh, chưa kiểm chứng là mất lãi thật hay lỗi ghi chép. Cơ cấu kỳ hạn vẫn kém: 20/30 tỷ gửi kỳ hạn 1 tháng." },
+      detail: "Đã đếm chính xác: trong H1/2026 có 90 giao dịch từ 500 triệu đ trở lên, trong đó 89 giao dịch KHÔNG CÓ ghi chú — tỷ lệ 98,9%. Giao dịch duy nhất có ghi chú là một khoản lương 584.873.704 đ với nội dung “Sai dự án → sửa sang HO”. Nghịch lý: chính những giao dịch bất thường nhất (khoản cho vay 20 tỷ, mua ô tô 1,53 tỷ) lại không có một dòng thuyết minh nào." },
+    { n: 5, title: "Đối chiếu số liệu giữa các file — đã xác định nguyên nhân gốc", level: "red", since: "30/06/2026",
+      detail: "Chênh 94.908.000 đ VẪN TỒN TẠI nhưng nay đã rõ nguyên nhân: tổng các cột tháng T1–T6 của dòng “DÒNG TIỀN VÀO” là 134.298.017.554 đ, trong khi ô Total của chính dòng đó ghi 134.203.109.554 đ. Lý do: dòng “Thu DV tiện ích” (94.908.000 đ, phát sinh T6) có số ở cột tháng nhưng ô Total của dòng đó ĐỂ TRỐNG. Đây là lỗi công thức cộng, không phải khác biệt bản chất giữa hai file — số liệu gốc trong file Cashflow là đúng. PHÁT HIỆN THÊM: ô “Tổng tiền sẵn có” trong sheet CF_YTD ghi 38.832.021.030 đ, bỏ sót quỹ tiền mặt 44.310.000 đ; giá trị đúng là 38.876.331.030 đ. Sai lệch nhỏ nhưng làm lệch mọi chỉ số tính trên tiền sẵn có." },
+    { n: 6, title: "Mất lãi do rút sổ tiết kiệm trước hạn", level: "red", since: "24/02/2026",
+      detail: "NÂNG TỪ CAM LÊN ĐỎ sau khi tính lại đầy đủ. Lũy kế H1/2026: 154.480.823 đ, gồm (a) lần tất toán tháng 2/2026 phần 8 tỷ đ của sổ gửi 24/12/2025 — lãi kế hoạch 117.123.288 đ, thực nhận 1.841.095 đ, mất 115.282.193 đ; (b) hai sổ rút trước hạn ngày 08/05/2026 — mất 39.198.630 đ. Ngưỡng cảnh báo là 20 triệu đ/năm, thực tế đã vượt 7,7 lần. ĐIỂM MÙ THÁNG 7: có 4 sổ tiết kiệm đáo hạn trong tháng 7 (15/07, 18/07, 19/07, 25/07), mỗi sổ 5 tỷ đ, tổng 20 tỷ đ, lãi kế hoạch 78.082.192 đ — cột “lãi thực nhận” và “đã tất toán” của cả 4 sổ đều TRỐNG. Không xác định được đã tái tục hay đã rút. Cơ cấu kỳ hạn vẫn kém: tại 30/06 chỉ 10/30 tỷ đ (33,3%) gửi kỳ hạn từ 6 tháng (lãi 8,0%/năm), 20 tỷ còn lại kỳ hạn 1 tháng (4,75%/năm) — chênh 3,25 điểm phần trăm trên 20 tỷ tương đương khoảng 650 triệu đ/năm cơ hội bỏ lỡ." },
     { n: 7, title: "Góp vốn điều lệ", level: "red", since: "31/10/2025",
-      detail: "KHÔNG CÓ CẬP NHẬT MỚI trong 36 ngày quét email. Tình trạng giữ nguyên: đăng ký 10 tỷ đ, thực góp 3,43 tỷ đ (34,3%); cổ đông nắm 65% chưa góp đồng nào. Đây là nghĩa vụ pháp lý quá hạn, không phải vấn đề quản trị nội bộ." },
+      detail: "KHÔNG CÓ CẬP NHẬT MỚI trong 36 ngày quét email. Tình trạng giữ nguyên: đăng ký 10 tỷ đ, thực góp 3,43 tỷ đ (34,3%); cổ đông nắm 65% chưa góp đồng nào (còn thiếu 6,57 tỷ đ). Đây là nghĩa vụ pháp lý quá hạn, không phải vấn đề quản trị nội bộ." },
     { n: 8, title: "Email liên quan thuế, hóa đơn rủi ro, kiểm toán", level: "amber", since: "27/07/2026",
-      detail: "Ba nội dung mới: (a) Thông tư 89/2026/TT-BTC hiệu lực 01/07/2026 — hóa đơn từ 5 triệu đ chưa thanh toán không dùng tiền mặt đúng hạn phải điều chỉnh giảm GTGT đầu vào; TCKT đã ra hướng dẫn nội bộ nhưng chưa có báo cáo đánh giá tác động tới số thuế đã khấu trừ T7. (b) Hợp đồng ủy quyền chi hộ chưa ký trong khi đã chi trước — cần ý kiến luật sư và chuyên gia thuế độc lập. (c) Hóa đơn môi giới BĐS xuất 23/06 điều chỉnh 01/07 — cần rà soát tính hợp lệ khấu trừ." }
+      detail: "Không có email nào từ cơ quan thuế hoặc đơn vị kiểm toán trong kỳ. Bốn nội dung theo dõi: (a) Thông tư 89/2026/TT-BTC hiệu lực 01/07/2026 nhưng TCKT phổ biến nội bộ 27/07 — sau 26 ngày; hóa đơn phát sinh trong khoảng này cần rà soát lại, chưa đánh giá được phạm vi. (b) Hợp đồng ủy quyền chi hộ vẫn chưa ký trong khi đã chi trước — cần ý kiến luật sư và chuyên gia thuế độc lập. (c) Hóa đơn tư vấn môi giới BĐS (300 triệu đ chưa VAT) xuất 23/06 rồi điều chỉnh địa chỉ 01/07, Pháp chế đang rà soát. (d) TCKT đã ghi nhận bổ sung thuế TNDN tạm tính Q1+Q2 là 4,3 tỷ đ; kế hoạch nộp 2,0 tỷ đ trong T7 — chưa xác nhận được đã nộp hay chưa." },
+    { n: 9, title: "MỚI — Phí dịch vụ vận hành Quý 3 chưa được giải ngân", level: "red", since: "12/08/2026",
+      detail: "Ngày 09/08 TCKT đề nghị CĐT phản hồi báo cáo so sánh ngân sách H1 trước 12/08 “để đảm bảo tiến độ thanh toán phí DVVH Quý 3”. Ngày 12/08 CĐT phản hồi nhưng KHÔNG chốt, thay vào đó kiến nghị điều chỉnh định biên nhân sự nửa cuối năm và “điều chỉnh giảm 1 phần chi phí nhân sự của 6 tháng đầu năm 2026 vào chi phí vận hành quý 3 năm 2026”. Giá trị đang treo: 48.686.314.649 đ theo kế hoạch (7,0 tỷ T7 + 26,7 tỷ T8 + 15,0 tỷ T9). Kịch bản minh họa CHƯA KIỂM CHỨNG, chỉ để định cỡ rủi ro: nếu phí Q3 bị điều chỉnh theo tỷ lệ chênh AOP của tháng 7 (47,0%), thu Q3 giảm khoảng 22,9 tỷ đ và số tháng cầm cự rơi xuống dưới ngưỡng ĐỎ ngay trong Quý 4. Phần “điều chỉnh hồi tố chi phí H1” chạm tới BCTC đã lập và thuế TNDN đã tạm nộp — CẦN Ý KIẾN LUẬT SƯ VÀ CHUYÊN GIA THUẾ ĐỘC LẬP trước khi Công ty đồng ý bất kỳ điều chỉnh nào." }
   ],
 
-  flagsNote: "Nội dung mô tả TÌNH TRẠNG HỒ SƠ quan sát được, không kết luận về hành vi hay động cơ của bất kỳ cá nhân nào. “Không có hồ sơ” nghĩa là không tìm thấy trong hộp thư và các file đã rà soát — không loại trừ khả năng hồ sơ tồn tại ở nơi khác.",
+  flagsNote: "Nội dung mô tả TÌNH TRẠNG HỒ SƠ quan sát được, không kết luận về hành vi hay động cơ của bất kỳ cá nhân nào. “Không có hồ sơ” nghĩa là không tìm thấy trong hộp thư và các file đã rà soát — không loại trừ khả năng hồ sơ tồn tại ở nơi khác. Tài liệu đã ẩn danh: không nêu tên người, tên pháp nhân, số tài khoản hay số sổ tiết kiệm.",
 
-  riskSummary: { red: 5, amber: 5, yellow: 2, score: 175, scoreAfter: 90,
-    note: "Trong kỳ này không có rủi ro nào được đóng lại, không có rủi ro mới, nhưng cũng không có bằng chứng nào cho thấy các biện pháp xử lý đã khởi động. Rủi ro R02 (khoản 20 tỷ) có hạn hoàn thành 05/08/2026 — đã quá hạn." },
+  riskSummary: { red: 7, amber: 3, yellow: 2, score: 195, scoreAfter: 90,
+    note: "So với kỳ trước: THÊM 1 rủi ro ĐỎ mới (phí DVVH Q3 chưa giải ngân) và NÂNG 1 rủi ro từ CAM lên ĐỎ (mất lãi tiết kiệm, sau khi tính lại đủ 154.480.823 đ thay vì 39.198.630 đ). Không có rủi ro nào được đóng lại. R02 (khoản 20 tỷ) có hạn hoàn thành 05/08/2026 — đã quá hạn 7 ngày; tuy nhiên trong kỳ này đã truy được trọn chuỗi giao dịch, đủ cơ sở để phát văn bản yêu cầu giải trình cụ thể.",
+    momNote: "Điểm sáng duy nhất trong kỳ: mức độ truy vết đã cải thiện rõ — ba cảnh báo (số 1, 3, 5) chuyển từ “không rõ nguyên nhân” sang “đã xác định đầy đủ chi tiết giao dịch”. Vấn đề còn lại là hồ sơ phê duyệt, không còn là dữ liệu."
+  },
 
   actions: [
-    { n: 1, t: "Gửi văn bản yêu cầu TCKT giải trình khoản cho vay 20 tỷ tháng 5/2026 (nội dung soạn sẵn tại Phụ lục), hạn trả lời 5 ngày làm việc", due: "12/08/2026", level: "red", tag: "RẤT KHẨN" },
-    { n: 2, t: "Yêu cầu TCKT phát hành ngay BC dòng tiền T7 và BC so sánh KH vs TT T7 (đã trễ 4 ngày); yêu cầu cam kết ngày phát hành cụ thể bằng văn bản", due: "12/08/2026", level: "red", tag: "RẤT KHẨN" },
-    { n: 3, t: "Chỉ đạo dừng mọi khoản chi hộ CĐT cho tới khi Hợp đồng ủy quyền được ký; yêu cầu TCKT lập danh sách các khoản đã chi hộ chưa hoàn ứng kèm số tiền và ngày chi", due: "14/08/2026", level: "amber", tag: "KHẨN" },
-    { n: 4, t: "Yêu cầu TCKT sửa lỗi cộng 94.908.000 đ trong file Kế hoạch dòng tiền và ban hành quy tắc bắt buộc điền cột ghi chú cho mọi dòng từ 500 triệu đ trở lên", due: "15/08/2026", level: "info", tag: "TRUNG BÌNH" },
-    { n: 5, t: "Đưa vấn đề vốn điều lệ chưa góp đủ (cổ đông 65%, chưa góp 6,57 tỷ đ) vào chương trình họp HĐQT gần nhất bằng văn bản chính thức, kèm ý kiến pháp chế về hậu quả pháp lý", due: "18/08/2026", level: "info", tag: "TRUNG BÌNH" }
+    { n: 1, t: "Chốt lập trường của Công ty về phí DVVH Quý 3 TRƯỚC khi trả lời CĐT. Yêu cầu TCKT trình bản tính phí Q3 kèm 2 kịch bản (giữ nguyên và bị cắt theo thực chi). KHÔNG đồng ý điều chỉnh hồi tố chi phí H1 khi chưa có ý kiến luật sư và chuyên gia thuế độc lập.", due: "14/08/2026", level: "red", tag: "RẤT KHẨN" },
+    { n: 2, t: "Phát văn bản yêu cầu TCKT giải trình khoản cho vay 20 tỷ đ (nội dung soạn sẵn tại Phụ lục, đã cập nhật đầy đủ chi tiết chứng từ truy được), hạn trả lời 5 ngày làm việc.", due: "14/08/2026", level: "red", tag: "RẤT KHẨN" },
+    { n: 3, t: "Yêu cầu TCKT phát hành BC dòng tiền T7 và BC so sánh KH vs TT trong 48 giờ (đã trễ 5 ngày); ghi nhận việc trễ hạn vào hồ sơ đánh giá TCKT.", due: "14/08/2026", level: "red", tag: "RẤT KHẨN" },
+    { n: 4, t: "Yêu cầu TCKT xác nhận trạng thái 4 sổ tiết kiệm đáo hạn tháng 7 (tổng 20 tỷ đ, lãi kế hoạch 78.082.192 đ): đã tái tục hay đã rút, lãi thực nhận từng sổ; đồng thời trình chính sách kỳ hạn gửi tiền.", due: "17/08/2026", level: "amber", tag: "KHẨN" },
+    { n: 5, t: "Yêu cầu P. HCNS đính chính 3 lỗi trong bảng lương T7 (thiếu mục II; 476 vs 477 người; lệch 152.010.784 đ ở cột AOP − thực tế) trước khi con số lũy kế 27,6 tỷ đ được dùng làm căn cứ đàm phán với CĐT.", due: "17/08/2026", level: "amber", tag: "KHẨN" },
+    { n: 6, t: "Giám sát 3 báo cáo còn lại đến hạn: PnL (15/08), phân tích lãi/lỗ vs dòng tiền (18/08), so sánh ngân sách KH vs TT (18/08). Nếu tiếp tục trễ, tỷ lệ tuân thủ kỳ đầu tiên sẽ là 0/5.", due: "18/08/2026", level: "amber", tag: "KHẨN" },
+    { n: 7, t: "Ban hành quy định: mọi giao dịch từ 500 triệu đ bắt buộc ghi số hiệu phê duyệt vào cột ghi chú; CẤM tách nhỏ một khoản chi cùng hợp đồng, cùng ngày xuống dưới ngưỡng; bắt buộc trình ký điện tử trên hệ thống ERP.", due: "19/08/2026", level: "info", tag: "TRUNG BÌNH" },
+    { n: 8, t: "Yêu cầu TCKT sửa hai lỗi số liệu: ô Total bỏ sót 94.908.000 đ trong file Kế hoạch, và ô “Tổng tiền sẵn có” bỏ sót quỹ tiền mặt 44.310.000 đ trong sheet CF_YTD.", due: "19/08/2026", level: "info", tag: "TRUNG BÌNH" },
+    { n: 9, t: "Đưa vấn đề vốn điều lệ chưa góp đủ (cổ đông 65%, còn thiếu 6,57 tỷ đ) vào chương trình họp HĐQT gần nhất bằng văn bản chính thức, kèm ý kiến pháp chế về hậu quả pháp lý.", due: "19/08/2026", level: "info", tag: "TRUNG BÌNH" }
   ],
 
-  actionsExtra: "Đề xuất thêm về luồng thông tin: yêu cầu TCKT gửi TRỰC TIẾP (dòng To) tới PTGĐ TT đối với mọi báo cáo tài chính, thay vì CC. Không tốn chi phí, giải quyết được vấn đề KSNB nhận thông tin ở vị trí thứ cấp.",
+  actionsExtra: "Đề xuất về luồng thông tin: yêu cầu TCKT gửi TRỰC TIẾP (dòng To) tới PTGĐ TT đối với mọi báo cáo tài chính gửi ra ngoài công ty, thay vì CC. Trong kỳ này, báo cáo so sánh ngân sách H1 — tài liệu đang quyết định 48,69 tỷ đ dòng tiền Q3 — được gửi TỚI CĐT còn KSNB chỉ nhận CC. Không tốn chi phí, giải quyết được vấn đề KSNB nhận thông tin ở vị trí thứ cấp.",
 
   sources: [
-    "Hộp thư Outlook của PTGĐ TT, quét 07/07/2026 – 11/08/2026 với từ khóa: báo cáo dòng tiền, kế hoạch dòng tiền, ngân sách, kết quả kinh doanh, PnL, công nợ, thuế, cho vay, góp vốn, kiểm toán, hóa đơn. Đọc chi tiết 5 email.",
-    "File Cashflow 202606 — sheet Báo cáo dòng tiền, Số dư Bank, Sổ tiết kiệm.",
-    "File Kế hoạch dòng tiền 2026 — sheet KH Dòng tiền, Dòng tiền thực tế, SS KH vs TT, Thuế.",
+    "Hộp thư Outlook của PTGĐ TT, quét 08/07/2026 – 12/08/2026 (36 ngày), 3 lượt tìm kiếm theo người gửi và từ khóa. Đọc chi tiết 3 email: lương T7 của P. HCNS (05/08), BC so sánh ngân sách của KTT (09/08 và 11/08), phản hồi của CĐT (12/08).",
+    "File Cashflow 202606 — sheet CF_YTD, Số dư Bank, Sổ tiết kiệm, và sheet giao dịch chi tiết (1.437 bút toán H1).",
+    "File Kế hoạch dòng tiền 2026 — sheet KH Dòng tiền, Dòng tiền thực tế, SS KH vs TT.",
     "File PnL 202606 — sheet PnL_Total.",
-    "File Đăng ký rủi ro 2026 — sheet Risk Register, Chỉ số theo dõi."
+    "File Đăng ký rủi ro 2026 — sheet Risk Register, Chỉ số theo dõi (đã sửa lỗi lệch cột trong kỳ này).",
+    "Toàn bộ 31 phép tính trong kỳ đã được kiểm tra lại độc lập bằng script — 31/31 khớp."
   ],
 
   limits: [
     "Toàn bộ số liệu tài chính THỰC TẾ tháng 7/2026: số dư ngân hàng, tiền mặt, sổ tiết kiệm, tổng thu, tổng chi, doanh thu, lợi nhuận, công nợ. Nguyên nhân: TCKT chưa phát hành và file trong thư mục chưa được cập nhật.",
-    "Nội dung file đính kèm BC so sánh Ngân sách vs Thực tế kỳ T1–T6/2026 (1,84 MB, email 11/08). File chưa có trong thư mục làm việc nên chưa đọc được chi tiết; nhận định chỉ dựa trên phần mô tả trong thân email.",
-    "Sự tồn tại hay không của hồ sơ giấy cho khoản vay 20 tỷ, mua ô tô 1.525.120.000 đ và team building.",
-    "Giá trị và bên chịu chi phí của hóa đơn môi giới bất động sản.",
-    "Chênh lãi 103.186.302 đ trên sổ tiết kiệm gửi 24/12/2025 — chưa xác định là mất lãi thật hay ghi chép chưa đầy đủ.",
+    "Mọi con số 31/07/2026 trong dashboard là ƯỚC TÍNH theo kế hoạch, không phải số thực tế.",
+    "Hồ sơ phê duyệt của từng giao dịch — KSNB không có quyền truy cập hệ thống chứng từ gốc; chỉ đối chiếu được các trường dữ liệu trong file kế toán.",
+    "Mối liên hệ (nếu có) giữa phiếu thu tiền mặt 39.690.000 đ ngày 19/05 và khoản lãi tiết kiệm bị mất 39.691.781 đ ngày 08/05 — chỉ ghi nhận sự trùng khớp về giá trị.",
+    "Con số lũy kế chênh AOP nhân sự 27.603.431.530 đ lấy nguyên từ bảng P. HCNS; do bảng có lỗi cộng 152.010.784 đ nên CHƯA đối chiếu độc lập được.",
+    "Nội dung file đính kèm BC so sánh Ngân sách vs Thực tế kỳ T1–T6/2026 — chưa tải và phân tích chi tiết; nhận định chỉ dựa trên thân email.",
+    "Trạng thái tất toán của 4 sổ tiết kiệm đáo hạn trong tháng 7 (tổng 20 tỷ đ).",
+    "Phạm vi ảnh hưởng của Thông tư 89/2026/TT-BTC lên các hóa đơn phát sinh 01/07 – 27/07/2026.",
     "Tình trạng thực tế của việc góp vốn điều lệ tại 31/07/2026 — không có thông tin cập nhật, giả định giữ nguyên."
   ],
 
-  legal: "Ba nội dung vượt quá phạm vi rà soát nội bộ và cần ý kiến chuyên môn ĐỘC LẬP: (a) hậu quả pháp lý của việc vốn điều lệ chưa góp đủ sau thời hạn quy định — cần luật sư doanh nghiệp; (b) rủi ro thuế của mô hình chi hộ CĐT khi chưa có hợp đồng ủy quyền, và tác động của Thông tư 89/2026/TT-BTC — cần chuyên gia thuế độc lập, KHÔNG phải đơn vị đang làm sổ sách cho công ty; (c) bản chất kế toán và thuế của khoản 20 tỷ ra–vào trong tháng 5/2026.",
+  legal: "Ba nội dung vượt quá phạm vi rà soát nội bộ và cần ý kiến chuyên môn ĐỘC LẬP: (a) đề xuất của CĐT về điều chỉnh HỒI TỐ chi phí nhân sự H1/2026 — kỳ đã kết thúc, đã ghi nhận doanh thu, lợi nhuận và thuế TNDN tạm nộp; cần luật sư và chuyên gia thuế trước khi Công ty đồng ý bất kỳ điều chỉnh nào. (b) Khoản 20 tỷ đ cho một cá nhân vay: bản chất kế toán, bản chất thuế và thẩm quyền phê duyệt tương ứng — cần luật sư doanh nghiệp. (c) Hậu quả pháp lý của việc vốn điều lệ chưa góp đủ sau thời hạn quy định, và rủi ro thuế của mô hình chi hộ CĐT khi chưa có hợp đồng ủy quyền — cần chuyên gia thuế độc lập, KHÔNG phải đơn vị đang làm sổ sách cho công ty.",
 
   appendix: {
     title: "Dự thảo văn bản yêu cầu TCKT giải trình",
-    intro: "Soạn sẵn để chỉnh sửa và phát hành. Đề xuất gửi trực tiếp Kế toán trưởng, CC Tổng Giám đốc.",
+    intro: "Soạn sẵn để chỉnh sửa và phát hành. Đề xuất gửi trực tiếp Kế toán trưởng, CC Tổng Giám đốc. Bản này đã cập nhật đầy đủ chi tiết chứng từ truy được trong kỳ.",
     body: [
       { p: "Kính gửi: Kế toán trưởng", b: true },
       { p: "Đồng kính gửi: Tổng Giám đốc", b: true },
-      { p: "V/v: Yêu cầu giải trình giao dịch cho vay và thu hồi cho vay tháng 5/2026 và các khoản chi ngoài ngân sách", b: true },
-      { p: "Trong quá trình thực hiện chức năng Kiểm soát Nội bộ và Quản trị Rủi ro, tôi ghi nhận các nội dung sau tại sheet Báo cáo dòng tiền file Cashflow 202606:" },
-      { p: "1. Khoản “Chi cho vay_Khác” (mã 1103.03) số tiền 20.000.000.000 đồng và khoản “Thu hồi cho vay_Khác” (mã 1104.03) số tiền 20.000.000.000 đồng, cùng phát sinh trong tháng 5/2026. Kế hoạch dòng tiền năm 2026 không có hai khoản mục này." },
-      { p: "2. Khoản “Chi mua sắm CCDC, TTB dài hạn & TSCĐ” số tiền 1.525.120.000 đồng phát sinh tháng 6/2026 (ghi chú: mua ô tô), trong khi kế hoạch dòng tiền năm 2026 cho khoản mục này bằng 0." },
-      { p: "3. Khoản “Chi khác cho người lao động” tháng 6/2026 thực tế 1.768.914.883 đồng so với kế hoạch 331.560.414 đồng, vượt 1.437.354.469 đồng (433%)." },
-      { p: "Đề nghị Phòng Tài chính Kế toán cung cấp, đối với từng khoản nêu trên:", b: true },
+      { p: "V/v: Yêu cầu giải trình khoản cho vay 20.000.000.000 đồng phát sinh tháng 5/2026 và các giao dịch liên quan", b: true },
+      { p: "Qua rà soát dữ liệu kế toán, bộ phận Kiểm soát Nội bộ ghi nhận chuỗi giao dịch sau:" },
       { li: [
-        "Tên đầy đủ và mã số thuế của bên nhận tiền",
-        "Hợp đồng hoặc văn bản thỏa thuận (bản scan có chữ ký)",
-        "Chứng từ phê duyệt trước khi thực hiện: người phê duyệt, chức danh, ngày phê duyệt",
-        "Sao kê ngân hàng thể hiện giao dịch chuyển và nhận tiền",
-        "Đối với khoản cho vay: lãi suất, kỳ hạn, tài sản bảo đảm nếu có, và hạch toán lãi phát sinh",
-        "Đối với khoản mua tài sản: tờ trình chủ trương và biên bản lựa chọn nhà cung cấp"
+        "Ngày 08/05/2026: chi 20.000.000.000 đồng cho một cá nhân, mã dòng tiền 1103.03 “Chi cho đối tượng khác vay”, hạch toán qua tài khoản phải thu khác.",
+        "Ngày 08/05/2026, cùng ngày: rút trước hạn 2 sổ tiết kiệm tổng 10.000.000.000 đồng, lãi thực nhận 493.151 đồng so với lãi kế hoạch 39.691.781 đồng.",
+        "Ngày 08/05/2026: chuyển nội bộ 1.000.000.000 đồng giữa hai tài khoản vận hành.",
+        "Ngày 12/05/2026: thu hồi đủ gốc 20.000.000.000 đồng và thu lãi vay 6.720.430 đồng.",
+        "Ngày 19/05/2026: phiếu thu tiền mặt 39.690.000 đồng từ một cá nhân là nhân sự nội bộ, diễn giải “Thu lãi tiền gửi ngắn hạn”."
+      ]},
+      { p: "Các cột “Hợp đồng”, “Khế ước” và “Ghi chú” của những bút toán nêu trên đều để trống. Đề nghị Phòng Tài chính Kế toán cung cấp:", b: true },
+      { li: [
+        "Hợp đồng cho vay hoặc khế ước nhận nợ: bản sao đầy đủ, có chữ ký các bên",
+        "Thông tin định danh bên vay: mã số thuế cá nhân, địa chỉ, và mối quan hệ (nếu có) với Công ty, với các bên liên quan, hoặc với người có liên quan của người quản lý doanh nghiệp",
+        "Văn bản phê duyệt giao dịch, ban hành TRƯỚC ngày giải ngân 08/05/2026: nghị quyết HĐQT hoặc quyết định của người có thẩm quyền, ghi rõ ngày và người ký",
+        "Sao kê tài khoản ngân hàng giai đoạn 01/05/2026 – 31/05/2026, bản do ngân hàng phát hành",
+        "Cơ sở xác định lãi suất: chứng từ tính lãi dẫn tới con số 6.720.430 đồng, và lý do mức lãi suất quy đổi 3,07%/năm thấp hơn lãi tiền gửi kỳ hạn 1 tháng của chính công ty (4,75%/năm)",
+        "Lý do rút 2 sổ tiết kiệm trước hạn cùng ngày, và văn bản phê duyệt việc chấp nhận mất 39.198.630 đồng tiền lãi",
+        "Bản chất khoản thu tiền mặt 39.690.000 đồng ngày 19/05/2026: chứng từ gốc, nguồn tiền, và mối liên hệ (nếu có) với khoản lãi tiết kiệm bị mất ngày 08/05/2026",
+        "Giải trình vì sao giao dịch bằng 76,7% tổng tiền sẵn có của công ty tại 30/04/2026 không được thuyết minh trong bất kỳ báo cáo định kỳ nào gửi Ban Tổng Giám đốc"
+      ]},
+      { p: "Đề nghị bổ sung, đối với hai khoản chi ngoài ngân sách tháng 6/2026:", b: true },
+      { li: [
+        "Mua ô tô 1.525.120.000 đồng: tờ trình chủ trương, biên bản lựa chọn nhà cung cấp, và văn bản phê duyệt — trong khi kế hoạch dòng tiền 2026 cho khoản mục này bằng 0 ở cả 12 tháng",
+        "Chi phí gắn kết 1.768.914.883 đồng (vượt kế hoạch 1.437.354.469 đồng, tương đương 433,5%): hợp đồng, và giải trình vì sao khoản thanh toán lần 1 theo cùng một hợp đồng, cùng ngày 04/06/2026, được tách thành hai lệnh chi 422.240.000 đồng và 499.000.000 đồng — cả hai đều dưới ngưỡng phê duyệt 500 triệu đồng"
       ]},
       { p: "Thời hạn phản hồi: 05 ngày làm việc kể từ ngày nhận văn bản này.", b: true },
       { p: "Trường hợp một phần hoặc toàn bộ hồ sơ nêu trên không tồn tại, đề nghị Phòng Tài chính Kế toán xác nhận rõ điều đó bằng văn bản, để tôi có cơ sở báo cáo Hội đồng Quản trị và đề xuất biện pháp khắc phục quy trình." }
@@ -418,6 +466,26 @@ window.PERIODS = [
   }
 }
 ];
+
+
+/* --- Biến động theo tháng: doanh thu, chi phí, lợi nhuận --------
+   Nguồn: sheet PnL_Total. Tháng chưa có số liệu để null. */
+window.MOM = [
+  { m:"T1/26", dt:9873656325,  cp:6730168349, ln:3143487976, ns:5630109300 },
+  { m:"T2/26", dt:9871816327,  cp:6921540282, ln:2950276045, ns:5609787193 },
+  { m:"T3/26", dt:10233316079, cp:6323134208, ln:3910181871, ns:5638771169 },
+  { m:"T4/26", dt:10822848295, cp:6651803854, ln:4171044441, ns:6122736596 },
+  { m:"T5/26", dt:11078404901, cp:7035262968, ln:4043141933, ns:6507193693 },
+  { m:"T6/26", dt:12615075689, cp:9143298992, ln:3471776697, ns:8599525692,
+    note:"Chi phí gồm khoản gắn kết nội bộ 1.931.261.941 đ, ngoài kế hoạch" },
+  { m:"T7/26", dt:null, cp:null, ln:null, ns:null, note:"TCKT chưa phát hành PnL tháng 7 — hạn 15/08/2026" }
+];
+
+window.MOM_CALLOUT = {
+  level:"red",
+  head:"Tháng 6: doanh thu cao nhất nửa năm nhưng lợi nhuận lại giảm",
+  body:"Doanh thu tăng 13,9% (+1.536.670.788 đ) trong khi chi phí tăng 30,0% (+2.108.036.024 đ) — chi phí tăng nhanh gấp 2,2 lần doanh thu. Hệ quả: LNTT giảm 14,1%, biên LNTT rơi từ 36,5% xuống 27,5% (mất 9,0 điểm phần trăm) và tỷ lệ chi phí nhân sự trên doanh thu vọt từ 58,7% lên 68,2% — vượt ngưỡng cảnh báo 65%. Nếu loại khoản gắn kết nội bộ 1.931.261.941 đ thì chi phí T6 chỉ tăng 2,5% và biên LNTT đạt 42,8%, tỷ lệ CPNS/DT về 52,9%. Nói cách khác, toàn bộ mức sụt lợi nhuận tháng 6 đến từ một khoản chi ngoài kế hoạch, không phải từ hoạt động vận hành. Điểm cần theo dõi sang tháng 7: dòng tiền tháng 6 mới chi 921.240.000 đ cho khoản này, phần còn lại khoảng 1.010.021.941 đ đã ghi nhận chi phí nhưng chưa chi tiền."
+};
 
 /* ===== KẾT THÚC KHU VỰC DỮ LIỆU ===== */
 </script>
@@ -474,6 +542,68 @@ function barChart(series){
     ${grid}${lbl}${bars}</svg>`;
 }
 
+
+function momChart(rows){
+  const d=rows.filter(r=>r.dt!=null);
+  const W=560,H=215,L=52,R=12,T=26,B=30, pw=W-L-R, ph=H-T-B;
+  const mx=Math.max(...d.map(r=>Math.max(r.dt,r.cp)))*1.14;
+  const y=v=>T+ph-(v/mx)*ph, gw=pw/d.length, bw=Math.min(26,(gw-14)/2);
+  let grid='',lbl='';
+  for(let i=0;i<=4;i++){const v=mx*i/4, yy=y(v);
+    grid+=`<line class="gl" x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}"/>`;
+    lbl+=`<text class="ax" x="${L-7}" y="${yy+3}" text-anchor="end">${(v/1e9).toFixed(0)} tỷ</text>`;}
+  let bars=d.map((r,i)=>{
+    const c=L+gw*(i+0.5), x1=c-bw-2, x2=c+2;
+    const pv=i?((r.cp-d[i-1].cp)/d[i-1].cp*100):null;
+    const flag=(pv!=null&&pv>=20)?`<text class="ax" x="${c+2+bw/2}" y="${y(r.cp)-5}" text-anchor="middle" fill="var(--red)" font-weight="700">+${pv.toFixed(0)}%</text>`:'';
+    return `<rect x="${x1}" y="${y(r.dt)}" width="${bw}" height="${T+ph-y(r.dt)}" rx="2" fill="var(--blue)"/>
+            <rect x="${x2}" y="${y(r.cp)}" width="${bw}" height="${T+ph-y(r.cp)}" rx="2" fill="var(--red)" opacity=".85"/>
+            ${flag}<text class="ax" x="${c}" y="${H-9}" text-anchor="middle">${r.m}</text>`;}).join('');
+  const lg=`<rect x="${L}" y="2" width="9" height="9" rx="2" fill="var(--blue)"/>
+    <text class="ax" x="${L+13}" y="10">Doanh thu</text>
+    <rect x="${L+78}" y="2" width="9" height="9" rx="2" fill="var(--red)" opacity=".85"/>
+    <text class="ax" x="${L+91}" y="10">Chi phí</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Doanh thu và chi phí theo tháng">${grid}${lbl}${lg}${bars}</svg>`;
+}
+function momCashTable(rows){
+  const f=n=> n==null?'—':n.toLocaleString('vi-VN');
+  const CORE=6973153449, FULL=9679624017;
+  return rows.map((r,i)=>{
+    const p=i?rows[i-1]:null;
+    const dv = p? r.cash-p.cash : null;
+    const dp = (p&&p.cash)? (r.cash-p.cash)/p.cash*100 : null;
+    const col = dv==null?'':(dv<0?'var(--red)':'var(--green)');
+    const rc = r.cash/CORE, rf = r.cash/FULL;
+    const rfs = rf<3?'color:var(--red);font-weight:700':(rf<4?'color:var(--amber);font-weight:700':'');
+    return `<tr><td>${r.m}${r.plan?' <span class="chip amber">KH</span>':''}`
+      +`${r.note?' <span class="chip grey" title="'+esc(r.note)+'">*</span>':''}</td>`
+      +`<td class="num">${f(r.cash)}</td>`
+      +`<td class="num" style="color:${col};font-weight:600">${dv==null?'—':(dv>0?'+':'')+f(dv)}</td>`
+      +`<td class="num" style="color:${col};font-weight:600">${dp==null?'—':(dp>0?'+':'')+dp.toFixed(1)+'%'}</td>`
+      +`<td class="num" style="color:${r.net==null?'':(r.net<0?'var(--red)':'var(--green)')}">${f(r.net)}</td>`
+      +`<td class="num">${rc.toFixed(2)}</td>`
+      +`<td class="num" style="${rfs}">${rf.toFixed(2)}</td></tr>`;
+  }).join('');
+}
+function momTable(rows){
+  const pct=(a,b)=> (a==null||b==null)?null:((a-b)/b*100);
+  const cel=v=>{ if(v==null) return '<td class="num">—</td>';
+    const c=v>0?'var(--red)':'var(--green)';
+    return `<td class="num" style="color:${c};font-weight:600">${v>0?'+':''}${v.toFixed(1)}%</td>`;};
+  const f=n=> n==null?'—':n.toLocaleString('vi-VN');
+  return rows.map((r,i)=>{
+    const p=i?rows[i-1]:null;
+    if(r.dt==null) return `<tr><td>${r.m}</td><td class="num na" colspan="8">CHƯA CÓ SỐ LIỆU</td></tr>`;
+    const bien=r.ln/r.dt*100, nsdt=r.ns/r.dt*100;
+    return `<tr><td>${r.m}${r.note?' <span class="chip amber" title="'+esc(r.note)+'">*</span>':''}</td>
+      <td class="num">${f(r.dt)}</td>${cel(p&&p.dt?pct(r.dt,p.dt):null)}
+      <td class="num">${f(r.cp)}</td>${cel(p&&p.cp?pct(r.cp,p.cp):null)}
+      <td class="num">${f(r.ln)}</td>${cel(p&&p.ln?pct(r.ln,p.ln):null)}
+      <td class="num" style="font-weight:600">${bien.toFixed(1)}%</td>
+      <td class="num" style="${nsdt>65?'color:var(--red);font-weight:700':''}">${nsdt.toFixed(1)}%</td></tr>`;
+  }).join('');
+}
+
 /* ---------- render ---------- */
 function render(p){
   const S=window.SERIES;
@@ -527,6 +657,18 @@ function render(p){
     <td class="num" ${r.level==='amber'?'style="color:var(--red);font-weight:700"':''}>${esc(r.b)}</td>
     <td>${esc(r.th)}</td></tr>`).join('');
   H.push(sec('s4',4,'Vị thế tiền mặt và dòng tiền thực chất',
+    (window.MOM_CASH?`
+     <h3>4.0. Biến động so với tháng trước (MoM)</h3>
+     <div class="tw"><table><thead><tr>
+       <th>Tháng</th><th class="num">Tiền sẵn có</th><th class="num">Δ so tháng trước</th>
+       <th class="num">Δ%</th><th class="num">Dòng tiền thực chất</th>
+       <th class="num">Cầm cự — chi lõi</th><th class="num">Cầm cự — gồm thuế &amp; capex</th>
+     </tr></thead><tbody>${momCashTable(window.MOM_CASH)}</tbody></table></div>
+     <div class="note">Số tháng cầm cự tính trên chi lõi 6.973.153.449 đ/tháng và chi thực chất
+       9.679.624.017 đ/tháng (bình quân H1/2026). Tô cam khi dưới 4 tháng, tô đỏ khi dưới 3 tháng.
+       Nhãn <span class="chip amber">KH</span> = số kế hoạch, chưa kiểm chứng.</div>
+     ${window.MOM_CASH_NOTE?`<div class="note">${esc(window.MOM_CASH_NOTE)}</div>`:''}
+     `:'')+
     `<div class="charts">
        <div class="chartbox"><h4>Tiền sẵn có cuối tháng</h4>
          <div class="cs">Ngân hàng + tiền mặt + sổ tiết kiệm · điểm cam nét đứt = số theo KẾ HOẠCH, chưa kiểm chứng</div>
@@ -570,7 +712,23 @@ function render(p){
        <th class="num">Riêng tháng 6</th><th>Ghi nhận</th></tr></thead><tbody>`
      +p.pnl.rows.map(r=>`<tr><td>${esc(r.k)}</td><td class="num">${esc(r.h1)}</td>
        <td class="num">${esc(r.t6)}</td><td>${esc(r.c)}</td></tr>`).join('')
-     +`</tbody></table></div><div class="note">${esc(p.pnl.comment)}</div>`));
+     +`</tbody></table></div><div class="note">${esc(p.pnl.comment)}</div>`
+     +(window.MOM?`
+      <h3>Biến động theo tháng — doanh thu và chi phí</h3>
+      <div class="chartbox" style="margin-bottom:12px">
+        <div class="cs">Cột xanh: doanh thu · cột đỏ: chi phí · nhãn đỏ: tháng chi phí tăng từ 20% trở lên</div>
+        ${momChart(window.MOM)}</div>
+      <div class="tw"><table><thead><tr>
+        <th>Tháng</th><th class="num">Doanh thu</th><th class="num">±%</th>
+        <th class="num">Chi phí</th><th class="num">±%</th>
+        <th class="num">LNTT</th><th class="num">±%</th>
+        <th class="num">Biên LNTT</th><th class="num">CPNS/DT</th></tr></thead>
+        <tbody>${momTable(window.MOM)}</tbody></table></div>
+      <div class="note">Cột ±% là thay đổi so với tháng liền trước. Màu đỏ = tăng, màu xanh = giảm.
+        CPNS/DT tô đỏ khi vượt ngưỡng cảnh báo 65%. Dấu <span class="chip amber">*</span> = có ghi chú bất thường.</div>
+      ${window.MOM_CALLOUT?`<div class="verdict ${window.MOM_CALLOUT.level}">
+        <h1>${esc(window.MOM_CALLOUT.head)}</h1><p>${esc(window.MOM_CALLOUT.body)}</p></div>`:''}
+     `:'')));
 
   /* 7 flags */
   const rs=p.riskSummary;
