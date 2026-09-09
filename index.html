@@ -571,6 +571,121 @@ window.PERIODS = [
   window.PERIODS.unshift(AUG);
 })();
 
+;(function(){
+  // Kỳ Tháng 9/2026 — giám sát ĐẦU KỲ (chốt 09/09/2026, 1 ngày sau khi chốt kỳ tháng 8).
+  // Nguồn: hộp thư PTGĐ TT (tungtruong@omni.com.vn), quét 08/09–09/09/2026.
+  // Chưa có tháng báo cáo mới đóng lại; KHÔNG thêm điểm chuỗi thời gian (không có số thực tế mới).
+  var AUG = window.PERIODS[0];
+  var SEP = JSON.parse(JSON.stringify(AUG)); // deep clone, giữ nguyên mọi trường mang từ kỳ trước
+
+  SEP.id = "2026-09";
+  SEP.label = "Tháng 9/2026";
+  SEP.asOf = "09/09/2026";
+  SEP.scan = "08/09/2026 – 09/09/2026 (giám sát đầu kỳ, 1 ngày sau khi chốt kỳ tháng 8)";
+
+  SEP.verdict = {
+    level: "red",
+    head: "KỲ GIÁM SÁT ĐẦU THÁNG 9 — VẪN KHÔNG CÓ SỐ TÀI CHÍNH THỰC TẾ; PHÁT SINH MỚI: RỦI RO CĂN CỨ THANH TOÁN MÔI GIỚI",
+    body: "Bản cập nhật này chốt ngày 09/09/2026, chỉ 1 ngày sau kỳ tháng 8 — chưa có tháng báo cáo mới đóng lại (kỳ tháng 9 chỉ thực sự khép lại đầu tháng 10). Trong cửa sổ quét 08–09/09, TCKT vẫn chưa phát hành bất kỳ báo cáo tài chính định kỳ nào: cả 5 báo cáo kỳ tháng 7 quá hạn 22–33 ngày, hai báo cáo đầu kỳ tháng 8 (hạn 07/09) đã quá hạn 2 ngày. Phát sinh KSNB duy nhất trong kỳ: hồ sơ thanh toán phí môi giới BĐS (đối tác Song Cát) với hai khoản 14.781.875 đ + 73.909.377 đ = 88.691.252 đ đang được KTT rà soát căn cứ hợp đồng — nổi lên rủi ro thời điểm: hợp đồng thuê ký 01/06/2026 TRƯỚC hợp đồng môi giới ký 10/06/2026 (chênh 9 ngày), có thể khiến khoản phí không đủ căn cứ “khách thuê do Bên A giới thiệu” theo Điều 3.2."
+  };
+
+  SEP.kpi = [
+    { label:"Tuân thủ báo cáo", value:"0 / 7", sub:"Đã đến hạn nhưng chưa nhận · kỳ T7 quá hạn 22–33 ngày · kỳ T8 hai BC đầu quá hạn 2 ngày", level:"red" },
+    { label:"Số tài chính thực tế", value:"Không có", sub:"T7 và T8 chưa phát hành · mốc gần nhất 30/06 (38,88 tỷ đ)", level:"red" },
+    { label:"Phí DVVH Q3 (đã chốt giá)", value:"40,25 tỷ đ", sub:"Trước VAT · sau VAT 44,28 tỷ · chưa quan sát được lệnh giải ngân đến 09/09", level:"amber" },
+    { label:"Số tháng cầm cự", value:"~4,02 tháng", sub:"Trên số 30/06 · gồm thuế & capex · chưa có số T7–T8", level:"amber" },
+    { label:"Rà soát KSNB mới trong kỳ", value:"88,69 tr đ", sub:"Thanh toán môi giới Song Cát đang xác minh căn cứ hợp đồng · rủi ro thời điểm ký", level:"amber" },
+    { label:"Chênh AOP nhân sự (đàm phán)", value:"27,60 tỷ đ", sub:"Căn cứ CĐT dùng để cắt NS · vẫn chưa đối chiếu độc lập", level:"amber" }
+  ];
+
+  SEP.summary = [
+    { level:"red", t:"Bản chốt 09/09 chỉ cách kỳ tháng 8 (chốt 08/09) đúng 1 ngày và sớm hơn 6 ngày so với lịch chạy định kỳ (ngày 15). Chưa có tháng báo cáo mới đóng lại; kỳ này là ảnh giám sát đầu tháng, không phải kỳ đóng đầy đủ. Tín hiệu tài chính thực chất tiếp theo rơi vào 15/09 (hạn PnL kỳ T8) và đầu tháng 10 (kỳ tháng 9 khép lại)." },
+    { level:"red", t:"Không có báo cáo tài chính định kỳ nào được phát hành trong cửa sổ quét. Cả 5 báo cáo kỳ tháng 7 (cam kết văn bản 24/07) quá hạn 22–33 ngày; hai báo cáo đầu kỳ tháng 8 (BC dòng tiền và SS dòng tiền, hạn 07/09) quá hạn 2 ngày. Mẫu hình chậm phát hành sang kỳ thứ ba." },
+    { level:"amber", t:"MỚI — rủi ro căn cứ thanh toán phí môi giới BĐS (Song Cát). KTT rà soát hai khoản đề nghị chi: 14.781.875 đ (tính trên đợt đầu 300 tr, sản phẩm nghiên cứu thị trường) và 73.909.377 đ (tính trên thanh toán lần 1 – 150 tr, mốc lấp đầy 10%, diện tích 220,28 m²). Khoản thứ nhất KTT đánh giá CHƯA đủ căn cứ lượng hóa theo hợp đồng (Điều 2.3.a gắn với 4 đầu mục sản phẩm, không gắn với % lấp đầy) — cần phụ lục làm rõ và PD chủ trương lãnh đạo. Khoản thứ hai có cơ sở (Điều 2.4) nhưng cần hồ sơ xác nhận diện tích và văn bản giới thiệu khách thuê." },
+    { level:"red", t:"Rủi ro thời điểm ký (đã định lượng): hợp đồng thuê với khách ký 01/06/2026, trong khi hợp đồng môi giới VL–Song Cát ký 10/06/2026 — sau 9 ngày. Theo Điều 3.2, khách thuê chỉ được ghi nhận là “do Bên A giới thiệu” nếu Bên A có email/văn bản chính thức giới thiệu gửi Bên B TRONG thời hạn hợp đồng còn hiệu lực. Nếu khách đã được chốt trước khi hợp đồng môi giới có hiệu lực, khoản phí có rủi ro bị coi là không có căn cứ. Pháp chế Omni (09/09) không có thêm ý kiến; KTT đã đặt câu hỏi tiếp tục hợp tác hay thanh lý hợp đồng." },
+    { level:"amber", t:"Thẩm quyền phê duyệt: KTT lưu ý cần xác định GĐ Khối Đầu tư & TMDV (Hiền) có đủ thẩm quyền phê duyệt thanh toán/điều chỉnh khác với hợp đồng đã ký hay không; nếu không, phải có PD chủ trương từ lãnh đạo trước khi thực hiện. Đây đúng là loại kiểm soát thẩm quyền chi thuộc phạm vi KSNB." },
+    { level:"amber", t:"Các mục tồn đọng từ kỳ trước KHÔNG có bằng chứng đã đóng trong cửa sổ 1 ngày: phí DVVH Q3 đã chốt giá 40,25 tỷ nhưng chưa quan sát được văn bản CĐT phê duyệt hay lệnh giải ngân; khoản cho vay 20 tỷ, mua ô tô 1,53 tỷ, tách nhỏ giao dịch 04/06, vốn điều lệ góp thiếu 6,57 tỷ — giữ nguyên trạng thái mở." }
+  ];
+
+  SEP.compliance = {
+    note: "Căn cứ email cam kết KTT 24/07/2026 (hạn: BC dòng tiền & SS dòng tiền ngày 7; PnL ngày 15; phân tích lãi-lỗ vs dòng tiền & SS ngân sách ngày 18 hằng tháng). Chốt dữ liệu 09/09/2026. Số ngày trễ/còn lại tính lại bằng script từ ngày chốt. Bảng gộp kỳ tháng 7 và kỳ tháng 8.",
+    rows: [
+      { n:1, name:"BC dòng tiền — kỳ T7", due:"07/08/2026", got:"—", status:"late", tag:"Quá hạn 33 ngày" },
+      { n:2, name:"BC so sánh KH dòng tiền vs thực tế — kỳ T7", due:"07/08/2026", got:"—", status:"late", tag:"Quá hạn 33 ngày" },
+      { n:3, name:"BC Kết quả Kinh doanh (PnL) — kỳ T7", due:"15/08/2026", got:"—", status:"late", tag:"Quá hạn 25 ngày" },
+      { n:4, name:"BC phân tích lãi/lỗ vs dòng tiền — kỳ T7", due:"18/08/2026", got:"—", status:"late", tag:"Quá hạn 22 ngày" },
+      { n:5, name:"BC so sánh ngân sách KH vs thực tế — kỳ T7", due:"18/08/2026", got:"—", status:"late", tag:"Quá hạn 22 ngày" },
+      { n:6, name:"BC dòng tiền — kỳ T8", due:"07/09/2026", got:"—", status:"late", tag:"Quá hạn 2 ngày" },
+      { n:7, name:"BC so sánh KH dòng tiền vs thực tế — kỳ T8", due:"07/09/2026", got:"—", status:"late", tag:"Quá hạn 2 ngày" },
+      { n:8, name:"BC Kết quả Kinh doanh (PnL) — kỳ T8", due:"15/09/2026", got:"—", status:"pending", tag:"Còn 6 ngày" },
+      { n:9, name:"BC phân tích lãi/lỗ vs dòng tiền — kỳ T8", due:"18/09/2026", got:"—", status:"pending", tag:"Còn 9 ngày" },
+      { n:10, name:"BC so sánh ngân sách KH vs thực tế — kỳ T8", due:"18/09/2026", got:"—", status:"pending", tag:"Còn 9 ngày" }
+    ]
+  };
+
+  SEP.timeline = [
+    { d:"07/09", who:"TCKT", level:"red", t:"HẠN phát hành BC dòng tiền và BC so sánh KH dòng tiền vs thực tế (kỳ tháng 8)",
+      note:"Không có báo cáo nào được phát hành. Đến 09/09 đã quá hạn 2 ngày — kỳ tháng 8 lặp lại mẫu hình kỳ tháng 7." },
+    { d:"08/09", who:"KTT", level:"amber", t:"KTT rà soát 2 khoản đề nghị thanh toán phí môi giới BĐS (đối tác Song Cát): 14.781.875 đ và 73.909.377 đ",
+      note:"Khoản 14,78 tr (đợt đầu 300 tr, sản phẩm NCTT): KTT đánh giá Điều 2.3.a gắn với 4 đầu mục sản phẩm, KHÔNG gắn với % lấp đầy — chưa đủ căn cứ lượng hóa, cần phụ lục và PD chủ trương. Khoản 73,91 tr (lần 1 – 150 tr, mốc lấp đầy 10%, 220,28 m²): có cơ sở Điều 2.4 nhưng cần hồ sơ xác nhận diện tích và văn bản giới thiệu khách thuê + hóa đơn GTGT." },
+    { d:"09/09", who:"Pháp chế", level:"info", t:"Pháp chế Omni (C. Hà) không có thêm ý kiến, đề nghị các bên chủ động các bước tiếp theo",
+      note:"Chuyển quyền chủ động về TMDV/KTT." },
+    { d:"09/09", who:"KTT", level:"red", t:"KTT nêu RỦI RO THỜI ĐIỂM KÝ và đặt câu hỏi tiếp tục hợp tác hay thanh lý hợp đồng",
+      note:"Hợp đồng thuê ký 01/06 trước hợp đồng môi giới 10/06 (chênh 9 ngày). Theo Điều 3.2, cần bằng chứng giới thiệu khách trong thời hạn hợp đồng còn hiệu lực, nếu không khoản phí rủi ro không có căn cứ. KTT hỏi TMDV có tiếp tục hợp tác với Song Cát không; nếu không thì thanh lý để khỏi ký phụ lục điều chỉnh." }
+  ];
+
+  // Giữ nguyên flags #1–#10 từ kỳ trước; cập nhật #10 theo đồng hồ hiện tại; thêm #11 (môi giới).
+  SEP.flags[9] = { n:10, level:"red", since:"07/08/2026",
+    title:"Chậm phát hành báo cáo tài chính đã thành mẫu hình ba kỳ liên tiếp",
+    detail:"Cam kết văn bản KTT 24/07/2026 gồm 5 báo cáo mỗi tháng (hạn ngày 7, 15, 18). Đến 09/09: kỳ tháng 7 cả 5 báo cáo chưa phát hành — quá hạn 22 đến 33 ngày; kỳ tháng 8 hai báo cáo đầu (hạn 07/09) đã quá hạn 2 ngày; kỳ tháng 8 còn 3 báo cáo đến hạn 15/09 và 18/09. Đây là kỳ giám sát thứ ba liên tiếp ghi nhận chậm phát hành — vấn đề năng lực/ý chí tuân thủ, không còn là sự cố đơn lẻ. Hệ quả: KSNB và Ban TGĐ không có số tài chính thực tế của hai tháng gần nhất để giám sát thanh khoản. Đề nghị đưa vào hồ sơ đánh giá TCKT và ra HĐQT nếu kỳ tháng 8 tiếp tục 0/5 sau 18/09." };
+  SEP.flags.push({ n:11, level:"amber", since:"08/09/2026",
+    title:"MỚI — Rủi ro căn cứ hợp đồng của khoản phí môi giới BĐS (đối tác Song Cát)",
+    detail:"Trong kỳ quét, KTT rà soát hai khoản đề nghị thanh toán phí môi giới theo hợp đồng VL–Song Cát: (a) 14.781.875 đ tính trên đợt thanh toán đầu tiên (300 tr, sản phẩm nghiên cứu thị trường) — KTT đánh giá Điều 2.3.a gắn khoản này với việc nộp đủ 4 đầu mục sản phẩm (báo cáo NCTT, Tenant Mix, đề xuất chiến lược khách thuê, đề xuất thương hiệu), KHÔNG gắn với tỷ lệ lấp đầy; chưa có căn cứ rõ ràng để lượng hóa mức hoàn thành, nếu thanh toán một phần phải đánh giá theo mức độ hoàn thành thực tế của 4 đầu mục và ký phụ lục làm rõ; (b) 73.909.377 đ tính trên thanh toán lần 1 (150 tr, mốc lấp đầy 10%, diện tích 220,28 m²) — có cơ sở tại Điều 2.4 nhưng cần văn bản xác nhận diện tích lấp đầy do Bên A mang về cho từng khách thuê, hóa đơn GTGT và biên bản nghiệm thu ghi rõ cách tính. RỦI RO TRỌNG YẾU: hợp đồng thuê với khách ký 01/06/2026 TRƯỚC hợp đồng môi giới ký 10/06/2026 (chênh 9 ngày); theo Điều 3.2 khách thuê chỉ được ghi nhận là do Bên A giới thiệu nếu có email/văn bản chính thức giới thiệu gửi Bên B trong thời hạn hợp đồng còn hiệu lực — nếu không, khoản phí có rủi ro bị coi là không có căn cứ. Thêm điểm kiểm soát thẩm quyền: cần xác định GĐ Khối Đầu tư & TMDV có đủ thẩm quyền phê duyệt thanh toán/điều chỉnh khác hợp đồng đã ký hay không; nếu không, phải có PD chủ trương lãnh đạo. Tổng hai khoản đang treo: 88.691.252 đ. Pháp chế Omni (09/09) không có thêm ý kiến; KTT đã đặt câu hỏi tiếp tục hợp tác hay thanh lý. Nội dung mô tả tình trạng hồ sơ, không kết luận về hành vi hay động cơ; đã ẩn danh." });
+  SEP.flagsNote = "Các mục #1–#8 là cảnh báo tồn đọng từ H1/2026; trong cửa sổ quét 08–09/09 KHÔNG có hồ sơ mới làm thay đổi trạng thái đóng/mở. Mục #9 (phí DVVH Q3 đã chốt giá) giữ nguyên trạng CAM — chưa quan sát được văn bản phê duyệt/lệnh giải ngân. Mục #10 cập nhật theo đồng hồ hiện tại (mẫu hình chậm phát hành sang kỳ thứ ba). Mục #11 là phát hiện MỚI của kỳ này. Nội dung mô tả tình trạng hồ sơ quan sát được, không kết luận về hành vi hay động cơ cá nhân; tài liệu đã ẩn danh.";
+
+  SEP.cash = Object.assign({}, SEP.cash, { note:"Không có số dư tiền thực tế tháng 7, 8 hay 9 — TCKT chưa phát hành. Bảng dưới giữ nguyên: mốc thực tế gần nhất là 30/06/2026 (38.876.331.030 đ); cột 31/07 là ƯỚC TÍNH theo kế hoạch. Chưa có cột nào phản ánh 31/08 hay 31/09." });
+  SEP.realFlow = Object.assign({}, SEP.realFlow, { note:"Không có dòng tiền thực tế tháng 7, 8 hay 9. Bảng dưới là kế hoạch tháng 7 từ kỳ trước, giữ nguyên để tham chiếu." });
+  SEP.pnl = Object.assign({}, SEP.pnl, { note:"Không có PnL tháng 7, 8 hay 9 — file PnL vẫn dừng ở tháng 6. PnL kỳ T7 (hạn 15/08) quá hạn 25 ngày; PnL kỳ T8 (hạn 15/09) còn 6 ngày. Số dưới đây là H1/2026 và riêng tháng 6, giữ nguyên." });
+
+  SEP.receivables = "Giữ nguyên từ kỳ tháng 8: phí DVVH Quý 3 đã chốt giá 40.253.699.290 đ trước VAT (44.279.069.220 đ sau VAT) sau họp lãnh đạo 18/08; đến 09/09 vẫn CHƯA quan sát được văn bản CĐT phê duyệt hay lệnh giải ngân trong hộp thư — rủi ro vẫn ở khâu THU TIỀN ĐÚNG HẠN. Số phải thu 30/06/2026 giữ nguyên: Bên liên quan A còn phải thu 3.498.534.044 đ; Bên liên quan B đã thanh toán đủ Q1+Q2 (20.085.642.910 đ); số ngày phải thu ~9,8 ngày. Chưa có số liệu 31/07, 31/08 hay 31/09/2026.";
+
+  SEP.riskSummary = {
+    red:7, amber:4, yellow:2, score:195, scoreAfter:90,
+    note:"Thay đổi ròng kỳ này: THÊM 1 rủi ro CAM mới (căn cứ hợp đồng của khoản phí môi giới Song Cát 88,69 tr đ — rủi ro thời điểm ký và thẩm quyền phê duyệt). Không có rủi ro tồn đọng nào (#1–#9) được đóng lại. Mẫu hình chậm phát hành báo cáo (#10) sang kỳ thứ ba liên tiếp. Điểm rủi ro gộp giữ nguyên từ kỳ tháng 7, CHƯA tái tính trong phạm vi kỳ giám sát đầu tháng này.",
+    momNote:"Đây là ảnh giám sát đầu tháng (chốt 09/09, 1 ngày sau kỳ tháng 8) — biên độ thay đổi hẹp theo thiết kế. Không có số tài chính mới; không thêm điểm chuỗi thời gian. Giá trị của kỳ nằm ở việc bắt sớm một rủi ro kiểm soát chi (căn cứ phí môi giới) trước khi tiền ra."
+  };
+
+  SEP.actions = [
+    { n:1, level:"red", tag:"RẤT KHẨN", due:"11/09/2026", t:"Phát văn bản chính thức yêu cầu TCKT phát hành NGAY 5 báo cáo kỳ tháng 7 (quá hạn 22–33 ngày) và 2 báo cáo kỳ tháng 8 đã đến hạn (quá hạn 2 ngày); ghi nhận việc trễ hạn vào hồ sơ đánh giá TCKT. Đây là kỳ giám sát thứ ba liên tiếp không tuân thủ cam kết 24/07." },
+    { n:2, level:"red", tag:"RẤT KHẨN", due:"12/09/2026", t:"Trước khi TMDV/KTT chi khoản phí môi giới Song Cát (88,69 tr đ): yêu cầu (a) bằng chứng giới thiệu khách thuê nằm trong thời hạn hợp đồng còn hiệu lực (Điều 3.2) — xử lý rủi ro hợp đồng thuê ký 01/06 trước hợp đồng môi giới 10/06; (b) hồ sơ xác nhận diện tích lấp đầy 220,28 m² và văn bản xác nhận của Bên B; (c) xác nhận thẩm quyền phê duyệt của GĐ Khối Đầu tư & TMDV, nếu không đủ thì lấy PD chủ trương lãnh đạo. Nếu không đủ căn cứ, tạm dừng chi và cân nhắc thanh lý." },
+    { n:3, level:"amber", tag:"KHẨN", due:"12/09/2026", t:"Xác nhận trạng thái phí DVVH Q3 đã chốt giá (40,25 tỷ trước VAT): CĐT đã phê duyệt bằng văn bản chưa; hồ sơ trình ký thanh toán và lệnh giải ngân đã phát hành chưa. Chưa quan sát được đến 09/09." },
+    { n:4, level:"amber", tag:"KHẨN", due:"15/09/2026", t:"Chuẩn bị cho hạn PnL kỳ T8 (15/09) và 2 báo cáo 18/09: nếu TCKT lỡ tiếp, kỳ tháng 8 cũng 0/5 và cần đưa vào báo cáo HĐQT về năng lực tuân thủ của TCKT." },
+    { n:5, level:"info", tag:"TRUNG BÌNH", due:"19/09/2026", t:"Đưa vốn điều lệ góp thiếu 6,57 tỷ (cổ đông 65%) và mô hình chi hộ CĐT chưa có hợp đồng ủy quyền vào chương trình họp HĐQT gần nhất, kèm ý kiến pháp chế về hậu quả pháp lý." }
+  ];
+
+  SEP.actionsExtra = "Vấn đề luồng thông tin của các kỳ trước VẪN TỒN TẠI: PTGĐ TT tiếp tục chỉ nhận CC trên các tài liệu tài chính/định giá gửi ra ngoài (phí DVVH Q3, hồ sơ môi giới). Đề nghị TCKT gửi TRỰC TIẾP (dòng To) tới PTGĐ TT đối với mọi báo cáo tài chính và hồ sơ thanh toán trọng yếu.";
+
+  SEP.sources = [
+    "Hộp thư Outlook của PTGĐ TT (tungtruong@omni.com.vn), quét 08/09/2026 – 09/09/2026 theo người gửi ngocctm@omni.com.vn. Trong cửa sổ: KHÔNG có báo cáo tài chính định kỳ; chỉ có chuỗi email “Phản hồi nội dung hợp đồng môi giới bất động sản”.",
+    "Đọc chi tiết 3 email chuỗi môi giới Song Cát (08/09 07:06 — ý kiến KTT về 2 khoản 14.781.875 đ và 73.909.377 đ; 09/09 03:45 — phản hồi KTT + rủi ro thời điểm ký; 09/09 04:19 — KTT hỏi tiếp tục hợp tác hay thanh lý) và email Pháp chế Omni (09/09 09:00).",
+    "Email cam kết lịch báo cáo của KTT ngày 24/07/2026 (5 báo cáo, hạn ngày 7 / 15 / 18 hằng tháng) — căn cứ đồng hồ tuân thủ.",
+    "Các mốc tài chính thực tế gần nhất giữ nguyên từ kỳ tháng 7–8: file Cashflow / PnL / Kế hoạch dòng tiền / Đăng ký rủi ro 202606 — chưa cập nhật số T7/T8/T9.",
+    "Toàn bộ ngày, số ngày trễ và tổng phí môi giới trong kỳ được tính lại độc lập bằng script từ ngày chốt 09/09/2026 (Asia/Saigon): 14.781.875 + 73.909.377 = 88.691.252; chênh ngày ký hợp đồng 9 ngày — khớp."
+  ];
+
+  SEP.limits = [
+    "Kỳ giám sát đầu tháng: cửa sổ quét chỉ 08–09/09 (1 ngày sau khi chốt kỳ tháng 8). Chưa phải kỳ đóng đầy đủ; kỳ tháng 9 thực sự khép lại đầu tháng 10.",
+    "Toàn bộ số tài chính THỰC TẾ tháng 7, 8 và 9/2026 — TCKT chưa phát hành.",
+    "Nội dung hợp đồng môi giới VL–Song Cát và các phụ lục — chỉ đọc qua thân email trao đổi của KTT/Pháp chế, chưa mở file hợp đồng gốc để đối chiếu từng điều khoản.",
+    "Xác nhận CĐT phê duyệt phí DVVH Q3 bằng văn bản và lệnh giải ngân — chưa quan sát được trong hộp thư đến 09/09.",
+    "Các cảnh báo đỏ tồn đọng #1–#8 không có dữ liệu mới trong kỳ để cập nhật trạng thái đóng/mở."
+  ];
+
+  SEP.legal = "Hai nội dung cần lưu ý pháp lý trong kỳ: (a) khoản phí môi giới Song Cát — nếu khách thuê được chốt trước khi hợp đồng môi giới có hiệu lực (thuê 01/06 vs môi giới 10/06), việc ghi nhận “khách do Bên A giới thiệu” và chi phí tương ứng cần rà soát điều kiện Điều 3.2 và có thể cần ý kiến pháp chế trước khi chi; đồng thời làm rõ thẩm quyền phê duyệt khác hợp đồng đã ký. " + AUG.legal;
+
+  window.PERIODS.unshift(SEP);
+})();
+
 /* --- Biến động theo tháng: doanh thu, chi phí, lợi nhuận --------
    Nguồn: sheet PnL_Total. Tháng chưa có số liệu để null. */
 window.MOM = [
