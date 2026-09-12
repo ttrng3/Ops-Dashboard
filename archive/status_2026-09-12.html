@@ -1,0 +1,1025 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Dashboard Giám sát Ngân sách &amp; Dòng tiền — KSNB</title>
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#16202c; --muted:#5d6b7a; --line:#e2e7ee;
+  --navy:#1f4e78; --blue:#2e75b6; --lblue:#e8f1fa;
+  --red:#c0392b; --redbg:#fdecea; --amber:#b8860b; --amberbg:#fdf6e3;
+  --green:#1e7d5a; --greenbg:#e8f6f0; --grey:#8a97a6;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.05);
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;color:var(--ink);
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  -webkit-text-size-adjust:100%}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:var(--panel);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+.topin{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 0}
+.brand{font-weight:700;font-size:15px;color:var(--navy);line-height:1.25;margin-right:auto}
+.brand small{display:block;font-weight:400;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+select,button.btn{font:inherit;font-size:13px;padding:7px 11px;border:1px solid var(--line);
+  border-radius:8px;background:var(--panel);color:var(--ink);cursor:pointer}
+button.btn:hover,select:hover{border-color:var(--blue)}
+
+/* layout */
+.cols{display:grid;grid-template-columns:212px 1fr;gap:26px;padding:22px 0 70px}
+nav.side{position:sticky;top:62px;align-self:start;max-height:calc(100vh - 80px);overflow:auto}
+nav.side a{display:block;padding:6px 10px;border-radius:7px;font-size:13.5px;
+  color:var(--muted);text-decoration:none;border-left:2px solid transparent}
+nav.side a:hover{background:var(--lblue);color:var(--ink)}
+nav.side a.on{color:var(--navy);font-weight:600;border-left-color:var(--blue);background:var(--lblue)}
+@media(max-width:900px){.cols{grid-template-columns:1fr;gap:0}nav.side{display:none}}
+
+/* blocks */
+section{margin:0 0 30px;scroll-margin-top:72px}
+h2{font-size:17px;color:var(--navy);margin:0 0 12px;padding-bottom:7px;border-bottom:2px solid var(--line);
+  display:flex;align-items:baseline;gap:9px}
+h2 .num{font-size:12px;font-weight:700;color:#fff;background:var(--blue);border-radius:5px;padding:2px 7px;flex:none}
+h3{font-size:14.5px;margin:20px 0 9px;color:var(--ink)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.note{font-size:13px;color:var(--muted);font-style:italic;margin:9px 0}
+
+/* verdict */
+.verdict{border-radius:12px;padding:16px 18px;margin:6px 0 18px;border-left:5px solid;box-shadow:var(--shadow)}
+.verdict.red{background:var(--redbg);border-color:var(--red)}
+.verdict.amber{background:var(--amberbg);border-color:var(--amber)}
+.verdict.green{background:var(--greenbg);border-color:var(--green)}
+.verdict h1{margin:0 0 6px;font-size:18px;letter-spacing:.01em}
+.verdict.red h1{color:var(--red)} .verdict.amber h1{color:var(--amber)} .verdict.green h1{color:var(--green)}
+.verdict p{margin:0;font-size:14px}
+.meta{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* kpi */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--grey);
+  border-radius:11px;padding:13px 15px;box-shadow:var(--shadow)}
+.kpi.red{border-top-color:var(--red)} .kpi.amber{border-top-color:var(--amber)} .kpi.ok{border-top-color:var(--green)}
+.kpi .lb{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.kpi .vl{font-size:21px;font-weight:700;margin:5px 0 3px;line-height:1.2;font-variant-numeric:tabular-nums}
+.kpi.red .vl{color:var(--red)} .kpi.amber .vl{color:var(--amber)} .kpi.ok .vl{color:var(--green)}
+.kpi .sb{font-size:12px;color:var(--muted)}
+
+/* bullets */
+ul.bul{list-style:none;margin:0;padding:0}
+ul.bul li{position:relative;padding:8px 0 8px 26px;border-bottom:1px solid var(--line);font-size:14px}
+ul.bul li:last-child{border-bottom:0}
+ul.bul li::before{content:"";position:absolute;left:8px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--grey)}
+ul.bul li.red::before{background:var(--red)} ul.bul li.red{font-weight:600}
+ul.bul li.amber::before{background:var(--amber)}
+ul.bul li.good::before{background:var(--green)}
+ul.bul li.info::before{background:var(--blue)}
+
+/* table */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+th{background:var(--blue);color:#fff;text-align:left;padding:9px 11px;font-weight:600;font-size:12.5px;white-space:nowrap}
+td{padding:9px 11px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:rgba(128,140,155,.045)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--mono);font-size:12.5px}
+tr.total td{font-weight:700;background:var(--lblue)!important}
+.na{color:var(--red);font-weight:700}
+
+/* chips */
+.chip{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.chip.red{background:var(--redbg);color:var(--red)}
+.chip.amber{background:var(--amberbg);color:var(--amber)}
+.chip.green{background:var(--greenbg);color:var(--green)}
+.chip.grey{background:rgba(128,140,155,.15);color:var(--muted)}
+
+/* timeline */
+.tl{position:relative;margin:0;padding:2px 0 0 22px;list-style:none}
+.tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl li{position:relative;padding:0 0 16px}
+.tl li::before{content:"";position:absolute;left:-21px;top:6px;width:10px;height:10px;border-radius:50%;
+  background:var(--panel);border:2px solid var(--grey)}
+.tl li.red::before{border-color:var(--red);background:var(--red)}
+.tl li.amber::before{border-color:var(--amber)}
+.tl li.good::before{border-color:var(--green)}
+.tl li.info::before{border-color:var(--blue)}
+.tl .dt{font-family:var(--mono);font-size:11.5px;color:var(--muted);font-weight:700}
+.tl .ti{font-size:14px;font-weight:600;margin:1px 0 2px}
+.tl .tn{font-size:13px;color:var(--muted)}
+.tl .who{font-size:11px;background:rgba(128,140,155,.15);color:var(--muted);padding:1px 7px;border-radius:4px;margin-left:6px}
+
+/* flags */
+.flag{border:1px solid var(--line);border-left:4px solid var(--grey);border-radius:10px;
+  padding:12px 15px;margin-bottom:10px;background:var(--panel);box-shadow:var(--shadow)}
+.flag.red{border-left-color:var(--red)} .flag.amber{border-left-color:var(--amber)} .flag.ok{border-left-color:var(--green)}
+.flag .fh{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:5px}
+.flag .fn{font-family:var(--mono);font-size:11.5px;color:var(--muted);font-weight:700}
+.flag .ft{font-weight:700;font-size:14.5px}
+.flag .fd{font-size:13.5px;color:var(--muted)}
+.age{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* actions */
+.act{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;margin-bottom:9px;background:var(--panel);box-shadow:var(--shadow)}
+.act .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;
+  display:grid;place-items:center;font-size:12.5px;font-weight:700}
+.act.red .n{background:var(--red)} .act.amber .n{background:var(--amber)}
+.act .b{flex:1;min-width:0}
+.act .t{font-size:14px;font-weight:600}
+.act .m{margin-top:4px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+
+/* charts */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.chartbox h4{margin:0 0 2px;font-size:13.5px}
+.chartbox .cs{font-size:11.5px;color:var(--muted);margin-bottom:8px}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.gl{stroke:var(--line);stroke-width:1}
+.ax{fill:var(--muted);font-size:9.5px;font-family:var(--mono)}
+
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:0 16px;margin-bottom:10px}
+summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:14.5px;color:var(--navy)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:10px}
+.doc p{font-size:13.5px;margin:0 0 9px}
+.doc ul{font-size:13.5px;margin:0 0 9px;padding-left:20px}
+footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:12px;color:var(--muted);text-align:center}
+.warn{background:var(--amberbg);border:1px solid var(--amber);color:var(--amber);
+  border-radius:9px;padding:10px 13px;font-size:12.5px;margin-bottom:16px}
+
+@media print{
+  header.top,nav.side,.noprint{display:none!important}
+  body{background:#fff;font-size:11pt}
+  .cols{grid-template-columns:1fr;padding:0}
+  .card,.flag,.act,.chartbox,.tw{box-shadow:none;break-inside:avoid}
+  section{break-inside:avoid-page}
+  details{border:0;padding:0} details summary{display:none} details>*{display:block!important}
+}
+</style>
+
+
+<header class="top">
+  <div class="wrap topin">
+    <div class="brand">Dashboard Giám sát Ngân sách &amp; Dòng tiền
+      <small>Kiểm soát Nội bộ &amp; Quản trị Rủi ro · Tài liệu ẩn danh</small></div>
+    <select id="sel" aria-label="Chọn kỳ báo cáo"></select>
+    <button class="btn" onclick="window.print()">⎙ In / PDF</button>
+  </div>
+</header>
+
+<div class="wrap cols">
+  <nav class="side" id="nav"></nav>
+  <main id="app"></main>
+</div>
+
+<footer class="wrap">
+  Tài liệu nội bộ đã ẩn danh · Tên cá nhân, email, số tài khoản và tên pháp nhân đã được thay bằng vai trò và mã.<br>
+  Cập nhật dữ liệu trong KHU VỰC DỮ LIỆU ở đầu file. Kỳ gần nhất: tháng 8/2026, chốt 08/09/2026.
+</footer>
+
+<script>
+/* ##########################################################################
+   ###  KHU VỰC DỮ LIỆU  —  MỖI KỲ CHỈ SỬA TRONG PHẦN NÀY               ###
+   ###  Phần code phía dưới (sau dòng KẾT THÚC KHU VỰC DỮ LIỆU)         ###
+   ###  KHÔNG cần đụng tới.                                              ###
+   ########################################################################## */
+/* ============================================================
+   DỮ LIỆU DASHBOARD GIÁM SÁT NGÂN SÁCH & DÒNG TIỀN
+   ------------------------------------------------------------
+   MỖI KỲ MỚI: thêm 1 object vào đầu mảng PERIODS và 1 điểm vào
+   mảng SERIES. Không cần sửa index.html.
+
+   LƯU Ý BẢO MẬT: repo công khai — không điền tên người, email,
+   số tài khoản ngân hàng, số sổ tiết kiệm hay tên pháp nhân.
+   Dùng vai trò (KTT, TGĐ, PTGĐ TT, CĐT) và mã (Dự án A/B,
+   Bên liên quan A/B).
+   ============================================================ */
+
+/* --- Chuỗi thời gian: tiền sẵn có & dòng tiền thực chất ----- */
+window.SERIES = [
+  { m: "T12/25", cash: 28656057577, net: null,          plan: false },
+  { m: "T1/26",  cash: 20178696322, net: -8477361255,   plan: false },
+  { m: "T2/26",  cash: 7419634572,  net: -12759061750,  plan: false },
+  { m: "T3/26",  cash: 17163884477, net: 9744249905,    plan: false },
+  { m: "T4/26",  cash: 26080362038, net: 8916477561,    plan: false },
+  { m: "T5/26",  cash: 33677439510, net: 7597077472,    plan: false },
+  { m: "T6/26",  cash: 38876331030, net: 5198891520,    plan: false },
+  { m: "T7/26",  cash: 33807606624, net: -5068724406,   plan: true  }
+];
+
+/* --- Biến động tiền theo tháng (MoM) ------------------------
+   cash = ngân hàng + tiền mặt + sổ tiết kiệm
+   net  = dòng tiền thực chất (đã loại gửi/rút TK và cho vay/thu hồi)
+   Số tháng cầm cự tính trên chi lõi 6.973.153.449 đ và
+   chi thực chất 9.679.624.017 đ (bình quân H1/2026). */
+window.MOM_CASH = [
+  { m:"T12/25", cash:28656057577, net:null },
+  { m:"T1/26",  cash:20178696322, net:-8477361255 },
+  { m:"T2/26",  cash:7419634572,  net:-12759061750, note:"Đáy thanh khoản của năm — chỉ còn 1,06 tháng cầm cự" },
+  { m:"T3/26",  cash:17163884477, net:9744249905 },
+  { m:"T4/26",  cash:26080362038, net:8916477561 },
+  { m:"T5/26",  cash:33677439510, net:7597077472,  note:"Tháng phát sinh khoản cho vay 20 tỷ ra–vào" },
+  { m:"T6/26",  cash:38876331030, net:5198891520,  note:"Đỉnh tiền của năm" },
+  { m:"T7/26",  cash:33807606624, net:-5068724406, plan:true, note:"Ước tính theo kế hoạch — TCKT chưa phát hành số thực tế" }
+];
+window.MOM_CASH_NOTE = "Cột T7/26 là ƯỚC TÍNH: tiền thực tế 30/06 (38.876.331.030 đ) cộng dòng tiền thực chất theo kế hoạch T7 (−5.068.724.406 đ). Bản thân file kế hoạch ghi 33.514.597.824 đ, thấp hơn 293.008.800 đ, vì kế hoạch cuốn chiếu từ số dư KẾ HOẠCH cuối tháng 6 (8.539.012.230 đ) chứ không phải số THỰC TẾ (8.876.331.030 đ). Cả hai đều là ước tính, chưa kiểm chứng.";
+
+/* --- Các kỳ báo cáo (mới nhất lên đầu) --------------------- */
+window.PERIODS = [
+{
+  id: "2026-07",
+  label: "Tháng 7/2026",
+  asOf: "12/08/2026",
+  scan: "08/07/2026 – 12/08/2026 (36 ngày)",
+
+  verdict: {
+    level: "red",
+    head: "KHÔNG ĐỦ DỮ LIỆU ĐỂ ĐÁNH GIÁ THÁNG 7 — VÀ DÒNG TIỀN QUÝ 3 ĐANG BỊ TREO",
+    body: "TCKT chưa phát hành bất kỳ số liệu tài chính tháng 7/2026 nào; cả ba file nguồn đều dừng ở tháng 6. Đồng thời phát sinh rủi ro mới trong kỳ: CĐT chưa chốt báo cáo ngân sách H1, kéo theo 48,69 tỷ đ phí dịch vụ vận hành Quý 3 chưa được giải ngân."
+  },
+
+  kpi: [
+    { label: "Tiền sẵn có cuối kỳ", value: "Không có số thực tế", sub: "Ước tính: ~33,81 tỷ đ · MoM −5,07 tỷ (−13,0%)", level: "red", icon: "cash" },
+    { label: "Số tháng cầm cự", value: "~3,49 tháng", sub: "Gồm thuế & capex · T6: 4,02 · ngưỡng ĐỎ dưới 3", level: "amber", icon: "clock" },
+    { label: "Dòng tiền thực chất", value: "−5,07 tỷ đ", sub: "Theo KH · T6 thực tế +5,20 tỷ · đảo chiều 10,27 tỷ", level: "red", icon: "flow" },
+    { label: "Tuân thủ báo cáo", value: "0 / 2", sub: "Đã đến hạn nhưng chưa phát hành · trễ 5 ngày", level: "red", icon: "doc" },
+    { label: "Phí DVVH Quý 3 đang treo", value: "48,69 tỷ đ", sub: "CĐT chưa chốt BC ngân sách H1", level: "red", icon: "cash" },
+    { label: "Chênh AOP nhân sự lũy kế", value: "27,60 tỷ đ", sub: "Căn cứ để CĐT cắt ngân sách · chưa đối chiếu độc lập", level: "amber", icon: "doc" }
+  ],
+
+  summary: [
+    { level: "red", t: "Vẫn không trả lời được câu hỏi “tiền tăng hay giảm trong tháng 7”. Đến 12/08/2026, TCKT chưa phát hành bất kỳ số liệu tài chính T7 nào; toàn bộ cột T7.26 trong file Cashflow, PnL và Kế hoạch dòng tiền đều bằng 0." },
+    { level: "red", t: "0/2 báo cáo đã đến hạn được phát hành. BC dòng tiền và BC so sánh KH vs TT cùng hạn 07/08/2026 — trễ 5 ngày. Đây là kỳ ĐẦU TIÊN áp dụng cam kết bằng văn bản ngày 24/07/2026 của TCKT." },
+    { level: "red", t: "MỚI — rủi ro lớn nhất kỳ này: ngày 09/08 TCKT xin CĐT phản hồi trước 12/08 “để đảm bảo tiến độ thanh toán phí DVVH Quý 3”. Ngày 12/08 CĐT phản hồi KHÔNG chốt, mà kiến nghị giảm định biên nửa cuối năm và điều chuyển một phần chi phí nhân sự H1 sang chi phí vận hành Q3. Kế hoạch thu phí DVVH Q3 là 48.686.314.649 đ." },
+    { level: "amber", t: "Chốt chặn đàm phán đã lộ rõ: theo báo cáo lương P. HCNS, lũy kế chênh giữa AOP nhân sự và thực tế là 27.603.431.530 đ; riêng T7 thực chi thấp hơn AOP 47,0% (6.046.145.761 đ so với 11.116.640.715 đ). Đây chính là con số CĐT dùng làm căn cứ cắt ngân sách." },
+    { level: "red", t: "Khoản cho vay 20 tỷ đ tháng 5 nay đã truy được trọn chuỗi giao dịch: giải ngân 08/05 cho một CÁ NHÂN, thu hồi đủ gốc 12/05, lãi thu 6.720.430 đ — quy đổi chỉ 3,07%/năm. Cùng ngày 08/05 công ty rút 2 sổ tiết kiệm trước hạn 10 tỷ đ, mất 39.198.630 đ lãi. Chênh kinh tế âm 32.478.200 đ. Cột hợp đồng, khế ước và ghi chú đều trống." },
+    { level: "red", t: "Chi mua sắm tài sản ngoài kế hoạch đã định danh: mua ô tô, tổng 1.525.120.000 đ trong tháng 6 (cọc, tiền xe, biển số, bảo hiểm). Dòng “Chi mua sắm CCDC, TTB dài hạn” trong kế hoạch dòng tiền bằng 0 ở cả 12 tháng." },
+    { level: "amber", t: "Dòng tiền thực chất đảo chiều mạnh: từ +5,20 tỷ đ thực tế tháng 6 sang −5,07 tỷ đ theo kế hoạch tháng 7 — biến động 10,27 tỷ đ trong một tháng. Nguyên nhân: thu phí DVVH kế hoạch chỉ 7,0 tỷ so với 15,0 tỷ tháng 6, cộng kế hoạch nộp thuế TNDN 2,0 tỷ." },
+    { level: "amber", t: "Chất lượng hồ sơ chưa cải thiện: 89/90 giao dịch từ 500 triệu đ trở lên trong H1 không có ghi chú (98,9%). Chênh 94.908.000 đ giữa các file nay đã truy được nguyên nhân gốc là lỗi công thức tổng, nhưng vẫn chưa được sửa." }
+  ],
+
+  compliance: {
+    note: "Căn cứ email cam kết của KTT ngày 24/07/2026, áp dụng từ kỳ tháng 7/2026. Chốt dữ liệu 12/08/2026.",
+    rows: [
+      { n: 1, name: "Báo cáo dòng tiền",                       due: "07/08/2026", got: "—", status: "late",    tag: "Trễ 5 ngày" },
+      { n: 2, name: "BC so sánh kế hoạch dòng tiền và thực tế", due: "07/08/2026", got: "—", status: "late",    tag: "Trễ 5 ngày" },
+      { n: 3, name: "Báo cáo Kết quả Kinh doanh (PnL)",         due: "15/08/2026", got: "—", status: "pending", tag: "Còn 3 ngày" },
+      { n: 4, name: "BC phân tích giữa lãi/lỗ và dòng tiền",    due: "18/08/2026", got: "—", status: "pending", tag: "Còn 6 ngày" },
+      { n: 5, name: "BC so sánh ngân sách kế hoạch và thực tế", due: "18/08/2026", got: "—", status: "pending", tag: "Còn 6 ngày" }
+    ]
+  },
+
+  timeline: [
+    { d: "16/07", t: "Dự thảo Hợp đồng ủy quyền mua sắm & thanh toán với Bên liên quan B", who: "KTT", level: "red",
+      note: "Email nêu rõ Công ty “đã thực hiện thanh toán trước” các khoản thuộc ngân sách CĐT. Đến 12/08 vẫn chưa thấy phản hồi hay bản ký." },
+    { d: "16/07", t: "Xin ý kiến chi phí phát triển giai đoạn 2 phần mềm quản lý khu đô thị (~328 triệu đ)", who: "KTT", level: "info",
+      note: "Đang xin ý kiến CĐT. Chưa rõ nguồn ngân sách." },
+    { d: "27/07", t: "Triển khai trình ký điện tử trên hệ thống ERP cho nghiệp vụ liên quan CĐT", who: "KTT", level: "good",
+      note: "Cải thiện kiểm soát — ghi nhận tích cực. Đề nghị mở rộng bắt buộc cho MỌI giao dịch từ 500 triệu đ." },
+    { d: "27/07", t: "Phổ biến Thông tư 89/2026/TT-BTC về khấu trừ thuế GTGT (hiệu lực 01/07/2026)", who: "KTT", level: "amber",
+      note: "Phổ biến sau ngày hiệu lực 26 ngày. Hóa đơn phát sinh 01/07–27/07 cần rà soát lại tính tuân thủ. Chưa đánh giá được phạm vi ảnh hưởng." },
+    { d: "28/07", t: "Cập nhật ngân sách vận hành Quý 3/2026 theo tiến độ bàn giao", who: "KTT", level: "good",
+      note: "Dự án B giảm 660.521.511 đ (−4,6%); Dự án A tăng 117 triệu đ (+0,1%). Đề xuất giảm phí DVVH Q3 tương ứng — đúng nguyên tắc." },
+    { d: "01/08", t: "Hóa đơn tư vấn môi giới BĐS xuất 23/06, điều chỉnh nội dung địa chỉ 01/07", who: "Đối tác", level: "amber",
+      note: "Khoản thanh toán đợt đầu 300 triệu đ chưa VAT. Pháp chế đang rà soát. Hóa đơn điều chỉnh sau phát hành là điểm cơ quan thuế thường soi." },
+    { d: "05/08", t: "Trình duyệt lương tháng 07/2026", who: "P. HCNS", level: "info",
+      note: "Nguồn dữ liệu T7 duy nhất. CPNS 6.046.145.761 đ so với AOP 11.116.640.715 đ; 477 lao động (+17). Bảng có 3 lỗi số học — xem mục 5." },
+    { d: "07/08", t: "HẠN phát hành BC dòng tiền T7 và BC so sánh KH vs TT", who: "TCKT", level: "red",
+      note: "Không có báo cáo nào được phát hành. Không có email giải thích lý do chậm." },
+    { d: "09/08", t: "BC so sánh Ngân sách vs Thực tế chi phí kỳ T1–T6/2026", who: "KTT", level: "info",
+      note: "Gửi TỚI CĐT; TGĐ và PTGĐ TT chỉ nhận CC. Đề nghị CĐT phản hồi trước 12/08 để giải ngân phí DVVH Q3." },
+    { d: "11/08", t: "Gửi lại BC trên, bổ sung tổng quan theo nhóm chi phí và thuế TNDN tạm tính Q1+Q2 (4,3 tỷ đ)", who: "KTT", level: "info",
+      note: "Ngoài hai nội dung bổ sung, báo cáo không điều chỉnh gì khác." },
+    { d: "12/08", t: "CĐT phản hồi: KHÔNG chốt báo cáo, kiến nghị điều chỉnh định biên và chi phí nhân sự", who: "CĐT", level: "red",
+      note: "Nguyên văn: “chi phí nhân sự lập ngân sách lớn hơn thực tế nhiều… cân nhắc điều chỉnh lại định biên nhân sự cho 6 tháng cuối năm 2026 và điều chỉnh giảm 1 phần chi phí nhân sự của 6 tháng đầu năm 2026 vào chi phí vận hành quý 3 năm 2026.” Ghi rõ căn cứ là bảng kê chứng từ, “không kiểm tra hồ sơ”. Phí DVVH Q3 do đó chưa được giải ngân." }
+  ],
+
+  cash: {
+    note: "Cột “thực tế 31/07” trống vì sheet Số dư Bank ở khối tháng 7 không có số dư đầu kỳ, phát sinh nợ hay phát sinh có. Lưu ý thêm: ô “Tổng tiền sẵn có” trong sheet CF_YTD ghi 38.832.021.030 đ, bỏ sót quỹ tiền mặt 44.310.000 đ — giá trị đúng là 38.876.331.030 đ.",
+    rows: [
+      { k: "Tiền gửi ngân hàng", a: "13.656.057.577", b: "8.832.021.030",  c: null, d: "8.470.287.824" },
+      { k: "Tiền mặt",           a: "—",              b: "44.310.000",     c: null, d: "—" },
+      { k: "Sổ tiết kiệm",       a: "15.000.000.000", b: "30.000.000.000", c: null, d: "25.000.000.000" },
+      { k: "Tổng tiền sẵn có",   a: "28.656.057.577", b: "38.876.331.030", c: null, d: "~33.807.606.624", total: true }
+    ]
+  },
+
+  realFlow: {
+    note: "Loại trừ luân chuyển nội bộ (gửi/rút tiết kiệm, cho vay/thu hồi) để nhìn dòng tiền thật.",
+    rows: [
+      { k: "Tổng thu",  raw: "27.190.000.000", adj: "−20.000.000.000 (rút TK)", real: "7.190.000.000" },
+      { k: "Tổng chi",  raw: "27.258.724.406", adj: "−15.000.000.000 (gửi TK)", real: "12.258.724.406" },
+      { k: "Thu − Chi", raw: "−68.724.406",    adj: "",                          real: "−5.068.724.406", total: true }
+    ],
+    comment: "So với tháng liền trước: tháng 6/2026 thực tế có dòng tiền thực chất DƯƠNG 5.198.891.520 đ (thu thực chất 15.190.981.009 đ, chi thực chất 9.992.089.489 đ). Kế hoạch T7 đảo chiều 10.267.615.926 đ do thu phí DVVH chỉ 7,0 tỷ đ (Bên liên quan A 3,0 tỷ + Bên liên quan B 4,0 tỷ) so với 15,0 tỷ đ tháng 6, đồng thời chi thực chất tăng 2.266.634.917 đ (+22,7%) chủ yếu vì kế hoạch nộp thuế TNDN 2,0 tỷ đ."
+  },
+
+  runway: [
+    { k: "Tiền sẵn có",                          a: "38.876.331.030", b: "~33.807.606.624", th: "Dưới 25 tỷ = CAM; dưới 15 tỷ = ĐỎ", level: "ok" },
+    { k: "Cầm cự theo chi lõi (6,97 tỷ/tháng)",   a: "5,58 tháng",     b: "~4,85 tháng",     th: "Dưới 4 = CAM; dưới 3 = ĐỎ", level: "ok" },
+    { k: "Cầm cự gồm thuế & capex (9,68 tỷ/th)",  a: "4,02 tháng",     b: "~3,49 tháng",     th: "Dưới 3 tháng = ĐỎ", level: "amber" }
+  ],
+
+  receivables: "Tại 30/06/2026: Bên liên quan A còn phải thu 3.498.534.044 đ (toàn bộ là quý 2); Bên liên quan B đã thanh toán đủ Q1 và Q2 (8.132.686.783 + 11.952.956.127 = 20.085.642.910 đ). Số ngày phải thu khoảng 9,8 ngày — không phải vấn đề. Chưa có số liệu 31/07/2026. RỦI RO ĐÃ HIỆN THỰC HÓA trong kỳ này: CĐT chưa chốt báo cáo ngân sách H1 nên phí DVVH Q3 theo kế hoạch (7,0 tỷ T7 + 26,7 tỷ T8 + 15,0 tỷ T9 = 48.686.314.649 đ) chưa được giải ngân, trong khi tiền sẵn có đang giảm.",
+
+  variance: {
+    t7: [
+      { k: "Chi lương, thưởng (dòng tiền)",  plan: "5.602.458.717",  act: "5.064.459.618", diff: "−537.999.099 (−9,6%)",   level: "ok" },
+      { k: "Chi phí nhân sự (AOP kế toán)",  plan: "11.116.640.715", act: "6.046.145.761", diff: "−5.070.494.954 (−45,6%)", level: "info" },
+      { k: "  – Khối hỗ trợ (14 người)",     plan: "715.474.801",    act: "788.842.317",   diff: "+73.367.516 (+10,3%) — VƯỢT AOP", level: "red" },
+      { k: "  – BQL Dự án A (311 người)",    plan: "7.052.391.628",  act: "3.531.692.116", diff: "−3.520.699.512 (−49,9%)", level: "info" },
+      { k: "  – BQL Dự án B (151 người)",    plan: "3.348.774.285",  act: "1.725.611.328", diff: "−1.623.162.957 (−48,5%)", level: "info" }
+    ],
+    t7note: "Chênh −45,6% so với AOP không phải tiết kiệm thực chất mà phản ánh AOP lập trên giả định tuyển dụng nhanh hơn thực tế. Tổng 477 người (+17: tuyển mới 40, nghỉ 23); CPNS tăng 278.925.890 đ so với tháng 6. Khối hỗ trợ là khối DUY NHẤT vượt AOP trong khi hai khối vận hành đều thấp hơn trên 48%. CẢNH BÁO CHẤT LƯỢNG SỐ LIỆU: bảng của P. HCNS có 3 lỗi — (a) thiếu hẳn mục II; (b) cộng dọc 3 khối ra 476 người nhưng dòng tổng ghi 477; (c) cột “AOP − thực tế” dòng tổng ghi 5.222.505.738 đ trong khi phép trừ ra 5.070.494.954 đ, lệch 152.010.784 đ không giải thích được. Do lỗi (c), con số lũy kế 27.603.431.530 đ CHƯA đối chiếu độc lập được — cần HCNS xác nhận trước khi dùng để đàm phán với CĐT.",
+    carry: [
+      { k: "Chi mua sắm CCDC, TTB dài hạn (mua ô tô)",          plan: "0",           act: "1.525.120.000", diff: "+1.525.120.000 — ngoài kế hoạch hoàn toàn", level: "red" },
+      { k: "Chi khác cho người lao động (team building đợt 1)", plan: "331.560.414", act: "1.768.914.883", diff: "+1.437.354.469 (+433,5%)", level: "red" },
+      { k: "Chi khác cho hoạt động kinh doanh",                 plan: "884.161.103", act: "381.397.556",   diff: "−502.763.547 (−56,9%)", level: "ok" },
+      { k: "BHXH, BHYT, BHTN, KPCĐ",                            plan: "663.120.827", act: "0",             diff: "−663.120.827 — dồn sang kỳ sau", level: "info" },
+      { k: "Thuế TNCN",                                         plan: "276.300.345", act: "0",             diff: "−276.300.345 — dồn sang kỳ sau", level: "info" }
+    ],
+    carrynote: "Hai khoản ĐỎ vượt đồng thời cả hai ngưỡng trọng yếu (trên 20% VÀ trên 500 triệu đ). NGHĨA VỤ CHUYỂN TIẾP SANG THÁNG 7: BHXH 663.120.827 đ + thuế TNCN 276.300.345 đ chưa nộp trong tháng 6, cộng phần chi phí gắn kết đã ghi nhận nhưng chưa chi tiền khoảng 1.010.021.941 đ — tổng khoảng 1,95 tỷ đ không nằm trong kế hoạch dòng tiền tháng 7. Chưa kiểm chứng được vì thiếu số liệu T7."
+  },
+
+  pnl: {
+    note: "Không có PnL tháng 7 — file PnL dừng ở tháng 6, toàn bộ cột tháng 7 bằng 0. Hạn phát hành: 15/08/2026 (còn 3 ngày).",
+    rows: [
+      { k: "Doanh thu",             h1: "64.495.117.616", t6: "12.615.075.689", c: "Tháng 6 cao nhất H1 (+13,9% so với T5)" },
+      { k: "Tổng chi phí",          h1: "42.805.208.653", t6: "9.143.298.992",  c: "T6 tăng 30,0% so với T5" },
+      { k: "Lợi nhuận trước thuế",  h1: "21.689.908.963", t6: "3.471.776.697",  c: "Biên H1 33,63%; riêng T6 chỉ 27,52%" },
+      { k: "Chi phí nhân sự",       h1: "38.108.123.643", t6: "8.599.525.692",  c: "59,09% DT H1; riêng T6 68,17% — vượt ngưỡng CAM 65%" },
+      { k: "Doanh thu bên thứ ba",  h1: "94.908.000",     t6: "94.908.000",     c: "0,147% tổng doanh thu" }
+    ],
+    comment: "Định nghĩa doanh thu bên thứ ba đang có ba cách tính cho ba kết quả: theo dòng tiền 94.908.000 đ (0,147%); theo PnL riêng mã DV Club house 63.703.142 đ (0,099%); tính cả phí thẻ và hợp tác trạm sạc thì 164.529.406 đ (0,26%). Đề nghị TCKT chốt một định nghĩa duy nhất. Dù tính cách nào, kết luận không đổi: phụ thuộc gần như tuyệt đối vào hai bên liên quan."
+  },
+
+  flags: [
+    { n: 1, title: "Chi cho vay / thu hồi cho vay (mã 1103.03 / 1104.03) — đã truy được trọn chuỗi", level: "red", since: "08/05/2026",
+      detail: "TIẾN TRIỂN TRONG KỲ: nay đã truy được đầy đủ từ sheet giao dịch chi tiết. Ngày 08/05/2026 chi 20.000.000.000 đ cho MỘT CÁ NHÂN (mã khách hàng nội bộ), hạch toán qua tài khoản phải thu khác. Ngày 12/05/2026 thu hồi đủ gốc và thu lãi 6.720.430 đ — lãi suất quy đổi 3,07%/năm, THẤP HƠN lãi tiết kiệm kỳ hạn 1 tháng của chính công ty (4,75%/năm). CÙNG NGÀY 08/05 công ty rút 2 sổ tiết kiệm trước hạn tổng 10 tỷ đ, lãi thực nhận 493.151 đ so với lãi kế hoạch 39.691.781 đ, mất 39.198.630 đ. Chênh lệch kinh tế: −32.478.200 đ. Ngày 19/05 có phiếu thu TIỀN MẶT 39.690.000 đ từ một cá nhân là nhân sự nội bộ, diễn giải “Thu lãi tiền gửi ngắn hạn” — lệch đúng 1.781 đ so với khoản lãi đã mất; KSNB ghi nhận sự trùng khớp giá trị nhưng CHƯA kiểm chứng được có mối liên hệ hay không. Cột hợp đồng, khế ước và ghi chú của cả 3 bút toán đều TRỐNG. Giá trị khoản vay bằng 76,7% tiền sẵn có tại 30/04/2026." },
+    { n: 2, title: "Giao dịch từ 500 triệu đ ngoài ngân sách, không phê duyệt trước", level: "red", since: "30/06/2026",
+      detail: "Tháng 7: KHÔNG ĐO ĐƯỢC do thiếu dữ liệu. H1/2026: có 90 giao dịch từ 500 triệu đ trở lên; KSNB chưa có quyền truy cập hồ sơ phê duyệt nên chưa đối chiếu được từng giao dịch. MẪU HÌNH MỚI PHÁT HIỆN: ngày 04/06/2026, hai khoản chi cho cùng một nhà cung cấp sự kiện, theo CÙNG một hợp đồng, CÙNG diễn giải “TT lần 1”, được tách thành 422.240.000 đ và 499.000.000 đ (tổng 921.240.000 đ). Cả hai đều nằm dưới ngưỡng 500 triệu đ; khoản thứ hai thấp hơn ngưỡng đúng 1.000.000 đ. KSNB mô tả sự việc, không kết luận về nguyên nhân." },
+    { n: 3, title: "Chi mua sắm tài sản (capex) ngoài kế hoạch dòng tiền — đã định danh", level: "red", since: "19/06/2026",
+      detail: "Đã bóc tách được chi tiết: cọc xe 50.000.000 đ (19/06), thanh toán tiền xe 1.420.120.000 đ (22/06), biển số 40.100.000 đ (22/06), bảo hiểm 14.900.000 đ (26/06) — tổng 1.525.120.000 đ cho một xe ô tô 7 chỗ. Dòng “Chi mua sắm CCDC, TTB dài hạn” trong kế hoạch dòng tiền 2026 bằng 0 cho cả 12 tháng, tức 100% ngoài kế hoạch. Chưa tìm thấy tờ trình chủ trương hay biên bản lựa chọn nhà cung cấp trong phạm vi đã rà soát. Kế hoạch capex vẫn chưa được cập nhật lại sau sự kiện này." },
+    { n: 4, title: "Dòng giá trị lớn bị bỏ trống cột ghi chú", level: "red", since: "31/05/2026",
+      detail: "Đã đếm chính xác: trong H1/2026 có 90 giao dịch từ 500 triệu đ trở lên, trong đó 89 giao dịch KHÔNG CÓ ghi chú — tỷ lệ 98,9%. Giao dịch duy nhất có ghi chú là một khoản lương 584.873.704 đ với nội dung “Sai dự án → sửa sang HO”. Nghịch lý: chính những giao dịch bất thường nhất (khoản cho vay 20 tỷ, mua ô tô 1,53 tỷ) lại không có một dòng thuyết minh nào." },
+    { n: 5, title: "Đối chiếu số liệu giữa các file — đã xác định nguyên nhân gốc", level: "red", since: "30/06/2026",
+      detail: "Chênh 94.908.000 đ VẪN TỒN TẠI nhưng nay đã rõ nguyên nhân: tổng các cột tháng T1–T6 của dòng “DÒNG TIỀN VÀO” là 134.298.017.554 đ, trong khi ô Total của chính dòng đó ghi 134.203.109.554 đ. Lý do: dòng “Thu DV tiện ích” (94.908.000 đ, phát sinh T6) có số ở cột tháng nhưng ô Total của dòng đó ĐỂ TRỐNG. Đây là lỗi công thức cộng, không phải khác biệt bản chất giữa hai file — số liệu gốc trong file Cashflow là đúng. PHÁT HIỆN THÊM: ô “Tổng tiền sẵn có” trong sheet CF_YTD ghi 38.832.021.030 đ, bỏ sót quỹ tiền mặt 44.310.000 đ; giá trị đúng là 38.876.331.030 đ. Sai lệch nhỏ nhưng làm lệch mọi chỉ số tính trên tiền sẵn có." },
+    { n: 6, title: "Mất lãi do rút sổ tiết kiệm trước hạn", level: "red", since: "24/02/2026",
+      detail: "NÂNG TỪ CAM LÊN ĐỎ sau khi tính lại đầy đủ. Lũy kế H1/2026: 154.480.823 đ, gồm (a) lần tất toán tháng 2/2026 phần 8 tỷ đ của sổ gửi 24/12/2025 — lãi kế hoạch 117.123.288 đ, thực nhận 1.841.095 đ, mất 115.282.193 đ; (b) hai sổ rút trước hạn ngày 08/05/2026 — mất 39.198.630 đ. Ngưỡng cảnh báo là 20 triệu đ/năm, thực tế đã vượt 7,7 lần. ĐIỂM MÙ THÁNG 7: có 4 sổ tiết kiệm đáo hạn trong tháng 7 (15/07, 18/07, 19/07, 25/07), mỗi sổ 5 tỷ đ, tổng 20 tỷ đ, lãi kế hoạch 78.082.192 đ — cột “lãi thực nhận” và “đã tất toán” của cả 4 sổ đều TRỐNG. Không xác định được đã tái tục hay đã rút. Cơ cấu kỳ hạn vẫn kém: tại 30/06 chỉ 10/30 tỷ đ (33,3%) gửi kỳ hạn từ 6 tháng (lãi 8,0%/năm), 20 tỷ còn lại kỳ hạn 1 tháng (4,75%/năm) — chênh 3,25 điểm phần trăm trên 20 tỷ tương đương khoảng 650 triệu đ/năm cơ hội bỏ lỡ." },
+    { n: 7, title: "Góp vốn điều lệ", level: "red", since: "31/10/2025",
+      detail: "KHÔNG CÓ CẬP NHẬT MỚI trong 36 ngày quét email. Tình trạng giữ nguyên: đăng ký 10 tỷ đ, thực góp 3,43 tỷ đ (34,3%); cổ đông nắm 65% chưa góp đồng nào (còn thiếu 6,57 tỷ đ). Đây là nghĩa vụ pháp lý quá hạn, không phải vấn đề quản trị nội bộ." },
+    { n: 8, title: "Email liên quan thuế, hóa đơn rủi ro, kiểm toán", level: "amber", since: "27/07/2026",
+      detail: "Không có email nào từ cơ quan thuế hoặc đơn vị kiểm toán trong kỳ. Bốn nội dung theo dõi: (a) Thông tư 89/2026/TT-BTC hiệu lực 01/07/2026 nhưng TCKT phổ biến nội bộ 27/07 — sau 26 ngày; hóa đơn phát sinh trong khoảng này cần rà soát lại, chưa đánh giá được phạm vi. (b) Hợp đồng ủy quyền chi hộ vẫn chưa ký trong khi đã chi trước — cần ý kiến luật sư và chuyên gia thuế độc lập. (c) Hóa đơn tư vấn môi giới BĐS (300 triệu đ chưa VAT) xuất 23/06 rồi điều chỉnh địa chỉ 01/07, Pháp chế đang rà soát. (d) TCKT đã ghi nhận bổ sung thuế TNDN tạm tính Q1+Q2 là 4,3 tỷ đ; kế hoạch nộp 2,0 tỷ đ trong T7 — chưa xác nhận được đã nộp hay chưa." },
+    { n: 9, title: "MỚI — Phí dịch vụ vận hành Quý 3 chưa được giải ngân", level: "red", since: "12/08/2026",
+      detail: "Ngày 09/08 TCKT đề nghị CĐT phản hồi báo cáo so sánh ngân sách H1 trước 12/08 “để đảm bảo tiến độ thanh toán phí DVVH Quý 3”. Ngày 12/08 CĐT phản hồi nhưng KHÔNG chốt, thay vào đó kiến nghị điều chỉnh định biên nhân sự nửa cuối năm và “điều chỉnh giảm 1 phần chi phí nhân sự của 6 tháng đầu năm 2026 vào chi phí vận hành quý 3 năm 2026”. Giá trị đang treo: 48.686.314.649 đ theo kế hoạch (7,0 tỷ T7 + 26,7 tỷ T8 + 15,0 tỷ T9). Kịch bản minh họa CHƯA KIỂM CHỨNG, chỉ để định cỡ rủi ro: nếu phí Q3 bị điều chỉnh theo tỷ lệ chênh AOP của tháng 7 (47,0%), thu Q3 giảm khoảng 22,9 tỷ đ và số tháng cầm cự rơi xuống dưới ngưỡng ĐỎ ngay trong Quý 4. Phần “điều chỉnh hồi tố chi phí H1” chạm tới BCTC đã lập và thuế TNDN đã tạm nộp — CẦN Ý KIẾN LUẬT SƯ VÀ CHUYÊN GIA THUẾ ĐỘC LẬP trước khi Công ty đồng ý bất kỳ điều chỉnh nào." }
+  ],
+
+  flagsNote: "Nội dung mô tả TÌNH TRẠNG HỒ SƠ quan sát được, không kết luận về hành vi hay động cơ của bất kỳ cá nhân nào. “Không có hồ sơ” nghĩa là không tìm thấy trong hộp thư và các file đã rà soát — không loại trừ khả năng hồ sơ tồn tại ở nơi khác. Tài liệu đã ẩn danh: không nêu tên người, tên pháp nhân, số tài khoản hay số sổ tiết kiệm.",
+
+  riskSummary: { red: 7, amber: 3, yellow: 2, score: 195, scoreAfter: 90,
+    note: "So với kỳ trước: THÊM 1 rủi ro ĐỎ mới (phí DVVH Q3 chưa giải ngân) và NÂNG 1 rủi ro từ CAM lên ĐỎ (mất lãi tiết kiệm, sau khi tính lại đủ 154.480.823 đ thay vì 39.198.630 đ). Không có rủi ro nào được đóng lại. R02 (khoản 20 tỷ) có hạn hoàn thành 05/08/2026 — đã quá hạn 7 ngày; tuy nhiên trong kỳ này đã truy được trọn chuỗi giao dịch, đủ cơ sở để phát văn bản yêu cầu giải trình cụ thể.",
+    momNote: "Điểm sáng duy nhất trong kỳ: mức độ truy vết đã cải thiện rõ — ba cảnh báo (số 1, 3, 5) chuyển từ “không rõ nguyên nhân” sang “đã xác định đầy đủ chi tiết giao dịch”. Vấn đề còn lại là hồ sơ phê duyệt, không còn là dữ liệu."
+  },
+
+  actions: [
+    { n: 1, t: "Chốt lập trường của Công ty về phí DVVH Quý 3 TRƯỚC khi trả lời CĐT. Yêu cầu TCKT trình bản tính phí Q3 kèm 2 kịch bản (giữ nguyên và bị cắt theo thực chi). KHÔNG đồng ý điều chỉnh hồi tố chi phí H1 khi chưa có ý kiến luật sư và chuyên gia thuế độc lập.", due: "14/08/2026", level: "red", tag: "RẤT KHẨN" },
+    { n: 2, t: "Phát văn bản yêu cầu TCKT giải trình khoản cho vay 20 tỷ đ (nội dung soạn sẵn tại Phụ lục, đã cập nhật đầy đủ chi tiết chứng từ truy được), hạn trả lời 5 ngày làm việc.", due: "14/08/2026", level: "red", tag: "RẤT KHẨN" },
+    { n: 3, t: "Yêu cầu TCKT phát hành BC dòng tiền T7 và BC so sánh KH vs TT trong 48 giờ (đã trễ 5 ngày); ghi nhận việc trễ hạn vào hồ sơ đánh giá TCKT.", due: "14/08/2026", level: "red", tag: "RẤT KHẨN" },
+    { n: 4, t: "Yêu cầu TCKT xác nhận trạng thái 4 sổ tiết kiệm đáo hạn tháng 7 (tổng 20 tỷ đ, lãi kế hoạch 78.082.192 đ): đã tái tục hay đã rút, lãi thực nhận từng sổ; đồng thời trình chính sách kỳ hạn gửi tiền.", due: "17/08/2026", level: "amber", tag: "KHẨN" },
+    { n: 5, t: "Yêu cầu P. HCNS đính chính 3 lỗi trong bảng lương T7 (thiếu mục II; 476 vs 477 người; lệch 152.010.784 đ ở cột AOP − thực tế) trước khi con số lũy kế 27,6 tỷ đ được dùng làm căn cứ đàm phán với CĐT.", due: "17/08/2026", level: "amber", tag: "KHẨN" },
+    { n: 6, t: "Giám sát 3 báo cáo còn lại đến hạn: PnL (15/08), phân tích lãi/lỗ vs dòng tiền (18/08), so sánh ngân sách KH vs TT (18/08). Nếu tiếp tục trễ, tỷ lệ tuân thủ kỳ đầu tiên sẽ là 0/5.", due: "18/08/2026", level: "amber", tag: "KHẨN" },
+    { n: 7, t: "Ban hành quy định: mọi giao dịch từ 500 triệu đ bắt buộc ghi số hiệu phê duyệt vào cột ghi chú; CẤM tách nhỏ một khoản chi cùng hợp đồng, cùng ngày xuống dưới ngưỡng; bắt buộc trình ký điện tử trên hệ thống ERP.", due: "19/08/2026", level: "info", tag: "TRUNG BÌNH" },
+    { n: 8, t: "Yêu cầu TCKT sửa hai lỗi số liệu: ô Total bỏ sót 94.908.000 đ trong file Kế hoạch, và ô “Tổng tiền sẵn có” bỏ sót quỹ tiền mặt 44.310.000 đ trong sheet CF_YTD.", due: "19/08/2026", level: "info", tag: "TRUNG BÌNH" },
+    { n: 9, t: "Đưa vấn đề vốn điều lệ chưa góp đủ (cổ đông 65%, còn thiếu 6,57 tỷ đ) vào chương trình họp HĐQT gần nhất bằng văn bản chính thức, kèm ý kiến pháp chế về hậu quả pháp lý.", due: "19/08/2026", level: "info", tag: "TRUNG BÌNH" }
+  ],
+
+  actionsExtra: "Đề xuất về luồng thông tin: yêu cầu TCKT gửi TRỰC TIẾP (dòng To) tới PTGĐ TT đối với mọi báo cáo tài chính gửi ra ngoài công ty, thay vì CC. Trong kỳ này, báo cáo so sánh ngân sách H1 — tài liệu đang quyết định 48,69 tỷ đ dòng tiền Q3 — được gửi TỚI CĐT còn KSNB chỉ nhận CC. Không tốn chi phí, giải quyết được vấn đề KSNB nhận thông tin ở vị trí thứ cấp.",
+
+  sources: [
+    "Hộp thư Outlook của PTGĐ TT, quét 08/07/2026 – 12/08/2026 (36 ngày), 3 lượt tìm kiếm theo người gửi và từ khóa. Đọc chi tiết 3 email: lương T7 của P. HCNS (05/08), BC so sánh ngân sách của KTT (09/08 và 11/08), phản hồi của CĐT (12/08).",
+    "File Cashflow 202606 — sheet CF_YTD, Số dư Bank, Sổ tiết kiệm, và sheet giao dịch chi tiết (1.437 bút toán H1).",
+    "File Kế hoạch dòng tiền 2026 — sheet KH Dòng tiền, Dòng tiền thực tế, SS KH vs TT.",
+    "File PnL 202606 — sheet PnL_Total.",
+    "File Đăng ký rủi ro 2026 — sheet Risk Register, Chỉ số theo dõi (đã sửa lỗi lệch cột trong kỳ này).",
+    "Toàn bộ 31 phép tính trong kỳ đã được kiểm tra lại độc lập bằng script — 31/31 khớp."
+  ],
+
+  limits: [
+    "Toàn bộ số liệu tài chính THỰC TẾ tháng 7/2026: số dư ngân hàng, tiền mặt, sổ tiết kiệm, tổng thu, tổng chi, doanh thu, lợi nhuận, công nợ. Nguyên nhân: TCKT chưa phát hành và file trong thư mục chưa được cập nhật.",
+    "Mọi con số 31/07/2026 trong dashboard là ƯỚC TÍNH theo kế hoạch, không phải số thực tế.",
+    "Hồ sơ phê duyệt của từng giao dịch — KSNB không có quyền truy cập hệ thống chứng từ gốc; chỉ đối chiếu được các trường dữ liệu trong file kế toán.",
+    "Mối liên hệ (nếu có) giữa phiếu thu tiền mặt 39.690.000 đ ngày 19/05 và khoản lãi tiết kiệm bị mất 39.691.781 đ ngày 08/05 — chỉ ghi nhận sự trùng khớp về giá trị.",
+    "Con số lũy kế chênh AOP nhân sự 27.603.431.530 đ lấy nguyên từ bảng P. HCNS; do bảng có lỗi cộng 152.010.784 đ nên CHƯA đối chiếu độc lập được.",
+    "Nội dung file đính kèm BC so sánh Ngân sách vs Thực tế kỳ T1–T6/2026 — chưa tải và phân tích chi tiết; nhận định chỉ dựa trên thân email.",
+    "Trạng thái tất toán của 4 sổ tiết kiệm đáo hạn trong tháng 7 (tổng 20 tỷ đ).",
+    "Phạm vi ảnh hưởng của Thông tư 89/2026/TT-BTC lên các hóa đơn phát sinh 01/07 – 27/07/2026.",
+    "Tình trạng thực tế của việc góp vốn điều lệ tại 31/07/2026 — không có thông tin cập nhật, giả định giữ nguyên."
+  ],
+
+  legal: "Ba nội dung vượt quá phạm vi rà soát nội bộ và cần ý kiến chuyên môn ĐỘC LẬP: (a) đề xuất của CĐT về điều chỉnh HỒI TỐ chi phí nhân sự H1/2026 — kỳ đã kết thúc, đã ghi nhận doanh thu, lợi nhuận và thuế TNDN tạm nộp; cần luật sư và chuyên gia thuế trước khi Công ty đồng ý bất kỳ điều chỉnh nào. (b) Khoản 20 tỷ đ cho một cá nhân vay: bản chất kế toán, bản chất thuế và thẩm quyền phê duyệt tương ứng — cần luật sư doanh nghiệp. (c) Hậu quả pháp lý của việc vốn điều lệ chưa góp đủ sau thời hạn quy định, và rủi ro thuế của mô hình chi hộ CĐT khi chưa có hợp đồng ủy quyền — cần chuyên gia thuế độc lập, KHÔNG phải đơn vị đang làm sổ sách cho công ty.",
+
+  appendix: {
+    title: "Dự thảo văn bản yêu cầu TCKT giải trình",
+    intro: "Soạn sẵn để chỉnh sửa và phát hành. Đề xuất gửi trực tiếp Kế toán trưởng, CC Tổng Giám đốc. Bản này đã cập nhật đầy đủ chi tiết chứng từ truy được trong kỳ.",
+    body: [
+      { p: "Kính gửi: Kế toán trưởng", b: true },
+      { p: "Đồng kính gửi: Tổng Giám đốc", b: true },
+      { p: "V/v: Yêu cầu giải trình khoản cho vay 20.000.000.000 đồng phát sinh tháng 5/2026 và các giao dịch liên quan", b: true },
+      { p: "Qua rà soát dữ liệu kế toán, bộ phận Kiểm soát Nội bộ ghi nhận chuỗi giao dịch sau:" },
+      { li: [
+        "Ngày 08/05/2026: chi 20.000.000.000 đồng cho một cá nhân, mã dòng tiền 1103.03 “Chi cho đối tượng khác vay”, hạch toán qua tài khoản phải thu khác.",
+        "Ngày 08/05/2026, cùng ngày: rút trước hạn 2 sổ tiết kiệm tổng 10.000.000.000 đồng, lãi thực nhận 493.151 đồng so với lãi kế hoạch 39.691.781 đồng.",
+        "Ngày 08/05/2026: chuyển nội bộ 1.000.000.000 đồng giữa hai tài khoản vận hành.",
+        "Ngày 12/05/2026: thu hồi đủ gốc 20.000.000.000 đồng và thu lãi vay 6.720.430 đồng.",
+        "Ngày 19/05/2026: phiếu thu tiền mặt 39.690.000 đồng từ một cá nhân là nhân sự nội bộ, diễn giải “Thu lãi tiền gửi ngắn hạn”."
+      ]},
+      { p: "Các cột “Hợp đồng”, “Khế ước” và “Ghi chú” của những bút toán nêu trên đều để trống. Đề nghị Phòng Tài chính Kế toán cung cấp:", b: true },
+      { li: [
+        "Hợp đồng cho vay hoặc khế ước nhận nợ: bản sao đầy đủ, có chữ ký các bên",
+        "Thông tin định danh bên vay: mã số thuế cá nhân, địa chỉ, và mối quan hệ (nếu có) với Công ty, với các bên liên quan, hoặc với người có liên quan của người quản lý doanh nghiệp",
+        "Văn bản phê duyệt giao dịch, ban hành TRƯỚC ngày giải ngân 08/05/2026: nghị quyết HĐQT hoặc quyết định của người có thẩm quyền, ghi rõ ngày và người ký",
+        "Sao kê tài khoản ngân hàng giai đoạn 01/05/2026 – 31/05/2026, bản do ngân hàng phát hành",
+        "Cơ sở xác định lãi suất: chứng từ tính lãi dẫn tới con số 6.720.430 đồng, và lý do mức lãi suất quy đổi 3,07%/năm thấp hơn lãi tiền gửi kỳ hạn 1 tháng của chính công ty (4,75%/năm)",
+        "Lý do rút 2 sổ tiết kiệm trước hạn cùng ngày, và văn bản phê duyệt việc chấp nhận mất 39.198.630 đồng tiền lãi",
+        "Bản chất khoản thu tiền mặt 39.690.000 đồng ngày 19/05/2026: chứng từ gốc, nguồn tiền, và mối liên hệ (nếu có) với khoản lãi tiết kiệm bị mất ngày 08/05/2026",
+        "Giải trình vì sao giao dịch bằng 76,7% tổng tiền sẵn có của công ty tại 30/04/2026 không được thuyết minh trong bất kỳ báo cáo định kỳ nào gửi Ban Tổng Giám đốc"
+      ]},
+      { p: "Đề nghị bổ sung, đối với hai khoản chi ngoài ngân sách tháng 6/2026:", b: true },
+      { li: [
+        "Mua ô tô 1.525.120.000 đồng: tờ trình chủ trương, biên bản lựa chọn nhà cung cấp, và văn bản phê duyệt — trong khi kế hoạch dòng tiền 2026 cho khoản mục này bằng 0 ở cả 12 tháng",
+        "Chi phí gắn kết 1.768.914.883 đồng (vượt kế hoạch 1.437.354.469 đồng, tương đương 433,5%): hợp đồng, và giải trình vì sao khoản thanh toán lần 1 theo cùng một hợp đồng, cùng ngày 04/06/2026, được tách thành hai lệnh chi 422.240.000 đồng và 499.000.000 đồng — cả hai đều dưới ngưỡng phê duyệt 500 triệu đồng"
+      ]},
+      { p: "Thời hạn phản hồi: 05 ngày làm việc kể từ ngày nhận văn bản này.", b: true },
+      { p: "Trường hợp một phần hoặc toàn bộ hồ sơ nêu trên không tồn tại, đề nghị Phòng Tài chính Kế toán xác nhận rõ điều đó bằng văn bản, để tôi có cơ sở báo cáo Hội đồng Quản trị và đề xuất biện pháp khắc phục quy trình." }
+    ]
+  }
+}
+];
+
+
+
+;(function(){
+  var JUL = window.PERIODS[0];
+  // clone flags, update #9, add #10
+  var fl = JUL.flags.map(function(f){return Object.assign({}, f);});
+  fl[8] = { n:9, level:"amber", since:"12/08/2026",
+    title:"CẬP NHẬT — Phí dịch vụ vận hành Quý 3 đã được chốt giá (kỳ trước: chưa giải ngân)",
+    detail:"Đã hạ nhiệt so với kỳ trước. Sau họp lãnh đạo 18/08/2026 (cơ chế: Omni giữ lại 10% LN sau thuế + cập nhật theo tiến độ bàn giao), TCKT phát hành số phí DVVH Quý 3 điều chỉnh: vòng 1 ngày 21/08 (Vinh 25.409.560.982 đ), số CHỐT ngày 24/08 — Vinh 26.653.934.757 đ + Long An 13.599.764.533 đ = 40.253.699.290 đ trước VAT; 44.279.069.220 đ sau VAT. So với số đã duyệt sau cập nhật bàn giao 42.671.781.137 đ, giảm 2.418.081.847 đ, toàn bộ ở Vinh. Đề xuất của kế toán CĐT ngày 12/08 (điều chỉnh HỒI TỐ một phần chi phí nhân sự H1 sang chi phí vận hành Q3) KHÔNG xuất hiện trong cơ chế số chốt — nếu đúng là đã bị loại thì đây là kết quả tránh được rủi ro chạm tới BCTC đã lập và thuế TNDN đã tạm nộp. CÒN MỞ đến 08/09: chưa quan sát được (a) văn bản CĐT phê duyệt số chốt, (b) hồ sơ trình ký thanh toán, (c) lệnh giải ngân. Rủi ro do đó chuyển từ định giá sang thu tiền đúng hạn." };
+  fl.push({ n:10, level:"red", since:"07/08/2026",
+    title:"MỚI — Chậm phát hành báo cáo tài chính đã thành mẫu hình hai kỳ liên tiếp",
+    detail:"Cam kết bằng văn bản của KTT ngày 24/07/2026 gồm 5 báo cáo mỗi tháng (hạn ngày 7, 15, 18). KỲ THÁNG 7: đến 08/09 cả 5 báo cáo đều chưa phát hành — quá hạn 21 đến 32 ngày. KỲ THÁNG 8: hai báo cáo đầu (dòng tiền, so sánh dòng tiền) hạn 07/09 cũng đã quá hạn. Đây không còn là sự cố đơn lẻ mà là vấn đề năng lực/ý chí tuân thủ; hệ quả trực tiếp là KSNB và Ban TGĐ không có số tài chính thực tế của HAI tháng gần nhất để giám sát thanh khoản. Đề nghị ghi nhận vào hồ sơ đánh giá TCKT và đưa ra HĐQT nếu kỳ tháng 8 tiếp tục 0/5." });
+
+  var AUG = {
+    id:"2026-08", label:"Tháng 8/2026", asOf:"08/09/2026",
+    scan:"13/08/2026 – 08/09/2026 (27 ngày)",
+    verdict:{ level:"red",
+      head:"VẪN KHÔNG CÓ SỐ TÀI CHÍNH THỰC TẾ — NHƯNG PHÍ DVVH QUÝ 3 ĐÃ ĐƯỢC CHỐT GIÁ VÀ HAI CHỐT KIỂM SOÁT ĐÃ SIẾT LẠI",
+      body:"Đến 08/09/2026, TCKT vẫn chưa phát hành bất kỳ báo cáo tài chính định kỳ nào — cả 5 báo cáo kỳ tháng 7 (cam kết văn bản 24/07) đều quá hạn 21–32 ngày, và kỳ tháng 8 cũng đã bắt đầu trễ. Bù lại, rủi ro lớn nhất kỳ trước đã hạ nhiệt: phí DVVH Quý 3 được chốt ở 40,25 tỷ đồng trước VAT (44,28 tỷ sau VAT) sau họp lãnh đạo 18/08 theo cơ chế Omni giữ lại 10% LN sau thuế, và quy trình trình ký điện tử MISA đã triển khai toàn công ty." },
+    kpi:[
+      { label:"Tuân thủ báo cáo", value:"0 / 7", sub:"Đã đến hạn nhưng chưa nhận · kỳ T7 quá hạn 21–32 ngày · kỳ T8 đã bắt đầu trễ", level:"red" },
+      { label:"Phí DVVH Q3 (đã chốt)", value:"40,25 tỷ đ", sub:"Trước VAT · sau VAT 44,28 tỷ · cơ chế 10% LNST · chờ xác nhận giải ngân", level:"amber" },
+      { label:"Tiền sẵn có thực tế", value:"Không có số thực tế", sub:"Gần nhất 38,88 tỷ đ (30/06) · T7 và T8 chưa phát hành", level:"red" },
+      { label:"Số tháng cầm cự", value:"~4,02 tháng", sub:"Trên số 30/06 · gồm thuế & capex · chưa có số T7–T8", level:"amber" },
+      { label:"Chốt kiểm soát mới", value:"MISA toàn cty", sub:"Trình ký điện tử 25–26/08 · đúng khuyến nghị kỳ trước", level:"ok" },
+      { label:"Chênh AOP nhân sự (đàm phán)", value:"27,60 tỷ đ", sub:"Căn cứ CĐT dùng để cắt NS · vẫn chưa đối chiếu độc lập", level:"amber" }
+    ],
+    summary:[
+      { level:"red", t:"Cả 5 báo cáo kỳ tháng 7 vẫn chưa phát hành tính đến 08/09 — quá hạn 21 đến 32 ngày. Tỷ lệ tuân thủ kỳ đầu tiên của cam kết 24/07 là 0/5, không phải 0/2 như ước tính giữa kỳ trước. Kỳ tháng 8 (hạn BC dòng tiền 07/09) cũng đã trễ: chậm phát hành đã thành MẪU HÌNH hai kỳ liên tiếp, không còn là sự cố đơn lẻ." },
+      { level:"good", t:"Rủi ro lớn nhất kỳ trước HẠ NHIỆT — phí DVVH Quý 3 đã được chốt giá. Sau họp lãnh đạo 18/08 (cơ chế Omni giữ lại 10% LN sau thuế + cập nhật tiến độ bàn giao), TCKT chốt ngày 24/08: Vinh 26.653.934.757 đ + Long An 13.599.764.533 đ = 40.253.699.290 đ trước VAT (44.279.069.220 đ sau VAT). So với số đã duyệt sau bàn giao 42,67 tỷ, giảm 2,42 tỷ, toàn bộ ở Vinh." },
+      { level:"amber", t:"Đề xuất điều chỉnh HỒI TỐ chi phí nhân sự H1 của kế toán CĐT (nêu 12/08) KHÔNG xuất hiện trong cơ chế số chốt — cách tính cuối là 10% LNST + cập nhật bàn giao, không phải đẩy chi phí H1 sang Q3. Nếu đúng là đã bị loại thì tránh được rủi ro chạm BCTC đã lập và thuế TNDN đã tạm nộp; NHƯNG chưa có văn bản CĐT xác nhận trong hộp thư và chưa quan sát được lệnh giải ngân." },
+      { level:"good", t:"Quy trình trình ký điện tử MISA đã triển khai TOÀN CÔNG TY (25/08), kèm hướng dẫn hoàn thiện hồ sơ gốc (26/08) — mở rộng từ phạm vi CĐT (27/07) đúng khuyến nghị KSNB kỳ trước. Ghi nhận tích cực; đề nghị KSNB xác minh ngưỡng bắt buộc trình ký ≥ 500 triệu và cơ chế chặn tách nhỏ giao dịch đã được cấu hình." },
+      { level:"red", t:"Toàn bộ số tài chính thực tế tháng 7 VÀ tháng 8 vẫn trống. Không trả lời được câu hỏi tiền tăng hay giảm cho cả hai tháng. Mọi chỉ số thanh khoản vẫn dừng ở 30/06/2026 (38,88 tỷ đ; ~4,02 tháng cầm cự gồm thuế & capex)." },
+      { level:"amber", t:"Các cảnh báo đỏ tồn đọng từ kỳ trước KHÔNG có bằng chứng đã đóng trong kỳ quét: khoản cho vay 20 tỷ (chưa thấy văn bản giải trình), mua ô tô 1,53 tỷ ngoài kế hoạch, tách nhỏ giao dịch 04/06, vốn điều lệ góp thiếu 6,57 tỷ. Văn bản yêu cầu TCKT giải trình (soạn kỳ trước) — chưa quan sát được đã phát hành." }
+    ],
+    compliance:{
+      note:"Căn cứ email cam kết KTT 24/07/2026 (hạn: BC dòng tiền & SS dòng tiền ngày 7; PnL ngày 15; phân tích lãi-lỗ vs dòng tiền & SS ngân sách ngày 18 hằng tháng). Chốt dữ liệu 08/09/2026. Bảng dưới gộp cả kỳ tháng 7 và kỳ tháng 8.",
+      rows:[
+        { n:1, name:"BC dòng tiền — kỳ T7", due:"07/08/2026", got:"—", status:"late", tag:"Quá hạn 32 ngày" },
+        { n:2, name:"BC so sánh KH dòng tiền vs thực tế — kỳ T7", due:"07/08/2026", got:"—", status:"late", tag:"Quá hạn 32 ngày" },
+        { n:3, name:"BC Kết quả Kinh doanh (PnL) — kỳ T7", due:"15/08/2026", got:"—", status:"late", tag:"Quá hạn 24 ngày" },
+        { n:4, name:"BC phân tích lãi/lỗ vs dòng tiền — kỳ T7", due:"18/08/2026", got:"—", status:"late", tag:"Quá hạn 21 ngày" },
+        { n:5, name:"BC so sánh ngân sách KH vs thực tế — kỳ T7", due:"18/08/2026", got:"—", status:"late", tag:"Quá hạn 21 ngày" },
+        { n:6, name:"BC dòng tiền — kỳ T8", due:"07/09/2026", got:"—", status:"late", tag:"Quá hạn 1 ngày" },
+        { n:7, name:"BC so sánh KH dòng tiền vs thực tế — kỳ T8", due:"07/09/2026", got:"—", status:"late", tag:"Quá hạn 1 ngày" },
+        { n:8, name:"BC Kết quả Kinh doanh (PnL) — kỳ T8", due:"15/09/2026", got:"—", status:"pending", tag:"Còn 7 ngày" },
+        { n:9, name:"BC phân tích lãi/lỗ vs dòng tiền — kỳ T8", due:"18/09/2026", got:"—", status:"pending", tag:"Còn 10 ngày" },
+        { n:10, name:"BC so sánh ngân sách KH vs thực tế — kỳ T8", due:"18/09/2026", got:"—", status:"pending", tag:"Còn 10 ngày" }
+      ]
+    },
+    timeline:[
+      { d:"13/08", who:"TGĐ", level:"info", t:"TGĐ (anh Sơn) phản hồi kế toán CĐT: khẳng định KH Q3 đã ốp sát tiến độ bàn giao, từ chối điều chỉnh thêm",
+        note:"Trả lời đề xuất 12/08 của kế toán CĐT (đẩy một phần chi phí nhân sự H1 sang chi phí vận hành Q3). Yêu cầu CĐT xác nhận trong ngày để trình lãnh đạo và thực hiện thanh toán, đảm bảo dòng tiền vận hành." },
+      { d:"17/08", who:"KTT", level:"info", t:"TCKT chốt phương án phí DVVH Q3 theo email Cập nhật bàn giao & ngân sách Q3 ngày 04/08",
+        note:"Bước khởi động cho vòng điều chỉnh số phí Q3." },
+      { d:"18/08", who:"Lãnh đạo", level:"good", t:"Họp lãnh đạo: phê duyệt cơ chế Omni giữ lại 10% LN sau thuế",
+        note:"Cơ sở cho số phí DVVH Q3 điều chỉnh, thay cho đề xuất điều chỉnh hồi tố chi phí H1." },
+      { d:"21/08", who:"KTT", level:"info", t:"TCKT gửi số phí DVVH Q3 điều chỉnh vòng 1: Vinh 25,41 tỷ + Long An 13,60 tỷ",
+        note:"Trước VAT. Kèm file so sánh ngân sách vs thực tế T1–T6." },
+      { d:"24/08", who:"KTT", level:"good", t:"TCKT gửi số phí DVVH Q3 CHỐT: Vinh 26,65 tỷ + Long An 13,60 tỷ = 40,25 tỷ trước VAT (44,28 tỷ sau VAT)",
+        note:"Kèm file 2026_Omni_BC so sánh_Ngân sách vs Thực tế_kỳ T1-T6_Final_V3.xlsx (1,85 MB), sheet 3. Phí DVVH sau điều chỉnh. Vinh tăng 1,24 tỷ so với vòng 21/08; Long An giữ nguyên." },
+      { d:"25/08", who:"KTT", level:"good", t:"Triển khai quy trình trình ký điện tử MISA cho toàn Công ty OMNI",
+        note:"Mở rộng từ phạm vi Chủ đầu tư (27/07) ra toàn công ty — đúng khuyến nghị KSNB kỳ trước." },
+      { d:"26/08", who:"KTT", level:"good", t:"Hướng dẫn hoàn thiện và bàn giao hồ sơ gốc cho ĐNTT/ĐNTU trình ký trên MISA",
+        note:"Siết luồng hồ sơ thanh toán và tạm ứng — củng cố chốt kiểm soát." },
+      { d:"07/09", who:"TCKT", level:"red", t:"HẠN phát hành BC dòng tiền T8 và BC so sánh KH vs TT (kỳ tháng 8)",
+        note:"Không có báo cáo nào được phát hành tính đến 08/09. Kỳ tháng 8 lặp lại đúng mẫu hình kỳ tháng 7." },
+      { d:"08/09", who:"KSNB", level:"red", t:"Chốt kỳ giám sát — vẫn không có báo cáo tài chính T7 hay T8 nào trong hộp thư",
+        note:"6 email của TCKT trong kỳ, không email nào là báo cáo tài chính định kỳ." }
+    ],
+    cash: Object.assign({}, JUL.cash, { note:"Không có số dư tiền thực tế tháng 7 hoặc tháng 8 — TCKT chưa phát hành. Bảng dưới giữ nguyên từ kỳ tháng 7: mốc thực tế gần nhất là 30/06/2026 (38.876.331.030 đ); cột 31/07 là ƯỚC TÍNH theo kế hoạch. Chưa có cột nào phản ánh 31/08." }),
+    realFlow: Object.assign({}, JUL.realFlow, { note:"Không có dòng tiền thực tế tháng 7 hay tháng 8. Bảng dưới là kế hoạch tháng 7 từ kỳ trước, giữ nguyên để tham chiếu." }),
+    runway: JUL.runway,
+    receivables:"CẬP NHẬT KỲ NÀY: phí DVVH Quý 3 đã được chốt giá ở 40.253.699.290 đ trước VAT (44.279.069.220 đ sau VAT) sau họp lãnh đạo 18/08 — rủi ro treo 48,69 tỷ của kỳ trước đã hạ nhiệt ở khâu ĐỊNH GIÁ; nhưng đến 08/09 chưa quan sát được văn bản CĐT phê duyệt hay lệnh giải ngân trong hộp thư, nên rủi ro chuyển sang khâu THU TIỀN ĐÚNG HẠN. Số phải thu 30/06/2026 giữ nguyên: Bên liên quan A còn phải thu 3.498.534.044 đ (toàn bộ quý 2); Bên liên quan B đã thanh toán đủ Q1 và Q2 (20.085.642.910 đ); số ngày phải thu khoảng 9,8 ngày. Chưa có số liệu 31/07 hay 31/08/2026.",
+    variance: Object.assign({}, JUL.variance, { t7note:"KHÔNG có bảng lương tháng 8 trong kỳ quét; số dưới đây là tháng 7 (bảng lương P.HCNS ngày 05/08), giữ nguyên từ kỳ trước để theo dõi. Lưu ý tiếp tục: con số lũy kế chênh AOP nhân sự 27.603.431.530 đ VẪN chưa đối chiếu độc lập được, do bảng lương T7 có 3 lỗi (thiếu hẳn mục II; cộng dọc 476 nhưng dòng tổng ghi 477; cột AOP − thực tế lệch 152.010.784 đ). Phải đính chính trước khi dùng làm căn cứ đàm phán với CĐT." }),
+    pnl: Object.assign({}, JUL.pnl, { note:"Không có PnL tháng 7 hoặc tháng 8 — file PnL vẫn dừng ở tháng 6, toàn bộ cột tháng 7 và tháng 8 bằng 0. PnL kỳ T7 (hạn 15/08) quá hạn 24 ngày; PnL kỳ T8 (hạn 15/09) còn 7 ngày. Số dưới đây là H1/2026 và riêng tháng 6, giữ nguyên." }),
+    flags: fl,
+    flagsNote:"Các mục #1–#8 là cảnh báo tồn đọng từ H1/2026; trong phạm vi quét 13/08–08/09 KHÔNG có hồ sơ mới làm thay đổi trạng thái đóng/mở của chúng — giữ nguyên nội dung để tiếp tục theo dõi. Mục #9 được CẬP NHẬT (hạ từ ĐỎ xuống CAM sau khi phí DVVH Q3 được chốt giá). Mục #10 là phát hiện MỚI của kỳ này. Nội dung mô tả tình trạng hồ sơ quan sát được, không kết luận về hành vi hay động cơ cá nhân; tài liệu đã ẩn danh.",
+    riskSummary:{ red:7, amber:3, yellow:2, score:195, scoreAfter:90,
+      note:"Thay đổi ròng kỳ này: HẠ 1 rủi ro (phí DVVH Q3 từ treo/chưa giải ngân xuống đã chốt giá 40,25 tỷ, chờ xác nhận giải ngân); THÊM 1 rủi ro ĐỎ (chậm phát hành báo cáo thành mẫu hình 2 kỳ liên tiếp). Không có rủi ro tồn đọng nào (#1–#8) được đóng lại trong kỳ. Điểm rủi ro gộp giữ nguyên từ kỳ tháng 7, CHƯA tái tính trong phạm vi kỳ này.",
+      momNote:"Điểm sáng: hai chốt kiểm soát siết lại trong kỳ — MISA trình ký điện tử toàn công ty (25/08) và phí DVVH Q3 được chốt giá minh bạch theo cơ chế 10% LNST. Vấn đề trọng tâm còn lại là TCKT không phát hành báo cáo đúng hạn — chốt kiểm soát yếu nhất hiện nay nằm ở luồng thông tin, không phải ở giao dịch." },
+    actions:[
+      { n:1, level:"red", tag:"RẤT KHẨN", due:"11/09/2026", t:"Phát văn bản chính thức yêu cầu TCKT phát hành NGAY 5 báo cáo kỳ tháng 7 (quá hạn 21–32 ngày) và 2 báo cáo kỳ tháng 8 đã đến hạn; ghi nhận việc trễ hạn vào hồ sơ đánh giá TCKT. Đây là kỳ THỨ HAI liên tiếp không tuân thủ cam kết 24/07." },
+      { n:2, level:"red", tag:"RẤT KHẨN", due:"11/09/2026", t:"Xác nhận trạng thái phí DVVH Q3 đã chốt (40,25 tỷ trước VAT): (a) CĐT đã phê duyệt bằng văn bản chưa; (b) hồ sơ trình ký thanh toán đã phát hành chưa; (c) đối chiếu con số với sheet 3. Phí DVVH sau điều chỉnh trong file đính kèm 24/08 trước khi ghi nhận là đã giải quyết." },
+      { n:3, level:"red", tag:"RẤT KHẨN", due:"11/09/2026", t:"Theo dõi văn bản yêu cầu TCKT giải trình khoản cho vay 20 tỷ (soạn kỳ trước): đã phát hành chưa, đã có phản hồi chưa. Nếu chưa, phát hành trong 48 giờ." },
+      { n:4, level:"amber", tag:"KHẨN", due:"14/09/2026", t:"Yêu cầu KSNB xác minh cấu hình MISA: ngưỡng bắt buộc trình ký điện tử với giao dịch từ 500 triệu, và cơ chế chặn tách nhỏ một khoản chi cùng hợp đồng/cùng ngày. Ghi nhận triển khai MISA toàn công ty là điểm kiểm soát tích cực." },
+      { n:5, level:"amber", tag:"KHẨN", due:"14/09/2026", t:"Trước khi dùng con số chênh AOP nhân sự 27,6 tỷ làm căn cứ đàm phán với CĐT, yêu cầu P.HCNS đính chính 3 lỗi bảng lương T7 (thiếu mục II; 476 vs 477 người; lệch 152.010.784 đ ở cột AOP − thực tế)." },
+      { n:6, level:"amber", tag:"KHẨN", due:"15/09/2026", t:"Chuẩn bị cho hạn PnL kỳ T8 (15/09) và 2 báo cáo 18/09: nếu TCKT lỡ tiếp, kỳ tháng 8 cũng 0/5 và cần đưa vào báo cáo HĐQT về năng lực tuân thủ của TCKT." },
+      { n:7, level:"info", tag:"TRUNG BÌNH", due:"19/09/2026", t:"Đưa vốn điều lệ góp thiếu 6,57 tỷ (cổ đông 65%) và mô hình chi hộ CĐT chưa có hợp đồng ủy quyền vào chương trình họp HĐQT gần nhất, kèm ý kiến pháp chế về hậu quả pháp lý." }
+    ],
+    actionsExtra:"Vấn đề luồng thông tin của kỳ trước VẪN TỒN TẠI: báo cáo phí DVVH Q3 ngày 24/08 — tài liệu định giá 40,25 tỷ đ — tiếp tục gửi TỚI kế toán CĐT và team kinh doanh, PTGĐ TT chỉ nhận CC. Đề nghị TCKT gửi TRỰC TIẾP (dòng To) tới PTGĐ TT đối với mọi báo cáo tài chính gửi ra ngoài công ty.",
+    sources:[
+      "Hộp thư Outlook của PTGĐ TT (tungtruong@omni.com.vn), quét 13/08/2026 – 08/09/2026 (27 ngày). Tìm theo người gửi ngocctm@omni.com.vn: 6 email trong kỳ, KHÔNG email nào là báo cáo tài chính định kỳ.",
+      "Đọc chi tiết: chuỗi email BC so sánh Ngân sách vs Thực tế T1–T6 (17/08 chốt phương án, 21/08 số vòng 1, 24/08 số chốt phí DVVH Q3 kèm file 1,85 MB); email triển khai MISA toàn công ty (25/08) và hoàn thiện hồ sơ gốc (26/08).",
+      "Email cam kết lịch báo cáo của KTT ngày 24/07/2026 (5 báo cáo, hạn ngày 7 / 15 / 18 hằng tháng).",
+      "Các mốc tài chính thực tế gần nhất giữ nguyên từ kỳ tháng 7: file Cashflow / PnL / Kế hoạch dòng tiền / Đăng ký rủi ro 202606 — chưa được cập nhật số T7/T8.",
+      "Phép tính ngày và tổng phí DVVH Q3 trong kỳ được tính lại độc lập bằng script: compliance day-counts; Vinh 26.653.934.757 + Long An 13.599.764.533 = 40.253.699.290 trước VAT; sau VAT 44.279.069.220 — khớp."
+    ],
+    limits:[
+      "Toàn bộ số tài chính THỰC TẾ tháng 7 và tháng 8/2026 — TCKT chưa phát hành.",
+      "Xác nhận CĐT phê duyệt phí DVVH Q3 bằng văn bản, và lệnh giải ngân / hồ sơ trình ký thanh toán — chưa quan sát được trong hộp thư đến 08/09.",
+      "Việc đề xuất điều chỉnh hồi tố chi phí nhân sự H1 có bị loại hoàn toàn hay không — số chốt 24/08 dựa trên cơ chế 10% LNST, không đề cập hồi tố; nhưng không có văn bản xác nhận đã bác đề xuất đó (suy luận, chưa kiểm chứng).",
+      "Nội dung file đính kèm 24/08 (sheet 3. Phí DVVH sau điều chỉnh) — chưa mở và đối chiếu từng dòng; số liệu lấy từ bảng trong thân email.",
+      "Cấu hình thực tế của hệ thống MISA (ngưỡng bắt buộc, cơ chế chặn tách nhỏ) — mới ghi nhận việc triển khai, chưa xác minh tham số.",
+      "Các cảnh báo đỏ tồn đọng #1–#8 không có dữ liệu mới trong kỳ để cập nhật trạng thái đóng/mở."
+    ],
+    legal:"CẬP NHẬT: theo số chốt phí DVVH Q3 ngày 24/08, cơ chế áp dụng là Omni giữ lại 10% LN sau thuế + cập nhật tiến độ bàn giao — KHÔNG thấy đề cập việc điều chỉnh hồi tố chi phí nhân sự H1 mà kế toán CĐT đề xuất ngày 12/08. Nếu đề xuất hồi tố đã bị loại, rủi ro pháp lý/thuế lớn nhất kỳ trước đã được tránh; tuy nhiên cần văn bản xác nhận. Ba nội dung sau VẪN cần ý kiến chuyên môn ĐỘC LẬP: (a) mọi điều chỉnh hồi tố chi phí H1 nếu còn được nêu lại — kỳ đã kết thúc, đã ghi nhận doanh thu, lợi nhuận và thuế TNDN tạm nộp; (b) khoản 20 tỷ cho một cá nhân vay — bản chất kế toán, bản chất thuế và thẩm quyền phê duyệt; (c) vốn điều lệ chưa góp đủ (thiếu 6,57 tỷ) và mô hình chi hộ CĐT chưa có hợp đồng ủy quyền — chuyên gia thuế độc lập, KHÔNG phải đơn vị đang làm sổ sách cho công ty.",
+    appendix: Object.assign({}, JUL.appendix, { intro:"Soạn từ kỳ tháng 7 để yêu cầu TCKT giải trình khoản cho vay 20 tỷ và các giao dịch liên quan; đến 08/09 chưa quan sát được đã phát hành hay có phản hồi. Giữ nguyên để phát hành. Đề xuất gửi trực tiếp Kế toán trưởng, CC Tổng Giám đốc." })
+  };
+  window.PERIODS.unshift(AUG);
+})();
+
+;(function(){
+  // Kỳ Tháng 9/2026 — giám sát ĐẦU KỲ (chốt 09/09/2026, 1 ngày sau khi chốt kỳ tháng 8).
+  // Nguồn: hộp thư PTGĐ TT (tungtruong@omni.com.vn), quét 08/09–09/09/2026.
+  // Chưa có tháng báo cáo mới đóng lại; KHÔNG thêm điểm chuỗi thời gian (không có số thực tế mới).
+  var AUG = window.PERIODS[0];
+  var SEP = JSON.parse(JSON.stringify(AUG)); // deep clone, giữ nguyên mọi trường mang từ kỳ trước
+
+  SEP.id = "2026-09";
+  SEP.label = "Tháng 9/2026";
+  SEP.asOf = "09/09/2026";
+  SEP.scan = "08/09/2026 – 09/09/2026 (giám sát đầu kỳ, 1 ngày sau khi chốt kỳ tháng 8)";
+
+  SEP.verdict = {
+    level: "red",
+    head: "KỲ GIÁM SÁT ĐẦU THÁNG 9 — VẪN KHÔNG CÓ SỐ TÀI CHÍNH THỰC TẾ; PHÁT SINH MỚI: RỦI RO CĂN CỨ THANH TOÁN MÔI GIỚI",
+    body: "Bản cập nhật này chốt ngày 09/09/2026, chỉ 1 ngày sau kỳ tháng 8 — chưa có tháng báo cáo mới đóng lại (kỳ tháng 9 chỉ thực sự khép lại đầu tháng 10). Trong cửa sổ quét 08–09/09, TCKT vẫn chưa phát hành bất kỳ báo cáo tài chính định kỳ nào: cả 5 báo cáo kỳ tháng 7 quá hạn 22–33 ngày, hai báo cáo đầu kỳ tháng 8 (hạn 07/09) đã quá hạn 2 ngày. Phát sinh KSNB duy nhất trong kỳ: hồ sơ thanh toán phí môi giới BĐS (đối tác Song Cát) với hai khoản 14.781.875 đ + 73.909.377 đ = 88.691.252 đ đang được KTT rà soát căn cứ hợp đồng — nổi lên rủi ro thời điểm: hợp đồng thuê ký 01/06/2026 TRƯỚC hợp đồng môi giới ký 10/06/2026 (chênh 9 ngày), có thể khiến khoản phí không đủ căn cứ “khách thuê do Bên A giới thiệu” theo Điều 3.2."
+  };
+
+  SEP.kpi = [
+    { label:"Tuân thủ báo cáo", value:"0 / 7", sub:"Đã đến hạn nhưng chưa nhận · kỳ T7 quá hạn 22–33 ngày · kỳ T8 hai BC đầu quá hạn 2 ngày", level:"red" },
+    { label:"Số tài chính thực tế", value:"Không có", sub:"T7 và T8 chưa phát hành · mốc gần nhất 30/06 (38,88 tỷ đ)", level:"red" },
+    { label:"Phí DVVH Q3 (đã chốt giá)", value:"40,25 tỷ đ", sub:"Trước VAT · sau VAT 44,28 tỷ · chưa quan sát được lệnh giải ngân đến 09/09", level:"amber" },
+    { label:"Số tháng cầm cự", value:"~4,02 tháng", sub:"Trên số 30/06 · gồm thuế & capex · chưa có số T7–T8", level:"amber" },
+    { label:"Rà soát KSNB mới trong kỳ", value:"88,69 tr đ", sub:"Thanh toán môi giới Song Cát đang xác minh căn cứ hợp đồng · rủi ro thời điểm ký", level:"amber" },
+    { label:"Chênh AOP nhân sự (đàm phán)", value:"27,60 tỷ đ", sub:"Căn cứ CĐT dùng để cắt NS · vẫn chưa đối chiếu độc lập", level:"amber" }
+  ];
+
+  SEP.summary = [
+    { level:"red", t:"Bản chốt 09/09 chỉ cách kỳ tháng 8 (chốt 08/09) đúng 1 ngày và sớm hơn 6 ngày so với lịch chạy định kỳ (ngày 15). Chưa có tháng báo cáo mới đóng lại; kỳ này là ảnh giám sát đầu tháng, không phải kỳ đóng đầy đủ. Tín hiệu tài chính thực chất tiếp theo rơi vào 15/09 (hạn PnL kỳ T8) và đầu tháng 10 (kỳ tháng 9 khép lại)." },
+    { level:"red", t:"Không có báo cáo tài chính định kỳ nào được phát hành trong cửa sổ quét. Cả 5 báo cáo kỳ tháng 7 (cam kết văn bản 24/07) quá hạn 22–33 ngày; hai báo cáo đầu kỳ tháng 8 (BC dòng tiền và SS dòng tiền, hạn 07/09) quá hạn 2 ngày. Mẫu hình chậm phát hành sang kỳ thứ ba." },
+    { level:"amber", t:"MỚI — rủi ro căn cứ thanh toán phí môi giới BĐS (Song Cát). KTT rà soát hai khoản đề nghị chi: 14.781.875 đ (tính trên đợt đầu 300 tr, sản phẩm nghiên cứu thị trường) và 73.909.377 đ (tính trên thanh toán lần 1 – 150 tr, mốc lấp đầy 10%, diện tích 220,28 m²). Khoản thứ nhất KTT đánh giá CHƯA đủ căn cứ lượng hóa theo hợp đồng (Điều 2.3.a gắn với 4 đầu mục sản phẩm, không gắn với % lấp đầy) — cần phụ lục làm rõ và PD chủ trương lãnh đạo. Khoản thứ hai có cơ sở (Điều 2.4) nhưng cần hồ sơ xác nhận diện tích và văn bản giới thiệu khách thuê." },
+    { level:"red", t:"Rủi ro thời điểm ký (đã định lượng): hợp đồng thuê với khách ký 01/06/2026, trong khi hợp đồng môi giới VL–Song Cát ký 10/06/2026 — sau 9 ngày. Theo Điều 3.2, khách thuê chỉ được ghi nhận là “do Bên A giới thiệu” nếu Bên A có email/văn bản chính thức giới thiệu gửi Bên B TRONG thời hạn hợp đồng còn hiệu lực. Nếu khách đã được chốt trước khi hợp đồng môi giới có hiệu lực, khoản phí có rủi ro bị coi là không có căn cứ. Pháp chế Omni (09/09) không có thêm ý kiến; KTT đã đặt câu hỏi tiếp tục hợp tác hay thanh lý hợp đồng." },
+    { level:"amber", t:"Thẩm quyền phê duyệt: KTT lưu ý cần xác định GĐ Khối Đầu tư & TMDV (Hiền) có đủ thẩm quyền phê duyệt thanh toán/điều chỉnh khác với hợp đồng đã ký hay không; nếu không, phải có PD chủ trương từ lãnh đạo trước khi thực hiện. Đây đúng là loại kiểm soát thẩm quyền chi thuộc phạm vi KSNB." },
+    { level:"amber", t:"Các mục tồn đọng từ kỳ trước KHÔNG có bằng chứng đã đóng trong cửa sổ 1 ngày: phí DVVH Q3 đã chốt giá 40,25 tỷ nhưng chưa quan sát được văn bản CĐT phê duyệt hay lệnh giải ngân; khoản cho vay 20 tỷ, mua ô tô 1,53 tỷ, tách nhỏ giao dịch 04/06, vốn điều lệ góp thiếu 6,57 tỷ — giữ nguyên trạng thái mở." }
+  ];
+
+  SEP.compliance = {
+    note: "Căn cứ email cam kết KTT 24/07/2026 (hạn: BC dòng tiền & SS dòng tiền ngày 7; PnL ngày 15; phân tích lãi-lỗ vs dòng tiền & SS ngân sách ngày 18 hằng tháng). Chốt dữ liệu 09/09/2026. Số ngày trễ/còn lại tính lại bằng script từ ngày chốt. Bảng gộp kỳ tháng 7 và kỳ tháng 8.",
+    rows: [
+      { n:1, name:"BC dòng tiền — kỳ T7", due:"07/08/2026", got:"—", status:"late", tag:"Quá hạn 33 ngày" },
+      { n:2, name:"BC so sánh KH dòng tiền vs thực tế — kỳ T7", due:"07/08/2026", got:"—", status:"late", tag:"Quá hạn 33 ngày" },
+      { n:3, name:"BC Kết quả Kinh doanh (PnL) — kỳ T7", due:"15/08/2026", got:"—", status:"late", tag:"Quá hạn 25 ngày" },
+      { n:4, name:"BC phân tích lãi/lỗ vs dòng tiền — kỳ T7", due:"18/08/2026", got:"—", status:"late", tag:"Quá hạn 22 ngày" },
+      { n:5, name:"BC so sánh ngân sách KH vs thực tế — kỳ T7", due:"18/08/2026", got:"—", status:"late", tag:"Quá hạn 22 ngày" },
+      { n:6, name:"BC dòng tiền — kỳ T8", due:"07/09/2026", got:"—", status:"late", tag:"Quá hạn 2 ngày" },
+      { n:7, name:"BC so sánh KH dòng tiền vs thực tế — kỳ T8", due:"07/09/2026", got:"—", status:"late", tag:"Quá hạn 2 ngày" },
+      { n:8, name:"BC Kết quả Kinh doanh (PnL) — kỳ T8", due:"15/09/2026", got:"—", status:"pending", tag:"Còn 6 ngày" },
+      { n:9, name:"BC phân tích lãi/lỗ vs dòng tiền — kỳ T8", due:"18/09/2026", got:"—", status:"pending", tag:"Còn 9 ngày" },
+      { n:10, name:"BC so sánh ngân sách KH vs thực tế — kỳ T8", due:"18/09/2026", got:"—", status:"pending", tag:"Còn 9 ngày" }
+    ]
+  };
+
+  SEP.timeline = [
+    { d:"07/09", who:"TCKT", level:"red", t:"HẠN phát hành BC dòng tiền và BC so sánh KH dòng tiền vs thực tế (kỳ tháng 8)",
+      note:"Không có báo cáo nào được phát hành. Đến 09/09 đã quá hạn 2 ngày — kỳ tháng 8 lặp lại mẫu hình kỳ tháng 7." },
+    { d:"08/09", who:"KTT", level:"amber", t:"KTT rà soát 2 khoản đề nghị thanh toán phí môi giới BĐS (đối tác Song Cát): 14.781.875 đ và 73.909.377 đ",
+      note:"Khoản 14,78 tr (đợt đầu 300 tr, sản phẩm NCTT): KTT đánh giá Điều 2.3.a gắn với 4 đầu mục sản phẩm, KHÔNG gắn với % lấp đầy — chưa đủ căn cứ lượng hóa, cần phụ lục và PD chủ trương. Khoản 73,91 tr (lần 1 – 150 tr, mốc lấp đầy 10%, 220,28 m²): có cơ sở Điều 2.4 nhưng cần hồ sơ xác nhận diện tích và văn bản giới thiệu khách thuê + hóa đơn GTGT." },
+    { d:"09/09", who:"Pháp chế", level:"info", t:"Pháp chế Omni (C. Hà) không có thêm ý kiến, đề nghị các bên chủ động các bước tiếp theo",
+      note:"Chuyển quyền chủ động về TMDV/KTT." },
+    { d:"09/09", who:"KTT", level:"red", t:"KTT nêu RỦI RO THỜI ĐIỂM KÝ và đặt câu hỏi tiếp tục hợp tác hay thanh lý hợp đồng",
+      note:"Hợp đồng thuê ký 01/06 trước hợp đồng môi giới 10/06 (chênh 9 ngày). Theo Điều 3.2, cần bằng chứng giới thiệu khách trong thời hạn hợp đồng còn hiệu lực, nếu không khoản phí rủi ro không có căn cứ. KTT hỏi TMDV có tiếp tục hợp tác với Song Cát không; nếu không thì thanh lý để khỏi ký phụ lục điều chỉnh." }
+  ];
+
+  // Giữ nguyên flags #1–#10 từ kỳ trước; cập nhật #10 theo đồng hồ hiện tại; thêm #11 (môi giới).
+  SEP.flags[9] = { n:10, level:"red", since:"07/08/2026",
+    title:"Chậm phát hành báo cáo tài chính đã thành mẫu hình ba kỳ liên tiếp",
+    detail:"Cam kết văn bản KTT 24/07/2026 gồm 5 báo cáo mỗi tháng (hạn ngày 7, 15, 18). Đến 09/09: kỳ tháng 7 cả 5 báo cáo chưa phát hành — quá hạn 22 đến 33 ngày; kỳ tháng 8 hai báo cáo đầu (hạn 07/09) đã quá hạn 2 ngày; kỳ tháng 8 còn 3 báo cáo đến hạn 15/09 và 18/09. Đây là kỳ giám sát thứ ba liên tiếp ghi nhận chậm phát hành — vấn đề năng lực/ý chí tuân thủ, không còn là sự cố đơn lẻ. Hệ quả: KSNB và Ban TGĐ không có số tài chính thực tế của hai tháng gần nhất để giám sát thanh khoản. Đề nghị đưa vào hồ sơ đánh giá TCKT và ra HĐQT nếu kỳ tháng 8 tiếp tục 0/5 sau 18/09." };
+  SEP.flags.push({ n:11, level:"amber", since:"08/09/2026",
+    title:"MỚI — Rủi ro căn cứ hợp đồng của khoản phí môi giới BĐS (đối tác Song Cát)",
+    detail:"Trong kỳ quét, KTT rà soát hai khoản đề nghị thanh toán phí môi giới theo hợp đồng VL–Song Cát: (a) 14.781.875 đ tính trên đợt thanh toán đầu tiên (300 tr, sản phẩm nghiên cứu thị trường) — KTT đánh giá Điều 2.3.a gắn khoản này với việc nộp đủ 4 đầu mục sản phẩm (báo cáo NCTT, Tenant Mix, đề xuất chiến lược khách thuê, đề xuất thương hiệu), KHÔNG gắn với tỷ lệ lấp đầy; chưa có căn cứ rõ ràng để lượng hóa mức hoàn thành, nếu thanh toán một phần phải đánh giá theo mức độ hoàn thành thực tế của 4 đầu mục và ký phụ lục làm rõ; (b) 73.909.377 đ tính trên thanh toán lần 1 (150 tr, mốc lấp đầy 10%, diện tích 220,28 m²) — có cơ sở tại Điều 2.4 nhưng cần văn bản xác nhận diện tích lấp đầy do Bên A mang về cho từng khách thuê, hóa đơn GTGT và biên bản nghiệm thu ghi rõ cách tính. RỦI RO TRỌNG YẾU: hợp đồng thuê với khách ký 01/06/2026 TRƯỚC hợp đồng môi giới ký 10/06/2026 (chênh 9 ngày); theo Điều 3.2 khách thuê chỉ được ghi nhận là do Bên A giới thiệu nếu có email/văn bản chính thức giới thiệu gửi Bên B trong thời hạn hợp đồng còn hiệu lực — nếu không, khoản phí có rủi ro bị coi là không có căn cứ. Thêm điểm kiểm soát thẩm quyền: cần xác định GĐ Khối Đầu tư & TMDV có đủ thẩm quyền phê duyệt thanh toán/điều chỉnh khác hợp đồng đã ký hay không; nếu không, phải có PD chủ trương lãnh đạo. Tổng hai khoản đang treo: 88.691.252 đ. Pháp chế Omni (09/09) không có thêm ý kiến; KTT đã đặt câu hỏi tiếp tục hợp tác hay thanh lý. Nội dung mô tả tình trạng hồ sơ, không kết luận về hành vi hay động cơ; đã ẩn danh." });
+  SEP.flagsNote = "Các mục #1–#8 là cảnh báo tồn đọng từ H1/2026; trong cửa sổ quét 08–09/09 KHÔNG có hồ sơ mới làm thay đổi trạng thái đóng/mở. Mục #9 (phí DVVH Q3 đã chốt giá) giữ nguyên trạng CAM — chưa quan sát được văn bản phê duyệt/lệnh giải ngân. Mục #10 cập nhật theo đồng hồ hiện tại (mẫu hình chậm phát hành sang kỳ thứ ba). Mục #11 là phát hiện MỚI của kỳ này. Nội dung mô tả tình trạng hồ sơ quan sát được, không kết luận về hành vi hay động cơ cá nhân; tài liệu đã ẩn danh.";
+
+  SEP.cash = Object.assign({}, SEP.cash, { note:"Không có số dư tiền thực tế tháng 7, 8 hay 9 — TCKT chưa phát hành. Bảng dưới giữ nguyên: mốc thực tế gần nhất là 30/06/2026 (38.876.331.030 đ); cột 31/07 là ƯỚC TÍNH theo kế hoạch. Chưa có cột nào phản ánh 31/08 hay 31/09." });
+  SEP.realFlow = Object.assign({}, SEP.realFlow, { note:"Không có dòng tiền thực tế tháng 7, 8 hay 9. Bảng dưới là kế hoạch tháng 7 từ kỳ trước, giữ nguyên để tham chiếu." });
+  SEP.pnl = Object.assign({}, SEP.pnl, { note:"Không có PnL tháng 7, 8 hay 9 — file PnL vẫn dừng ở tháng 6. PnL kỳ T7 (hạn 15/08) quá hạn 25 ngày; PnL kỳ T8 (hạn 15/09) còn 6 ngày. Số dưới đây là H1/2026 và riêng tháng 6, giữ nguyên." });
+
+  SEP.receivables = "Giữ nguyên từ kỳ tháng 8: phí DVVH Quý 3 đã chốt giá 40.253.699.290 đ trước VAT (44.279.069.220 đ sau VAT) sau họp lãnh đạo 18/08; đến 09/09 vẫn CHƯA quan sát được văn bản CĐT phê duyệt hay lệnh giải ngân trong hộp thư — rủi ro vẫn ở khâu THU TIỀN ĐÚNG HẠN. Số phải thu 30/06/2026 giữ nguyên: Bên liên quan A còn phải thu 3.498.534.044 đ; Bên liên quan B đã thanh toán đủ Q1+Q2 (20.085.642.910 đ); số ngày phải thu ~9,8 ngày. Chưa có số liệu 31/07, 31/08 hay 31/09/2026.";
+
+  SEP.riskSummary = {
+    red:7, amber:4, yellow:2, score:195, scoreAfter:90,
+    note:"Thay đổi ròng kỳ này: THÊM 1 rủi ro CAM mới (căn cứ hợp đồng của khoản phí môi giới Song Cát 88,69 tr đ — rủi ro thời điểm ký và thẩm quyền phê duyệt). Không có rủi ro tồn đọng nào (#1–#9) được đóng lại. Mẫu hình chậm phát hành báo cáo (#10) sang kỳ thứ ba liên tiếp. Điểm rủi ro gộp giữ nguyên từ kỳ tháng 7, CHƯA tái tính trong phạm vi kỳ giám sát đầu tháng này.",
+    momNote:"Đây là ảnh giám sát đầu tháng (chốt 09/09, 1 ngày sau kỳ tháng 8) — biên độ thay đổi hẹp theo thiết kế. Không có số tài chính mới; không thêm điểm chuỗi thời gian. Giá trị của kỳ nằm ở việc bắt sớm một rủi ro kiểm soát chi (căn cứ phí môi giới) trước khi tiền ra."
+  };
+
+  SEP.actions = [
+    { n:1, level:"red", tag:"RẤT KHẨN", due:"11/09/2026", t:"Phát văn bản chính thức yêu cầu TCKT phát hành NGAY 5 báo cáo kỳ tháng 7 (quá hạn 22–33 ngày) và 2 báo cáo kỳ tháng 8 đã đến hạn (quá hạn 2 ngày); ghi nhận việc trễ hạn vào hồ sơ đánh giá TCKT. Đây là kỳ giám sát thứ ba liên tiếp không tuân thủ cam kết 24/07." },
+    { n:2, level:"red", tag:"RẤT KHẨN", due:"12/09/2026", t:"Trước khi TMDV/KTT chi khoản phí môi giới Song Cát (88,69 tr đ): yêu cầu (a) bằng chứng giới thiệu khách thuê nằm trong thời hạn hợp đồng còn hiệu lực (Điều 3.2) — xử lý rủi ro hợp đồng thuê ký 01/06 trước hợp đồng môi giới 10/06; (b) hồ sơ xác nhận diện tích lấp đầy 220,28 m² và văn bản xác nhận của Bên B; (c) xác nhận thẩm quyền phê duyệt của GĐ Khối Đầu tư & TMDV, nếu không đủ thì lấy PD chủ trương lãnh đạo. Nếu không đủ căn cứ, tạm dừng chi và cân nhắc thanh lý." },
+    { n:3, level:"amber", tag:"KHẨN", due:"12/09/2026", t:"Xác nhận trạng thái phí DVVH Q3 đã chốt giá (40,25 tỷ trước VAT): CĐT đã phê duyệt bằng văn bản chưa; hồ sơ trình ký thanh toán và lệnh giải ngân đã phát hành chưa. Chưa quan sát được đến 09/09." },
+    { n:4, level:"amber", tag:"KHẨN", due:"15/09/2026", t:"Chuẩn bị cho hạn PnL kỳ T8 (15/09) và 2 báo cáo 18/09: nếu TCKT lỡ tiếp, kỳ tháng 8 cũng 0/5 và cần đưa vào báo cáo HĐQT về năng lực tuân thủ của TCKT." },
+    { n:5, level:"info", tag:"TRUNG BÌNH", due:"19/09/2026", t:"Đưa vốn điều lệ góp thiếu 6,57 tỷ (cổ đông 65%) và mô hình chi hộ CĐT chưa có hợp đồng ủy quyền vào chương trình họp HĐQT gần nhất, kèm ý kiến pháp chế về hậu quả pháp lý." }
+  ];
+
+  SEP.actionsExtra = "Vấn đề luồng thông tin của các kỳ trước VẪN TỒN TẠI: PTGĐ TT tiếp tục chỉ nhận CC trên các tài liệu tài chính/định giá gửi ra ngoài (phí DVVH Q3, hồ sơ môi giới). Đề nghị TCKT gửi TRỰC TIẾP (dòng To) tới PTGĐ TT đối với mọi báo cáo tài chính và hồ sơ thanh toán trọng yếu.";
+
+  SEP.sources = [
+    "Hộp thư Outlook của PTGĐ TT (tungtruong@omni.com.vn), quét 08/09/2026 – 09/09/2026 theo người gửi ngocctm@omni.com.vn. Trong cửa sổ: KHÔNG có báo cáo tài chính định kỳ; chỉ có chuỗi email “Phản hồi nội dung hợp đồng môi giới bất động sản”.",
+    "Đọc chi tiết 3 email chuỗi môi giới Song Cát (08/09 07:06 — ý kiến KTT về 2 khoản 14.781.875 đ và 73.909.377 đ; 09/09 03:45 — phản hồi KTT + rủi ro thời điểm ký; 09/09 04:19 — KTT hỏi tiếp tục hợp tác hay thanh lý) và email Pháp chế Omni (09/09 09:00).",
+    "Email cam kết lịch báo cáo của KTT ngày 24/07/2026 (5 báo cáo, hạn ngày 7 / 15 / 18 hằng tháng) — căn cứ đồng hồ tuân thủ.",
+    "Các mốc tài chính thực tế gần nhất giữ nguyên từ kỳ tháng 7–8: file Cashflow / PnL / Kế hoạch dòng tiền / Đăng ký rủi ro 202606 — chưa cập nhật số T7/T8/T9.",
+    "Toàn bộ ngày, số ngày trễ và tổng phí môi giới trong kỳ được tính lại độc lập bằng script từ ngày chốt 09/09/2026 (Asia/Saigon): 14.781.875 + 73.909.377 = 88.691.252; chênh ngày ký hợp đồng 9 ngày — khớp."
+  ];
+
+  SEP.limits = [
+    "Kỳ giám sát đầu tháng: cửa sổ quét chỉ 08–09/09 (1 ngày sau khi chốt kỳ tháng 8). Chưa phải kỳ đóng đầy đủ; kỳ tháng 9 thực sự khép lại đầu tháng 10.",
+    "Toàn bộ số tài chính THỰC TẾ tháng 7, 8 và 9/2026 — TCKT chưa phát hành.",
+    "Nội dung hợp đồng môi giới VL–Song Cát và các phụ lục — chỉ đọc qua thân email trao đổi của KTT/Pháp chế, chưa mở file hợp đồng gốc để đối chiếu từng điều khoản.",
+    "Xác nhận CĐT phê duyệt phí DVVH Q3 bằng văn bản và lệnh giải ngân — chưa quan sát được trong hộp thư đến 09/09.",
+    "Các cảnh báo đỏ tồn đọng #1–#8 không có dữ liệu mới trong kỳ để cập nhật trạng thái đóng/mở."
+  ];
+
+  SEP.legal = "Hai nội dung cần lưu ý pháp lý trong kỳ: (a) khoản phí môi giới Song Cát — nếu khách thuê được chốt trước khi hợp đồng môi giới có hiệu lực (thuê 01/06 vs môi giới 10/06), việc ghi nhận “khách do Bên A giới thiệu” và chi phí tương ứng cần rà soát điều kiện Điều 3.2 và có thể cần ý kiến pháp chế trước khi chi; đồng thời làm rõ thẩm quyền phê duyệt khác hợp đồng đã ký. " + AUG.legal;
+
+  window.PERIODS.unshift(SEP);
+})();
+
+/* --- Biến động theo tháng: doanh thu, chi phí, lợi nhuận --------
+   Nguồn: sheet PnL_Total. Tháng chưa có số liệu để null. */
+window.MOM = [
+  { m:"T1/26", dt:9873656325,  cp:6730168349, ln:3143487976, ns:5630109300 },
+  { m:"T2/26", dt:9871816327,  cp:6921540282, ln:2950276045, ns:5609787193 },
+  { m:"T3/26", dt:10233316079, cp:6323134208, ln:3910181871, ns:5638771169 },
+  { m:"T4/26", dt:10822848295, cp:6651803854, ln:4171044441, ns:6122736596 },
+  { m:"T5/26", dt:11078404901, cp:7035262968, ln:4043141933, ns:6507193693 },
+  { m:"T6/26", dt:12615075689, cp:9143298992, ln:3471776697, ns:8599525692,
+    note:"Chi phí gồm khoản gắn kết nội bộ 1.931.261.941 đ, ngoài kế hoạch" },
+  { m:"T7/26", dt:null, cp:null, ln:null, ns:null, note:"TCKT chưa phát hành PnL tháng 7 — hạn 15/08/2026" }
+];
+
+window.MOM_CALLOUT = {
+  level:"red",
+  head:"Tháng 6: doanh thu cao nhất nửa năm nhưng lợi nhuận lại giảm",
+  body:"Doanh thu tăng 13,9% (+1.536.670.788 đ) trong khi chi phí tăng 30,0% (+2.108.036.024 đ) — chi phí tăng nhanh gấp 2,2 lần doanh thu. Hệ quả: LNTT giảm 14,1%, biên LNTT rơi từ 36,5% xuống 27,5% (mất 9,0 điểm phần trăm) và tỷ lệ chi phí nhân sự trên doanh thu vọt từ 58,7% lên 68,2% — vượt ngưỡng cảnh báo 65%. Nếu loại khoản gắn kết nội bộ 1.931.261.941 đ thì chi phí T6 chỉ tăng 2,5% và biên LNTT đạt 42,8%, tỷ lệ CPNS/DT về 52,9%. Nói cách khác, toàn bộ mức sụt lợi nhuận tháng 6 đến từ một khoản chi ngoài kế hoạch, không phải từ hoạt động vận hành. Điểm cần theo dõi sang tháng 7: dòng tiền tháng 6 mới chi 921.240.000 đ cho khoản này, phần còn lại khoảng 1.010.021.941 đ đã ghi nhận chi phí nhưng chưa chi tiền."
+};
+
+/* ===== KẾT THÚC KHU VỰC DỮ LIỆU ===== */
+</script>
+<script>
+/* ---------- helpers ---------- */
+const $ = (h)=>{const d=document.createElement('div');d.innerHTML=h.trim();return d.firstChild;};
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const vn  = n => n==null ? '—' : n.toLocaleString('vi-VN');
+const ty  = n => n==null ? '—' : (n/1e9).toLocaleString('vi-VN',{minimumFractionDigits:1,maximumFractionDigits:1});
+const dmy = s => { const p=String(s).split('/'); return new Date(+p[2],+p[1]-1,+p[0]); };
+const days = (a,b) => Math.round((dmy(b)-dmy(a))/86400000);
+const LV   = {red:'red',amber:'amber',ok:'ok',good:'ok',info:'grey'};
+
+/* ---------- charts (pure SVG, no deps) ---------- */
+function lineChart(series){
+  const W=520,H=190,L=54,R=12,T=14,B=26, pw=W-L-R, ph=H-T-B;
+  const vals=series.map(d=>d.cash), max=Math.max(...vals)*1.12, min=0;
+  const x=i=>L+(pw*i)/(series.length-1), y=v=>T+ph-((v-min)/(max-min))*ph;
+  let grid='',lbl='';
+  for(let i=0;i<=4;i++){const v=min+(max-min)*i/4, yy=y(v);
+    grid+=`<line class="gl" x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}"/>`;
+    lbl+=`<text class="ax" x="${L-7}" y="${yy+3}" text-anchor="end">${(v/1e9).toFixed(0)} tỷ</text>`;}
+  const solid=series.filter(d=>!d.plan), sPts=solid.map((d,i)=>`${x(i)},${y(d.cash)}`).join(' ');
+  const li=solid.length-1, pl=series.find(d=>d.plan);
+  let dash='';
+  if(pl) dash=`<line x1="${x(li)}" y1="${y(solid[li].cash)}" x2="${x(series.length-1)}" y2="${y(pl.cash)}"
+    stroke="var(--amber)" stroke-width="2.5" stroke-dasharray="5 4"/>`;
+  const area=`${L},${T+ph} ${sPts} ${x(li)},${T+ph}`;
+  let dots=series.map((d,i)=>`<circle cx="${x(i)}" cy="${y(d.cash)}" r="${d.plan?4:3.2}"
+     fill="${d.plan?'var(--amber)':'var(--blue)'}" stroke="var(--panel)" stroke-width="1.6"/>`).join('');
+  let xl=series.map((d,i)=>`<text class="ax" x="${x(i)}" y="${H-8}" text-anchor="middle">${d.m}</text>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Tiền sẵn có theo tháng">
+   ${grid}${lbl}
+   <polygon points="${area}" fill="var(--blue)" opacity=".10"/>
+   <polyline points="${sPts}" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linejoin="round"/>
+   ${dash}${dots}${xl}</svg>`;
+}
+function barChart(series){
+  const d=series.filter(s=>s.net!=null);
+  const W=520,H=190,L=54,R=12,T=14,B=26, pw=W-L-R, ph=H-T-B;
+  const mx=Math.max(...d.map(s=>Math.abs(s.net)))*1.15;
+  const y0=T+ph/2, sc=v=>(v/mx)*(ph/2), bw=Math.min(34,pw/d.length-9);
+  let grid='',lbl='';
+  for(let i=-2;i<=2;i++){const v=mx*i/2, yy=y0-sc(v);
+    grid+=`<line class="gl" x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" ${i===0?'stroke-width="1.6"':''}/>`;
+    lbl+=`<text class="ax" x="${L-7}" y="${yy+3}" text-anchor="end">${(v/1e9).toFixed(0)}</text>`;}
+  let bars=d.map((s,i)=>{
+    const cx=L+pw*(i+0.5)/d.length, h=Math.abs(sc(s.net)), yy=s.net>=0?y0-h:y0;
+    const c=s.net>=0?'var(--green)':'var(--red)';
+    return `<rect x="${cx-bw/2}" y="${yy}" width="${bw}" height="${Math.max(h,1.5)}" rx="2.5"
+       fill="${c}" opacity="${s.plan?.42:.92}" ${s.plan?'stroke="'+c+'" stroke-width="1.4" stroke-dasharray="3 2"':''}/>
+      <text class="ax" x="${cx}" y="${H-8}" text-anchor="middle">${s.m}</text>`;}).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Dòng tiền thực chất theo tháng">
+    ${grid}${lbl}${bars}</svg>`;
+}
+
+
+function momChart(rows){
+  const d=rows.filter(r=>r.dt!=null);
+  const W=560,H=215,L=52,R=12,T=26,B=30, pw=W-L-R, ph=H-T-B;
+  const mx=Math.max(...d.map(r=>Math.max(r.dt,r.cp)))*1.14;
+  const y=v=>T+ph-(v/mx)*ph, gw=pw/d.length, bw=Math.min(26,(gw-14)/2);
+  let grid='',lbl='';
+  for(let i=0;i<=4;i++){const v=mx*i/4, yy=y(v);
+    grid+=`<line class="gl" x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}"/>`;
+    lbl+=`<text class="ax" x="${L-7}" y="${yy+3}" text-anchor="end">${(v/1e9).toFixed(0)} tỷ</text>`;}
+  let bars=d.map((r,i)=>{
+    const c=L+gw*(i+0.5), x1=c-bw-2, x2=c+2;
+    const pv=i?((r.cp-d[i-1].cp)/d[i-1].cp*100):null;
+    const flag=(pv!=null&&pv>=20)?`<text class="ax" x="${c+2+bw/2}" y="${y(r.cp)-5}" text-anchor="middle" fill="var(--red)" font-weight="700">+${pv.toFixed(0)}%</text>`:'';
+    return `<rect x="${x1}" y="${y(r.dt)}" width="${bw}" height="${T+ph-y(r.dt)}" rx="2" fill="var(--blue)"/>
+            <rect x="${x2}" y="${y(r.cp)}" width="${bw}" height="${T+ph-y(r.cp)}" rx="2" fill="var(--red)" opacity=".85"/>
+            ${flag}<text class="ax" x="${c}" y="${H-9}" text-anchor="middle">${r.m}</text>`;}).join('');
+  const lg=`<rect x="${L}" y="2" width="9" height="9" rx="2" fill="var(--blue)"/>
+    <text class="ax" x="${L+13}" y="10">Doanh thu</text>
+    <rect x="${L+78}" y="2" width="9" height="9" rx="2" fill="var(--red)" opacity=".85"/>
+    <text class="ax" x="${L+91}" y="10">Chi phí</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Doanh thu và chi phí theo tháng">${grid}${lbl}${lg}${bars}</svg>`;
+}
+function momCashTable(rows){
+  const f=n=> n==null?'—':n.toLocaleString('vi-VN');
+  const CORE=6973153449, FULL=9679624017;
+  return rows.map((r,i)=>{
+    const p=i?rows[i-1]:null;
+    const dv = p? r.cash-p.cash : null;
+    const dp = (p&&p.cash)? (r.cash-p.cash)/p.cash*100 : null;
+    const col = dv==null?'':(dv<0?'var(--red)':'var(--green)');
+    const rc = r.cash/CORE, rf = r.cash/FULL;
+    const rfs = rf<3?'color:var(--red);font-weight:700':(rf<4?'color:var(--amber);font-weight:700':'');
+    return `<tr><td>${r.m}${r.plan?' <span class="chip amber">KH</span>':''}`
+      +`${r.note?' <span class="chip grey" title="'+esc(r.note)+'">*</span>':''}</td>`
+      +`<td class="num">${f(r.cash)}</td>`
+      +`<td class="num" style="color:${col};font-weight:600">${dv==null?'—':(dv>0?'+':'')+f(dv)}</td>`
+      +`<td class="num" style="color:${col};font-weight:600">${dp==null?'—':(dp>0?'+':'')+dp.toFixed(1)+'%'}</td>`
+      +`<td class="num" style="color:${r.net==null?'':(r.net<0?'var(--red)':'var(--green)')}">${f(r.net)}</td>`
+      +`<td class="num">${rc.toFixed(2)}</td>`
+      +`<td class="num" style="${rfs}">${rf.toFixed(2)}</td></tr>`;
+  }).join('');
+}
+function momTable(rows){
+  const pct=(a,b)=> (a==null||b==null)?null:((a-b)/b*100);
+  const cel=v=>{ if(v==null) return '<td class="num">—</td>';
+    const c=v>0?'var(--red)':'var(--green)';
+    return `<td class="num" style="color:${c};font-weight:600">${v>0?'+':''}${v.toFixed(1)}%</td>`;};
+  const f=n=> n==null?'—':n.toLocaleString('vi-VN');
+  return rows.map((r,i)=>{
+    const p=i?rows[i-1]:null;
+    if(r.dt==null) return `<tr><td>${r.m}</td><td class="num na" colspan="8">CHƯA CÓ SỐ LIỆU</td></tr>`;
+    const bien=r.ln/r.dt*100, nsdt=r.ns/r.dt*100;
+    return `<tr><td>${r.m}${r.note?' <span class="chip amber" title="'+esc(r.note)+'">*</span>':''}</td>
+      <td class="num">${f(r.dt)}</td>${cel(p&&p.dt?pct(r.dt,p.dt):null)}
+      <td class="num">${f(r.cp)}</td>${cel(p&&p.cp?pct(r.cp,p.cp):null)}
+      <td class="num">${f(r.ln)}</td>${cel(p&&p.ln?pct(r.ln,p.ln):null)}
+      <td class="num" style="font-weight:600">${bien.toFixed(1)}%</td>
+      <td class="num" style="${nsdt>65?'color:var(--red);font-weight:700':''}">${nsdt.toFixed(1)}%</td></tr>`;
+  }).join('');
+}
+
+/* ---------- render ---------- */
+function render(p){
+  const S=window.SERIES;
+  const H=[];
+  const sec=(id,n,title,inner)=>`<section id="${id}"><h2><span class="num">${n}</span>${title}</h2>${inner}</section>`;
+
+  /* verdict + kpi */
+  H.push(`<div class="verdict ${p.verdict.level}">
+     <h1>${esc(p.verdict.head)}</h1><p>${esc(p.verdict.body)}</p>
+     <div class="meta"><span><b>Kỳ:</b> ${esc(p.label)}</span>
+     <span><b>Chốt dữ liệu:</b> ${esc(p.asOf)}</span>
+     <span><b>Phạm vi quét email:</b> ${esc(p.scan)}</span></div></div>`);
+  H.push(`<div class="kpis">`+p.kpi.map(k=>`<div class="kpi ${LV[k.level]||''}">
+     <div class="lb">${esc(k.label)}</div><div class="vl">${esc(k.value)}</div>
+     <div class="sb">${esc(k.sub)}</div></div>`).join('')+`</div>`);
+
+  /* 1 summary */
+  H.push(sec('s1',1,'Tóm tắt điều hành',
+    `<div class="card"><ul class="bul">`+p.summary.map(s=>`<li class="${s.level}">${esc(s.t)}</li>`).join('')+`</ul></div>`));
+
+  /* 2 compliance */
+  const cst={late:['red','CHƯA NHẬN'],pending:['grey','Chưa đến hạn'],ok:['green','Đã nhận']};
+  const late=p.compliance.rows.filter(r=>r.status==='late').length;
+  const duen=p.compliance.rows.filter(r=>r.status!=='pending').length;
+  H.push(sec('s2',2,'Tuân thủ lịch báo cáo của TCKT',
+    `<div class="note">${esc(p.compliance.note)}</div>
+     <div class="tw"><table><thead><tr><th style="width:34px">#</th><th>Báo cáo cam kết</th>
+     <th style="width:104px">Hạn</th><th style="width:92px">Ngày nhận</th><th style="width:190px">Tình trạng</th></tr></thead><tbody>`
+     +p.compliance.rows.map(r=>`<tr><td>${r.n}</td><td>${esc(r.name)}</td><td class="num">${esc(r.due)}</td>
+       <td class="num">${esc(r.got)}</td><td><span class="chip ${cst[r.status][0]}">${cst[r.status][1]}</span>
+       <span class="age"> ${esc(r.tag)}</span></td></tr>`).join('')
+     +`</tbody></table></div>
+     <div class="card" style="margin-top:12px"><b>Tỷ lệ đúng hạn trên số báo cáo đã đến hạn: ${duen-late}/${duen}.</b>
+     ${late?' Chỉ số theo dõi số 9 trong Đăng ký rủi ro chạm ngưỡng cảnh báo CAM (ngưỡng: dưới 5/5).':''}</div>`));
+
+  /* 3 timeline */
+  H.push(sec('s3',3,'Dòng thời gian trong kỳ',
+    `<div class="card"><ul class="tl">`+p.timeline.map(t=>`<li class="${t.level}">
+      <span class="dt">${esc(t.d)}</span><span class="who">${esc(t.who)}</span>
+      <div class="ti">${esc(t.t)}</div><div class="tn">${esc(t.note)}</div></li>`).join('')+`</ul></div>`));
+
+  /* 4 cash */
+  const cashRows=p.cash.rows.map(r=>`<tr class="${r.total?'total':''}"><td>${esc(r.k)}</td>
+    <td class="num">${esc(r.a)}</td><td class="num">${esc(r.b)}</td>
+    <td class="num">${r.c==null?'<span class="na">KHÔNG CÓ</span>':esc(r.c)}</td>
+    <td class="num">${esc(r.d)}</td></tr>`).join('');
+  const flowRows=p.realFlow.rows.map(r=>`<tr class="${r.total?'total':''}"><td>${esc(r.k)}</td>
+    <td class="num">${esc(r.raw)}</td><td class="num">${esc(r.adj)}</td>
+    <td class="num" ${r.total?'style="color:var(--red)"':''}>${esc(r.real)}</td></tr>`).join('');
+  const runRows=p.runway.map(r=>`<tr><td>${esc(r.k)}</td><td class="num">${esc(r.a)}</td>
+    <td class="num" ${r.level==='amber'?'style="color:var(--red);font-weight:700"':''}>${esc(r.b)}</td>
+    <td>${esc(r.th)}</td></tr>`).join('');
+  H.push(sec('s4',4,'Vị thế tiền mặt và dòng tiền thực chất',
+    (window.MOM_CASH?`
+     <h3>4.0. Biến động so với tháng trước (MoM)</h3>
+     <div class="tw"><table><thead><tr>
+       <th>Tháng</th><th class="num">Tiền sẵn có</th><th class="num">Δ so tháng trước</th>
+       <th class="num">Δ%</th><th class="num">Dòng tiền thực chất</th>
+       <th class="num">Cầm cự — chi lõi</th><th class="num">Cầm cự — gồm thuế &amp; capex</th>
+     </tr></thead><tbody>${momCashTable(window.MOM_CASH)}</tbody></table></div>
+     <div class="note">Số tháng cầm cự tính trên chi lõi 6.973.153.449 đ/tháng và chi thực chất
+       9.679.624.017 đ/tháng (bình quân H1/2026). Tô cam khi dưới 4 tháng, tô đỏ khi dưới 3 tháng.
+       Nhãn <span class="chip amber">KH</span> = số kế hoạch, chưa kiểm chứng.</div>
+     ${window.MOM_CASH_NOTE?`<div class="note">${esc(window.MOM_CASH_NOTE)}</div>`:''}
+     `:'')+
+    `<div class="charts">
+       <div class="chartbox"><h4>Tiền sẵn có cuối tháng</h4>
+         <div class="cs">Ngân hàng + tiền mặt + sổ tiết kiệm · điểm cam nét đứt = số theo KẾ HOẠCH, chưa kiểm chứng</div>
+         ${lineChart(S)}</div>
+       <div class="chartbox"><h4>Dòng tiền thực chất theo tháng</h4>
+         <div class="cs">Đã loại trừ gửi/rút tiết kiệm và cho vay/thu hồi · cột mờ nét đứt = kế hoạch (tỷ đồng)</div>
+         ${barChart(S)}</div></div>
+     <h3>4.1. Số dư tiền</h3>
+     <div class="tw"><table><thead><tr><th>Cấu phần</th><th class="num">31/12/2025</th><th class="num">30/06/2026</th>
+       <th class="num">31/07 (thực tế)</th><th class="num">31/07 (kế hoạch)</th></tr></thead><tbody>${cashRows}</tbody></table></div>
+     <div class="note">${esc(p.cash.note)}</div>
+     <h3>4.2. Dòng tiền thực chất</h3>
+     <div class="note" style="font-style:normal">${esc(p.realFlow.note)}</div>
+     <div class="tw"><table><thead><tr><th>Chỉ tiêu</th><th class="num">Kế hoạch (thô)</th>
+       <th class="num">Loại trừ luân chuyển</th><th class="num">Dòng tiền thực chất</th></tr></thead><tbody>${flowRows}</tbody></table></div>
+     <div class="card" style="margin-top:11px">${esc(p.realFlow.comment)}</div>
+     <h3>4.3. Số tháng cầm cự</h3>
+     <div class="tw"><table><thead><tr><th>Chỉ số</th><th class="num">30/06/2026</th>
+       <th class="num">31/07 (ước tính KH)</th><th>Ngưỡng cảnh báo</th></tr></thead><tbody>${runRows}</tbody></table></div>
+     <h3>4.4. Công nợ phải thu Chủ đầu tư</h3>
+     <div class="card">${esc(p.receivables)}</div>`));
+
+  /* 5 variance */
+  const vr=a=>a.map(r=>`<tr><td>${esc(r.k)}</td><td class="num">${esc(r.plan)}</td><td class="num">${esc(r.act)}</td>
+    <td class="num" ${r.level==='red'?'style="color:var(--red);font-weight:700"':''}>${esc(r.diff)}</td></tr>`).join('');
+  H.push(sec('s5',5,'Kế hoạch so với thực tế — các khoản lệch trọng yếu',
+    `<div class="note" style="font-style:normal">Ngưỡng trọng yếu: lệch trên 20% <b>hoặc</b> trên 500 triệu đồng.</div>
+     <h3>Kỳ hiện tại</h3>
+     <div class="tw"><table><thead><tr><th>Khoản mục</th><th class="num">Kế hoạch / AOP</th>
+       <th class="num">Thực tế</th><th class="num">Chênh lệch</th></tr></thead><tbody>${vr(p.variance.t7)}</tbody></table></div>
+     <div class="note">${esc(p.variance.t7note)}</div>
+     <h3>Tồn đọng từ kỳ trước, chưa được giải trình</h3>
+     <div class="tw"><table><thead><tr><th>Khoản mục</th><th class="num">Kế hoạch</th>
+       <th class="num">Thực tế</th><th class="num">Chênh lệch</th></tr></thead><tbody>${vr(p.variance.carry)}</tbody></table></div>
+     <div class="card" style="margin-top:11px">${esc(p.variance.carrynote)}</div>`));
+
+  /* 6 pnl */
+  H.push(sec('s6',6,'Kết quả kinh doanh',
+    `<div class="verdict amber" style="margin-top:0"><p>${esc(p.pnl.note)}</p></div>
+     <div class="tw"><table><thead><tr><th>Chỉ tiêu</th><th class="num">H1/2026</th>
+       <th class="num">Riêng tháng 6</th><th>Ghi nhận</th></tr></thead><tbody>`
+     +p.pnl.rows.map(r=>`<tr><td>${esc(r.k)}</td><td class="num">${esc(r.h1)}</td>
+       <td class="num">${esc(r.t6)}</td><td>${esc(r.c)}</td></tr>`).join('')
+     +`</tbody></table></div><div class="note">${esc(p.pnl.comment)}</div>`
+     +(window.MOM?`
+      <h3>Biến động theo tháng — doanh thu và chi phí</h3>
+      <div class="chartbox" style="margin-bottom:12px">
+        <div class="cs">Cột xanh: doanh thu · cột đỏ: chi phí · nhãn đỏ: tháng chi phí tăng từ 20% trở lên</div>
+        ${momChart(window.MOM)}</div>
+      <div class="tw"><table><thead><tr>
+        <th>Tháng</th><th class="num">Doanh thu</th><th class="num">±%</th>
+        <th class="num">Chi phí</th><th class="num">±%</th>
+        <th class="num">LNTT</th><th class="num">±%</th>
+        <th class="num">Biên LNTT</th><th class="num">CPNS/DT</th></tr></thead>
+        <tbody>${momTable(window.MOM)}</tbody></table></div>
+      <div class="note">Cột ±% là thay đổi so với tháng liền trước. Màu đỏ = tăng, màu xanh = giảm.
+        CPNS/DT tô đỏ khi vượt ngưỡng cảnh báo 65%. Dấu <span class="chip amber">*</span> = có ghi chú bất thường.</div>
+      ${window.MOM_CALLOUT?`<div class="verdict ${window.MOM_CALLOUT.level}">
+        <h1>${esc(window.MOM_CALLOUT.head)}</h1><p>${esc(window.MOM_CALLOUT.body)}</p></div>`:''}
+     `:'')));
+
+  /* 7 flags */
+  const rs=p.riskSummary;
+  H.push(sec('s7',7,'Cảnh báo đỏ',
+    `<div class="note">${esc(p.flagsNote)}</div>
+     <div class="kpis" style="margin-bottom:14px">
+       <div class="kpi red"><div class="lb">Rủi ro ĐỎ</div><div class="vl">${rs.red}</div><div class="sb">Đăng ký rủi ro</div></div>
+       <div class="kpi amber"><div class="lb">Rủi ro CAM</div><div class="vl">${rs.amber}</div><div class="sb">Đăng ký rủi ro</div></div>
+       <div class="kpi"><div class="lb">Điểm rủi ro gộp</div><div class="vl">${rs.score}</div><div class="sb">Sau xử lý dự kiến: ${rs.scoreAfter}</div></div>
+       <div class="kpi"><div class="lb">Số mục ĐỎ trong kỳ</div><div class="vl">${p.flags.filter(f=>f.level==='red').length} / ${p.flags.length}</div><div class="sb">Rà soát bắt buộc 8 mục</div></div>
+     </div>`
+     +p.flags.map(f=>{
+       const d=days(f.since,p.asOf);
+       return `<div class="flag ${LV[f.level]}"><div class="fh">
+         <span class="fn">#${f.n}</span><span class="ft">${esc(f.title)}</span>
+         <span class="chip ${LV[f.level]}">${f.level==='red'?'ĐỎ':f.level==='amber'?'CAM':'OK'}</span>
+         <span class="age">tồn đọng ${d} ngày · từ ${esc(f.since)}</span></div>
+         <div class="fd">${esc(f.detail)}</div></div>`;}).join('')
+     +`<div class="card" style="border-left:4px solid var(--red)"><b>Nhận định:</b> ${esc(rs.note)}</div>`));
+
+  /* 8 actions */
+  H.push(sec('s8',8,'Việc cần làm trong 7 ngày',
+    p.actions.map(a=>`<div class="act ${LV[a.level]}"><div class="n">${a.n}</div><div class="b">
+      <div class="t">${esc(a.t)}</div><div class="m">
+      <span class="chip ${LV[a.level]}">${esc(a.tag)}</span>
+      <span class="age">Hạn: ${esc(a.due)}</span></div></div></div>`).join('')
+    +`<div class="card" style="margin-top:10px;font-style:italic">${esc(p.actionsExtra)}</div>`));
+
+  /* 9 sources */
+  H.push(sec('s9',9,'Nguồn dữ liệu và giới hạn',
+    `<h3>Nguồn đã sử dụng</h3><div class="card"><ul class="bul">`
+     +p.sources.map(s=>`<li class="info">${esc(s)}</li>`).join('')+`</ul></div>
+     <h3>Những gì KHÔNG kiểm chứng được</h3><div class="card"><ul class="bul">`
+     +p.limits.map(s=>`<li class="amber">${esc(s)}</li>`).join('')+`</ul></div>
+     <h3>Khuyến nghị về chuyên môn độc lập</h3>
+     <div class="verdict amber" style="margin:0"><p>${esc(p.legal)}</p></div>`));
+
+  /* 10 appendix */
+  const ax=p.appendix;
+  H.push(sec('s10',10,'Phụ lục',
+    `<details open><summary>${esc(ax.title)}</summary>
+      <div class="note">${esc(ax.intro)}</div>
+      <div class="doc">`+ax.body.map(b=> b.li
+        ? `<ul>`+b.li.map(x=>`<li>${esc(x)}</li>`).join('')+`</ul>`
+        : `<p${b.b?' style="font-weight:700"':''}>${esc(b.p)}</p>`).join('')
+      +`</div></details>`));
+
+  document.getElementById('app').innerHTML=H.join('');
+
+  /* nav */
+  const items=[['s1','Tóm tắt điều hành'],['s2','Tuân thủ báo cáo'],['s3','Dòng thời gian'],
+    ['s4','Tiền mặt & dòng tiền'],['s5','Kế hoạch vs thực tế'],['s6','Kết quả kinh doanh'],
+    ['s7','Cảnh báo đỏ'],['s8','Việc cần làm'],['s9','Nguồn & giới hạn'],['s10','Phụ lục']];
+  document.getElementById('nav').innerHTML=items.map((i,k)=>
+    `<a href="#${i[0]}">${k+1}. ${i[1]}</a>`).join('');
+  const links=[...document.querySelectorAll('nav.side a')];
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id));}
+  }),{rootMargin:'-70px 0px -70% 0px'});
+  items.forEach(i=>{const el=document.getElementById(i[0]); if(el) obs.observe(el);});
+}
+
+/* ---------- boot ---------- */
+const sel=document.getElementById('sel');
+try{
+  if(!window.PERIODS||!window.PERIODS.length) throw new Error('Không tìm thấy dữ liệu (window.PERIODS rỗng).');
+  window.PERIODS.forEach((p,i)=>sel.add(new Option(p.label,i)));
+  sel.onchange=()=>{render(window.PERIODS[sel.value]);window.scrollTo(0,0);};
+  render(window.PERIODS[0]);
+}catch(err){
+  document.getElementById('app').innerHTML=
+   '<div class="verdict red"><h1>Trang chưa hiển thị được dữ liệu</h1>'+
+   '<p><b>Lỗi:</b> '+esc(err.message)+'</p>'+
+   '<p>Nguyên nhân thường gặp: khu vực dữ liệu ở đầu file bị sửa sai cú pháp '+
+   '(thiếu dấu phẩy, thiếu ngoặc, hoặc dùng dấu nháy cong “ ” thay cho \" ). '+
+   'Mở Console của trình duyệt (Cmd+Option+J) để xem dòng báo lỗi cụ thể.</p></div>';
+  sel.style.display='none';
+}
+
+</script>
+
+</body></html>
