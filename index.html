@@ -467,6 +467,7 @@ window.PERIODS = [
 }
 ];
 
+
 /* --- Biến động theo tháng: doanh thu, chi phí, lợi nhuận --------
    Nguồn: sheet PnL_Total. Tháng chưa có số liệu để null. */
 window.MOM = [
@@ -802,7 +803,7 @@ try{
    '<div class="verdict red"><h1>Trang chưa hiển thị được dữ liệu</h1>'+
    '<p><b>Lỗi:</b> '+esc(err.message)+'</p>'+
    '<p>Nguyên nhân thường gặp: khu vực dữ liệu ở đầu file bị sửa sai cú pháp '+
-   '(thiếu dấu phẩy, thiếu ngoặc, hoặc dùng dấu nháy cong “ ” thay cho " ). '+
+   '(thiếu dấu phẩy, thiếu ngoặc, hoặc dùng dấu nháy cong “ ” thay cho \" ). '+
    'Mở Console của trình duyệt (Cmd+Option+J) để xem dòng báo lỗi cụ thể.</p></div>';
   sel.style.display='none';
 }
