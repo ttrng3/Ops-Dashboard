@@ -316,9 +316,3 @@ try{
    'Mở Console của trình duyệt (Cmd+Option+J) để xem dòng báo lỗi cụ thể.</p></div>';
   sel.style.display='none';
 }
-
-const root=document.documentElement, TK='ksnb-theme';
-const setT=t=>{root.dataset.theme=t;try{localStorage.setItem(TK,t)}catch(e){}};
-try{const s=localStorage.getItem(TK); if(s) setT(s);
-  else if(matchMedia('(prefers-color-scheme:dark)').matches) setT('dark');}catch(e){}
-document.getElementById('th').onclick=()=>setT(root.dataset.theme==='dark'?'light':'dark');
