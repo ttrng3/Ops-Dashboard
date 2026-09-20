@@ -7,22 +7,24 @@
 <title>Dashboard Giám sát Ngân sách &amp; Dòng tiền — KSNB</title>
 <style>
 :root{
-  --bg:#f6f7f9; --panel:#ffffff; --ink:#16202c; --muted:#5d6b7a; --line:#e2e7ee;
-  --navy:#1f4e78; --blue:#2e75b6; --lblue:#e8f1fa;
-  --red:#c0392b; --redbg:#fdecea; --amber:#b8860b; --amberbg:#fdf6e3;
-  --green:#1e7d5a; --greenbg:#e8f6f0; --grey:#8a97a6;
-  --shadow:0 1px 2px rgba(16,24,40,.06),0 4px 14px rgba(16,24,40,.05);
+  /* Ty Standard: Bright Professional — light only, never dark (locked 2026-09-07) */
+  --paper:#FFFFFF; --surface:#FAFAF8; --sunk:#F3F3EF;
+  --ink:#1C1C1A; --ink-soft:#44443F; --muted:#6B6B64;
+  --rule:#E4E4DF;
+  --accent:#0F6E52; --accent-bg:#EAF3EF;
+  --critical:#B02418; --critical-bg:#FBEAE8;
+  --warning:#9A6B00; --warning-bg:#FBF3DF;
+  /* aliases so the rules below keep working unchanged */
+  --bg:var(--paper); --panel:var(--surface); --line:var(--rule);
+  --navy:var(--ink); --blue:var(--accent); --lblue:var(--accent-bg);
+  --red:var(--critical); --redbg:var(--critical-bg);
+  --amber:var(--warning); --amberbg:var(--warning-bg);
+  --green:var(--accent); --greenbg:var(--accent-bg); --grey:var(--muted);
+  --shadow:none;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 }
-html[data-theme="dark"]{
-  --bg:#0f151c; --panel:#161e27; --ink:#e6edf5; --muted:#9aa8b8; --line:#26313d;
-  --navy:#7fb2e5; --blue:#5b9bd5; --lblue:#1a2733;
-  --red:#ff7b6b; --redbg:#2b1a18; --amber:#e0b341; --amberbg:#2a2317;
-  --green:#4ecfa0; --greenbg:#13291f; --grey:#7d8b9b;
-  --shadow:0 1px 2px rgba(0,0,0,.4);
-}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
+body{margin:0;background:#FFFFFF;color:var(--ink);
   font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   -webkit-text-size-adjust:100%}
 a{color:var(--blue)}
@@ -88,7 +90,7 @@ ul.bul li.info::before{background:var(--blue)}
 /* table */
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
 table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
-th{background:var(--blue);color:#fff;text-align:left;padding:9px 11px;font-weight:600;font-size:12.5px;white-space:nowrap}
+th{background:var(--surface);color:var(--ink);text-align:left;padding:9px 11px;font-weight:700;font-size:12.5px;white-space:nowrap;border-bottom:2px solid var(--rule)}
 td{padding:9px 11px;border-top:1px solid var(--line);vertical-align:top}
 tbody tr:nth-child(even) td{background:rgba(128,140,155,.045)}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:var(--mono);font-size:12.5px}
@@ -157,6 +159,7 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:12px;color
   border-radius:9px;padding:10px 13px;font-size:12.5px;margin-bottom:16px}
 
 @media print{
+  :root{--muted:#222;--ink-soft:#222}
   header.top,nav.side,.noprint{display:none!important}
   body{background:#fff;font-size:11pt}
   .cols{grid-template-columns:1fr;padding:0}
@@ -173,7 +176,6 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:12px;color
     <div class="brand">Dashboard Giám sát Ngân sách &amp; Dòng tiền
       <small>Kiểm soát Nội bộ &amp; Quản trị Rủi ro · Tài liệu ẩn danh</small></div>
     <select id="sel" aria-label="Chọn kỳ báo cáo"></select>
-    <button class="btn" id="th" title="Đổi giao diện sáng/tối">◐ Giao diện</button>
     <button class="btn" onclick="window.print()">⎙ In / PDF</button>
   </div>
 </header>
