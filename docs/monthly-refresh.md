@@ -56,6 +56,16 @@ new. Two reasons:
 `.github/workflows/freshness-check.yml` reads both clocks daily and opens an
 issue when either is too old (run > 10d, data > 45d).
 
+## Verifying a run — never fetch the live site
+
+Confirm `main` moved using the commit sha the write returned, and read the file
+back. Do **not** `curl` or `WebFetch` https://ttrng3.github.io/ from a routine:
+cloud egress rejects it with `CONNECT 403`, and WebFetch then raises a
+permission prompt that nobody is there to answer, so the run parks at
+`requires_action` with its work already committed. That is exactly how the
+2026-09-22 run ended. Pages propagation is not observable from the sandbox —
+say so rather than claiming a success you did not see.
+
 ## Report, don't fake
 
 If a source cannot be read, keep the prior value, label it on the page, and
