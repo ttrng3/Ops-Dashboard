@@ -190,9 +190,59 @@ footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:12px;color
   Cập nhật dữ liệu trong KHU VỰC DỮ LIỆU ở đầu file. Kỳ gần nhất: tháng 9/2026 (cập nhật giữa kỳ), chốt 20/09/2026.
 </footer>
 
-<script src="ksnb-data-1.js"></script>
-<script src="ksnb-data-2.js"></script>
-<script src="ksnb-data-3.js"></script>
-<script src="ksnb-render.js"></script>
+<!-- Data lives beside this page in data/. When the page is opened from anywhere
+     else (a claude.ai artifact, a local copy), the relative path fails and we
+     fall back to the canonical published copy — so one file works everywhere.
+     ksnb-render.js is injected only after the globals it reads are in place,
+     which preserves the load order the old ksnb-data-*.js tags guaranteed. -->
+<script>
+(function(){
+  var ABS = 'https://ttrng3.github.io/Ops-Dashboard/';
+  var base = '';
+  function fetchJSON(u){
+    return fetch(u + '?t=' + Date.now(), {cache:'no-store'}).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status + ' — ' + u);
+      return r.json();
+    });
+  }
+  function getJSON(p){
+    return fetchJSON(base + p).catch(function(e){
+      if (base === ABS) throw e;
+      base = ABS;
+      return fetchJSON(base + p);
+    });
+  }
+  function fail(msg){
+    var app = document.getElementById('app');
+    if (app) app.innerHTML =
+      '<div class="verdict red"><h1>Trang chưa tải được dữ liệu</h1>' +
+      '<p><b>Lỗi:</b> ' + String(msg).replace(/[&<>]/g, '') + '</p>' +
+      '<p>Dữ liệu nằm trong <code>data/index.json</code> và <code>data/periods/</code>. ' +
+      'Nếu mở bản sao rời, trang sẽ tự lấy từ ' + ABS + '</p></div>';
+  }
+  getJSON('data/index.json').then(function(idx){
+    var g = idx.globals || {};
+    Object.keys(g).forEach(function(k){ window[k] = g[k]; });
+    window.KSNB_META = idx;
+    if (!idx.periods || !idx.periods.length) throw new Error('index.json không có kỳ nào');
+    return Promise.all(idx.periods.map(function(e){
+      return getJSON('data/periods/' + e.id + '.json');
+    }));
+  }).then(function(periods){
+    window.PERIODS = periods;
+    var s = document.createElement('script');
+    s.src = base + 'ksnb-render.js';
+    s.onerror = function(){
+      if (base === ABS) return fail('không tải được ksnb-render.js');
+      base = ABS;
+      var s2 = document.createElement('script');
+      s2.src = base + 'ksnb-render.js';
+      s2.onerror = function(){ fail('không tải được ksnb-render.js'); };
+      document.body.appendChild(s2);
+    };
+    document.body.appendChild(s);
+  }).catch(function(err){ fail(err.message); });
+})();
+</script>
 </body>
 </html>

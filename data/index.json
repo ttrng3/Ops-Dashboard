@@ -1,0 +1,197 @@
+{
+ "generatedUtc": "2026-09-20T04:00:00Z",
+ "asof": "20/09/2026",
+ "periods": [
+  {
+   "id": "2026-09",
+   "label": "Tháng 9/2026",
+   "asOf": "20/09/2026"
+  },
+  {
+   "id": "2026-08",
+   "label": "Tháng 8/2026",
+   "asOf": "08/09/2026"
+  },
+  {
+   "id": "2026-07",
+   "label": "Tháng 7/2026",
+   "asOf": "12/08/2026"
+  }
+ ],
+ "globals": {
+  "SERIES": [
+   {
+    "m": "T12/25",
+    "cash": 28656057577,
+    "net": null,
+    "plan": false
+   },
+   {
+    "m": "T1/26",
+    "cash": 20178696322,
+    "net": -8477361255,
+    "plan": false
+   },
+   {
+    "m": "T2/26",
+    "cash": 7419634572,
+    "net": -12759061750,
+    "plan": false
+   },
+   {
+    "m": "T3/26",
+    "cash": 17163884477,
+    "net": 9744249905,
+    "plan": false
+   },
+   {
+    "m": "T4/26",
+    "cash": 26080362038,
+    "net": 8916477561,
+    "plan": false
+   },
+   {
+    "m": "T5/26",
+    "cash": 33677439510,
+    "net": 7597077472,
+    "plan": false
+   },
+   {
+    "m": "T6/26",
+    "cash": 38876331030,
+    "net": 5198891520,
+    "plan": false
+   },
+   {
+    "m": "T7/26",
+    "cash": 33807606624,
+    "net": -5068724406,
+    "plan": true
+   }
+  ],
+  "MOM_CASH": [
+   {
+    "m": "T12/25",
+    "cash": 28656057577,
+    "net": null
+   },
+   {
+    "m": "T1/26",
+    "cash": 20178696322,
+    "net": -8477361255
+   },
+   {
+    "m": "T2/26",
+    "cash": 7419634572,
+    "net": -12759061750,
+    "note": "Đáy thanh khoản của năm — chỉ còn 1,06 tháng cầm cự"
+   },
+   {
+    "m": "T3/26",
+    "cash": 17163884477,
+    "net": 9744249905
+   },
+   {
+    "m": "T4/26",
+    "cash": 26080362038,
+    "net": 8916477561
+   },
+   {
+    "m": "T5/26",
+    "cash": 33677439510,
+    "net": 7597077472,
+    "note": "Tháng phát sinh khoản cho vay 20 tỷ ra–vào"
+   },
+   {
+    "m": "T6/26",
+    "cash": 38876331030,
+    "net": 5198891520,
+    "note": "Đỉnh tiền của năm"
+   },
+   {
+    "m": "T7/26",
+    "cash": 33807606624,
+    "net": -5068724406,
+    "plan": true,
+    "note": "Ước tính theo kế hoạch — TCKT chưa phát hành số thực tế"
+   }
+  ],
+  "MOM_CASH_NOTE": "Cột T7/26 là ƯỚC TÍNH: tiền thực tế 30/06 (38.876.331.030 đ) cộng dòng tiền thực chất theo kế hoạch T7 (−5.068.724.406 đ). Bản thân file kế hoạch ghi 33.514.597.824 đ, thấp hơn 293.008.800 đ, vì kế hoạch cuốn chiếu từ số dư KẾ HOẠCH cuối tháng 6 (8.539.012.230 đ) chứ không phải số THỰC TẾ (8.876.331.030 đ). Cả hai đều là ước tính, chưa kiểm chứng.",
+  "MOM": [
+   {
+    "m": "T1/26",
+    "dt": 9873656325,
+    "cp": 6730168349,
+    "ln": 3143487976,
+    "ns": 5630109300
+   },
+   {
+    "m": "T2/26",
+    "dt": 9871816327,
+    "cp": 6921540282,
+    "ln": 2950276045,
+    "ns": 5609787193
+   },
+   {
+    "m": "T3/26",
+    "dt": 10233316079,
+    "cp": 6323134208,
+    "ln": 3910181871,
+    "ns": 5638771169
+   },
+   {
+    "m": "T4/26",
+    "dt": 10822848295,
+    "cp": 6651803854,
+    "ln": 4171044441,
+    "ns": 6122736596
+   },
+   {
+    "m": "T5/26",
+    "dt": 11078404901,
+    "cp": 7035262968,
+    "ln": 4043141933,
+    "ns": 6507193693
+   },
+   {
+    "m": "T6/26",
+    "dt": 12615075689,
+    "cp": 9143298992,
+    "ln": 3471776697,
+    "ns": 8599525692,
+    "note": "Chi phí gồm khoản gắn kết nội bộ 1.931.261.941 đ, ngoài kế hoạch"
+   },
+   {
+    "m": "T7/26",
+    "dt": 13213467665,
+    "cp": 7880786119,
+    "ln": 5451019115,
+    "ns": 6983652201,
+    "note": "Số thực tế, công bố 16/09/2026. Chi phí nhân sự PnL (6.983.652.201 đ) chưa khớp với báo cáo lương P.HCNS dùng đàm phán CĐT (6.046.145.761 đ) — xem cảnh báo #13."
+   },
+   {
+    "m": "T8/26",
+    "dt": 12150562673,
+    "cp": 9447606291,
+    "ln": 2831619577,
+    "ns": 8690382237,
+    "note": "CPNS/DT 71,52% — VƯỢT ngưỡng cảnh báo 65% lần đầu tiên có số thực tế xác nhận. Biên LNTT giảm còn 23,30%. Xem cảnh báo #12."
+   },
+   {
+    "m": "T9/26",
+    "dt": null,
+    "cp": null,
+    "ln": null,
+    "ns": null,
+    "note": "Chưa đến hạn — PnL kỳ T9 hạn 15/10/2026"
+   }
+  ],
+  "MOM_CALLOUT": {
+   "level": "red",
+   "head": "Tháng 8: doanh thu giảm nhưng chi phí nhân sự lại tăng — biên lợi nhuận rơi xuống thấp nhất kể từ tháng 2",
+   "body": "Doanh thu giảm 8,04% (−1.062.904.992 đ) trong khi chi phí nhân sự tăng 24,44% (+1.706.730.036 đ) so với tháng 7 — hai chiều ngược nhau cùng lúc. Hệ quả: LNTT giảm 48,05% (−2.619.399.538 đ), biên LNTT rơi từ 41,25% (T7) xuống 23,30% (T8) — mất 17,95 điểm phần trăm trong một tháng và thấp hơn cả biên bình quân 8 tháng (33,36%). Tỷ lệ chi phí nhân sự trên doanh thu vọt lên 71,52% — lần đầu tiên VƯỢT ngưỡng cảnh báo 65% bằng số liệu thực tế (không phải ước tính). Đây là PnL đầu tiên có số thực tế sau 4 kỳ giám sát liên tiếp không có dữ liệu (tháng 7 và 8 cùng về một lúc, ngày 16/09) — nên chưa có đủ lịch sử liền mạch để phân biệt đây là biến động một lần hay xu hướng; KSNB đề nghị TCKT giải trình cơ cấu trước khi kết luận."
+  }
+ },
+ "pages": "https://ttrng3.github.io/Ops-Dashboard/",
+ "repo": "https://github.com/ttrng3/Ops-Dashboard"
+}
