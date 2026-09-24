@@ -64,7 +64,7 @@ function momChart(rows){
   let bars=d.map((r,i)=>{
     const c=L+gw*(i+0.5), x1=c-bw-2, x2=c+2;
     const pv=i?((r.cp-d[i-1].cp)/d[i-1].cp*100):null;
-    const flag=(pv!=null&&pv>=20)?`<text class="ax" x="${c+2+bw/2}" y="${y(r.cp)-5}" text-anchor="middle" fill="var(--red)" font-weight="700">+${pv.toFixed(0)}%</text>`:'';
+    const flag=(pv!=null&&pv>=20)?`<text class="ax" x="${c+2+bw/2}" y="${y(r.cp)-5}" text-anchor="middle" style="fill:var(--red)" font-weight="700">+${pv.toFixed(0)}%</text>`:'';
     return `<rect x="${x1}" y="${y(r.dt)}" width="${bw}" height="${T+ph-y(r.dt)}" rx="2" fill="var(--blue)"/>
             <rect x="${x2}" y="${y(r.cp)}" width="${bw}" height="${T+ph-y(r.cp)}" rx="2" fill="var(--red)" opacity=".85"/>
             ${flag}<text class="ax" x="${c}" y="${H-9}" text-anchor="middle">${r.m}</text>`;}).join('');

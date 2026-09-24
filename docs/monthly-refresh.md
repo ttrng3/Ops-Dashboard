@@ -20,6 +20,13 @@ and if the artifact step fails the site is still correct.
 Nothing else. `index.html` and `ksnb-render.js` are the renderer; they hold no
 data and the routine must not touch them.
 
+**No email addresses or personal names in `data/`.** This repo is public and the
+page promises it is anonymised. Name a mailbox or sender by role — "hộp thư
+PTGĐ TT", "người gửi phụ trách báo cáo tài chính" — never by address. Before
+committing, `grep -rE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}' data/` must
+print nothing. Two addresses were scrubbed on 2026-09-24; they remain in older
+git history.
+
 ## Why the split
 
 The page used to be `index.html` plus `ksnb-data-1.js`, `-2.js`, `-3.js`. Files
