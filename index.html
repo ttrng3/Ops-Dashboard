@@ -12,15 +12,15 @@
    Variable NAMES are load-bearing: ksnb-render.js builds its SVG charts from
    var(--blue|--red|--green|--amber|--panel|--line|--muted) and writes
    style="color:var(--red)" onto 12.5px table numbers. So every accent here is
-   a text-safe ink (>=5.4:1 on white), not a bright mark. Chart pairs verified:
+   a text-safe ink (>=5.0:1 on white; blue and red are Apple's accessible variants), not a bright mark. Chart pairs verified:
    blue/red 24.3, blue/amber 25.9, green/red 7.0 deutan ΔE — the last sits in
    the 6–8 band, legal because the bars also encode sign by position around a
    zero axis and the MoM table below repeats every signed figure. */
 :root{
   --bg:#F2F2F7; --panel:#FFFFFF; --ink:#1C1C1E; --muted:#8E8E93; --line:#E5E5EA;
-  --navy:#1C1C1E; --blue:#0047B3; --lblue:#E8F1FF;
-  --red:#B3231B; --redbg:#FFEBEA; --amber:#8A5200; --amberbg:#FFF3E0;
-  --green:#116B35; --greenbg:#E6F7EA; --grey:#8E8E93;
+  --navy:#1C1C1E; --blue:#0040DD; --lblue:#E0EFFF;
+  --red:#D70015; --redbg:#FFE7E6; --amber:#8A5200; --amberbg:#FFF2E0;
+  --green:#1E7F3C; --greenbg:#E7F8EB; --grey:#8E8E93;
   --ink-2:#3C3C43; --chipbg:#EFEFF4; --on-accent:#FFFFFF;
   --shadow:none;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
