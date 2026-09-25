@@ -11,6 +11,20 @@ The GitHub page is never downstream of the artifact. The routine writes JSON
 into this repo and Pages serves it. The artifact is a mirror published *after*,
 and if the artifact step fails the site is still correct.
 
+## Cadence
+
+One routine only: **Ops-Dashboard KSNB refresh (Outlook + Drive → GitHub data)**,
+`trig_01HqP8u1h6LYYRXmS8aXmSre`, on the **1st and 15th of each month at 06:00 UTC**
+(13:00 Asia/Saigon). The older weekly "KSNB Ngân sách & Dòng tiền" routine was
+retired on 2026-09-25 — it wrote the same three paths from the same Outlook
+source with a 12-key period schema and mirrored a second artifact, so running
+both meant two heartbeats and two mirrors for one dashboard.
+
+The 1st catches the previous month's late TCKT reports (due days 7 / 7 / 15 /
+18 / 18); the 15th catches the on-time ones. The freshness watchdog therefore
+allows a run gap of 20 days (`MAX_RUN_AGE_DAYS`): the longest scheduled gap is
+16 days, so one missed run trips it.
+
 ## What the routine may write
 
     data/.last-check          every run, including quiet ones
