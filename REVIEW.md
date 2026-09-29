@@ -37,7 +37,7 @@ When unsure between two levels, pick the higher one and say why.
 - [ ] **Verify before you assert:** every number in a doc or page has a source named beside it or in its section.
 
 ## Repo-specific rules
-Rules specific to Ops-Dashboard. This repo has no README; **`docs/monthly-refresh.md` is the runbook and outranks the routine prompt. Every standing ruling in it applies as well; a PR that breaks one is High.** The review input doesn't carry the runbook, so the rulings that matter most are quoted below rather than only referenced.
+Rules specific to Ops-Dashboard. This repo has no README; **`docs/monthly-refresh.md` is the runbook and outranks the routine prompt. Every standing ruling in it applies as well; a PR that breaks one is at least High, and Critical where a line below says so.** The review input doesn't carry the runbook, so the rulings that matter most are quoted below rather than only referenced.
 
 - **What a refresh writes.** Only `data/.last-check`, `data/index.json` and `data/periods/<YYYY-MM>.json` (runbook, "What the routine may write"). `index.html` and `ksnb-render.js` are the renderer and hold no data; a refresh that touches either is High.
 - **No email address or personal name in `data/`.** The repo is public and the page promises it is anonymised. A mailbox or sender is named by role only, and `grep -rE '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}' data/` must print nothing (runbook, "What the routine may write"). The runbook's pattern only matches a lowercase TLD, so check with `grep -riE` as well. A hit is **Critical**.
