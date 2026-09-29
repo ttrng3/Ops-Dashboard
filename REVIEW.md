@@ -48,5 +48,5 @@ Rules specific to Ops-Dashboard. This repo has no README; **`docs/monthly-refres
 - **Never fetch the live site from a routine.** A routine instruction that curls or web-fetches `https://ttrng3.github.io/` is High (runbook, "Verifying a run").
 - **No credentials.** No PAT; the old `gh_ops_pat.txt` is retired. A token in any file is **Critical**.
 - **One address, one preview.** `https://ttrng3.github.io/Ops-Dashboard/` is the only link. A Cowork preview URL or artifact id anywhere in the repo is **Critical** (the repo is public).
-- **Don't widen what is published.** A new path in `.pages-allow`, or a new kind of data in `data/`, is High and needs Ty. (Carried from Omni-TMDV's REVIEW.md; not stated in this repo's own files.)
+- **Don't widen what is published.** A new path in `.pages-allow`, or a new kind of data in `data/`, is at least High and needs Ty; Critical if it serves something that shouldn't be. (Carried from Omni-TMDV's REVIEW.md; not stated in this repo's own files.)
 - **Entity separation.** This is an OMNI repo (Ty ruled 2026-09-29). Any ECOPM data (a person's or a client's name, a number, or a file from the ECOPM side) is **Critical**. The entity label itself isn't.
