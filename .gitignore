@@ -10,3 +10,6 @@
 thumbnail.png
 versions/
 debug.jsonl
+
+# Build output. tools/build-fragment.py writes the Cowork preview page here; never committed.
+build/
