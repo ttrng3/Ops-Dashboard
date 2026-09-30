@@ -14,7 +14,7 @@ and if the artifact step fails the site is still correct.
 ## Cadence
 
 One routine only: **Ops-Dashboard KSNB refresh (Outlook + Drive → GitHub data)**,
-`trig_01HqP8u1h6LYYRXmS8aXmSre`, on the **1st and 15th of each month at 06:00 UTC**
+(its id is in the routine list), on the **1st and 15th of each month at 06:00 UTC**
 (13:00 Asia/Saigon). The older weekly "KSNB Ngân sách & Dòng tiền" routine was
 retired on 2026-09-25 — it wrote the same three paths from the same Outlook
 source with a 12-key period schema and mirrored a second artifact, so running
@@ -23,9 +23,9 @@ both meant two heartbeats and two mirrors for one dashboard.
 **Drive source location (moved 2026-09-25).** The TCKT folder is now
 `Claude Workspace/08 Omni Service - OMNI/09 TCKT` (it used to sit under
 `01 Eco Central Park - ECP/09 TCKT`). The move was a Drive-API reparent, so the
-folderId is unchanged: `1xfZG6J-oGaGQlXhAKC_U_GAW7_8DCYLC`. Always resolve it by
-id, never by path. The sibling `08 Omni Service - OMNI/01 Tổ chức & Quy chế`
-(folderId `1y8QMP72mWWBlPWnyzTIDuAYXj-4ZbzCt`) holds the org chart, approval
+folderId is unchanged; it is kept in the routine prompt, not in this public
+repo. Always resolve it by id, never by path. The sibling `08 Omni Service - OMNI/01 Tổ chức & Quy chế`
+(folderId also in the routine prompt) holds the org chart, approval
 matrix, job descriptions and process decisions; read it for context, never write.
 
 The 1st catches the previous month's late TCKT reports (due days 7 / 7 / 15 /
@@ -83,7 +83,7 @@ new. Two reasons:
   found by the next heartbeat, not by a missing quarter of data.
 
 `.github/workflows/freshness-check.yml` reads both clocks daily and opens an
-issue when either is too old (run > 10d, data > 45d).
+issue when either is too old (run > 20d, data > 45d; the workflow's `MAX_RUN_AGE_DAYS` and `MAX_DATA_AGE_DAYS`).
 
 ## Verifying a run — never fetch the live site
 
