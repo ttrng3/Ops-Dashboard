@@ -83,7 +83,7 @@ new. Two reasons:
   found by the next heartbeat, not by a missing quarter of data.
 
 `.github/workflows/freshness-check.yml` reads both clocks daily and opens an
-issue when either is too old (run > 10d, data > 45d).
+issue when either is too old (run > 20d, data > 45d; the workflow's `MAX_RUN_AGE_DAYS` and `MAX_DATA_AGE_DAYS`).
 
 ## Verifying a run — never fetch the live site
 
