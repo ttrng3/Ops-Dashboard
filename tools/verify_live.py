@@ -71,7 +71,8 @@ def main():
         d = json.loads((ROOT / "data/index.json").read_text(encoding="utf-8"))
     except (OSError, ValueError) as e:
         d, info["index_error"] = {}, str(e)
-    periods = [p.get("id") for p in d.get("periods", []) if isinstance(p, dict)]
+    d = d if isinstance(d, dict) else {}
+    periods = [str(p.get("id")) for p in d.get("periods", []) if isinstance(p, dict)]
     files = sorted(pathlib.Path(f).stem for f in glob.glob(str(ROOT / "data/periods/*.json")))
 
     # The manifest lists periods newest first (the page's selector order); ids are YYYY-MM.

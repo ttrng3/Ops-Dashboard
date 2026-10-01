@@ -70,7 +70,7 @@ All of them must be true.
 
 ## Traps
 
-- Pages answers `cache-control: max-age=600` (10 minutes). A `served_equals_main` failure straight after a merge is the cache: wait for the Pages run, then re-run. Each request retries once on a network error or a 5xx.
+- The script adds a cache-busting query to every request, so a `served_equals_main` failure straight after a merge means the Pages run has not finished: wait for it to go green, then re-run. Each request retries once on a network error or a 5xx.
 - The selector's option values are positions (`0`, `1`, …), not period ids; step 2 compares the visible labels.
 - The browser tool refuses fetches with a query string, so step 2 fetches plain paths (01/10).
-- "Thư mục Drive cục bộ 09 TCKT" in the notes is a Drive folder name, not a path or an id; the id check looks for the 33/44-character id form only.
+- "Thư mục Drive cục bộ 09 TCKT" in the notes is a Drive folder name, not a path or an id; the id check looks only for the 33/44-character `1…` form and the 28-character `0B…` form.
