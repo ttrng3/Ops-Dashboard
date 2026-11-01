@@ -1,0 +1,749 @@
+{
+ "id": "2026-10",
+ "label": "Tháng 10/2026",
+ "asOf": "01/11/2026",
+ "scan": "16/10/2026 – 01/11/2026 (chốt kỳ tháng 10) · quét HAI kênh: hộp thư Outlook PTGĐ TT và thư mục Drive 09 TCKT — KHÔNG có báo cáo tài chính định kỳ mới ở cả hai kênh. Số liệu mới duy nhất của kỳ đến từ chuỗi email ngân sách Q4 với CĐT.",
+ "verdict": {
+  "level": "red",
+  "head": "KỲ T9 TRỐNG TRƠN — 5 HẠN BÁO CÁO TRÔI QUA TRONG THÁNG 10 MÀ KHÔNG CÓ MỘT BÁO CÁO NÀO, TRONG KHI PHÍ DVVH Q4 (DOANH THU CỦA OMNI) BỊ CẮT 11,14 TỶ ĐỒNG THEO CƠ CHẾ \"KHÔNG PHẢN HỒI LÀ ĐỒNG THUẬN\"",
+  "body": "Cả 5 báo cáo kỳ tháng 9/2026 theo cam kết 24/07 đều KHÔNG được phát hành: hai báo cáo dòng tiền (hạn 07/10) nay quá hạn 25 ngày, PnL (hạn 15/10) quá hạn 17 ngày, hai báo cáo phân tích lãi/lỗ vs dòng tiền và so sánh ngân sách (hạn 18/10) quá hạn 14 ngày. Chuỗi cải thiện ngắn ở tháng 8 — khi PnL chỉ trễ 1 ngày — đã đứt ngay kỳ liền sau. Tổng cộng 13/15 báo cáo đã đến hạn vẫn CHƯA NHẬN, dòng cũ nhất quá hạn 86 ngày. Hệ quả: tiền sẵn có, số tháng cầm cự và mọi chỉ số thanh khoản trên dashboard này VẪN neo ở mốc 30/06/2026 — nay đã cũ 4 tháng. Trong khi đó, kênh làm việc với CĐT lại phát sinh thay đổi trọng yếu mà KSNB chỉ biết nhờ vai trò nhận CC: ngân sách vận hành Q4/2026 được cập nhật giảm 6.018.240.607 đ (−11,76%) và phí dịch vụ vận hành Q4 — tức DOANH THU của Omni — giảm từ 45.165.134.660 đ xuống 34.022.787.662 đ trước VAT, tức giảm 11.142.346.998 đ (−24,67%). Thư ngày 31/10 ấn định: nếu đến hết ngày không có phản hồi thì \"xem như thống nhất với số liệu đã gửi và sẽ tiến hành các bước tiếp theo\". Một thay đổi doanh thu trên 11 tỷ đồng đang được chốt bằng sự im lặng, không có văn bản phê duyệt của cấp có thẩm quyền trong phạm vi quan sát được."
+ },
+ "kpi": [
+  {
+   "label": "Tuân thủ báo cáo",
+   "value": "2 / 15",
+   "sub": "13 báo cáo đã đến hạn vẫn chưa nhận · kỳ T9 trống cả 5/5 · kỳ trước: 2/10",
+   "level": "red"
+  },
+  {
+   "label": "PnL kỳ T9 (hạn 15/10)",
+   "value": "Quá hạn 17 ngày",
+   "sub": "Chuỗi cải thiện ở T8 (chỉ trễ 1 ngày) đã đứt ngay kỳ sau",
+   "level": "red"
+  },
+  {
+   "label": "Phí DVVH Q4 — số mới, trước VAT",
+   "value": "34,02 tỷ đ",
+   "sub": "Giảm 11,14 tỷ đ (−24,67%) so với 45,17 tỷ đã duyệt · sau VAT 37,43 tỷ đ",
+   "level": "red"
+  },
+  {
+   "label": "Thực hiện ngân sách T1–T9",
+   "value": "65,5%",
+   "sub": "Hai dự án 58,3% / 65,8% · Văn phòng HO 117,0% — VƯỢT ngân sách",
+   "level": "amber"
+  },
+  {
+   "label": "Mốc số liệu tiền gần nhất",
+   "value": "30/06/2026",
+   "sub": "⚠ chưa cập nhật — 4 tháng không có số dư tiền thực tế nào",
+   "level": "red"
+  },
+  {
+   "label": "Số tháng cầm cự",
+   "value": "~4,02 tháng",
+   "sub": "⚠ chưa cập nhật · vẫn tính trên số 30/06, không phản ánh T7–T10",
+   "level": "amber"
+  }
+ ],
+ "summary": [
+  {
+   "level": "red",
+   "t": "Kỳ tháng 10 là kỳ giám sát TRỐNG HOÀN TOÀN về báo cáo định kỳ: cả 5 báo cáo kỳ T9/2026 (hạn 07/10, 07/10, 15/10, 18/10, 18/10) đều không được phát hành qua bất kỳ kênh nào mà KSNB quan sát được — không Outlook, không thư mục Drive 09 TCKT, không nhóm chat Teams. Tính đến 01/11/2026 có 13/15 báo cáo đã đến hạn ở trạng thái CHƯA NHẬN; dòng quá hạn lâu nhất là 86 ngày (BC dòng tiền kỳ T7, hạn 07/08)."
+  },
+  {
+   "level": "red",
+   "t": "Việc PnL kỳ T9 không về là bước thoái lùi rõ rệt. Kỳ trước KSNB ghi nhận cải thiện vì PnL T8 chỉ trễ 1 ngày và được gửi trực tiếp tới PTGĐ TT qua nhóm chat báo cáo tài chính. Cải thiện đó không duy trì được sang kỳ kế tiếp — cho thấy đó là một lần phát hành đơn lẻ chứ chưa phải thay đổi quy trình bền vững."
+  },
+  {
+   "level": "red",
+   "t": "Thay đổi trọng yếu nhất của kỳ KHÔNG đến từ báo cáo định kỳ mà từ chuỗi email ngân sách với CĐT ngày 26/10: phí dịch vụ vận hành Q4/2026 được điều chỉnh giảm từ 45.165.134.660 đ xuống 34.022.787.662 đ trước VAT (−11.142.346.998 đ, −24,67%); sau VAT là 37.425.066.429 đ. Chi tiết: Vinh 30.675.829.455 → 21.489.641.651 đ (giảm 9.186.187.803 đ); Long An 14.489.305.205 → 12.533.146.011 đ (giảm 1.956.159.193 đ). Đây là doanh thu của Omni, không phải chi phí — tác động trực tiếp tới dòng tiền vào của hai quý cuối năm."
+  },
+  {
+   "level": "red",
+   "t": "Cơ chế chốt số liệu là điểm yếu kiểm soát nghiêm trọng: thư ngày 29/10 ấn định mốc phản hồi 30/10, thư ngày 31/10 ghi rõ nếu hết ngày không có phản hồi thì \"xem như thống nhất với số liệu đã gửi và sẽ tiến hành các bước tiếp theo\". Một điều chỉnh doanh thu trên 11 tỷ đồng vì vậy có thể được coi là đã chốt mà KHÔNG có văn bản phê duyệt của cấp có thẩm quyền hai bên. PTGĐ TT chỉ ở vai trò nhận CC \"để báo cáo\", không phải đầu mối phê duyệt."
+  },
+  {
+   "level": "amber",
+   "t": "Số thực tế chi phí duy nhất có được trong kỳ cũng đến từ chính email đó, dưới dạng bảng thực hiện ngân sách lũy kế T1→T9/2026: tổng ngân sách 106.328.201.831 đ, thực tế 69.594.801.658 đ, đạt 65,45%. Phân rã cho thấy một bất đối xứng đáng chú ý: hai dự án chi DƯỚI ngân sách (Vinh 58,3%, Long An 65,8%) nhưng Văn phòng HO chi 11.030.252.379 đ trên ngân sách 9.426.958.211 đ — tức 117,0%, VƯỢT ngân sách 1.603.294.168 đ. Khối không trực tiếp tạo doanh thu là khối duy nhất vượt ngân sách."
+  },
+  {
+   "level": "info",
+   "t": "Lưu ý về bản chất nguồn: bảng T1→T9 nói trên là số liệu đính kèm một email đàm phán ngân sách với CĐT, KHÔNG phải \"BC so sánh ngân sách KH vs thực tế\" theo cam kết 24/07. Vì vậy dòng tuân thủ tương ứng vẫn ở trạng thái CHƯA NHẬN. KSNB ghi nhận nghịch lý: số liệu thực tế đến tay CĐT trước khi đến tay bộ phận kiểm soát nội bộ của chính Omni dưới dạng báo cáo chính thức."
+  }
+ ],
+ "compliance": {
+  "note": "Căn cứ email cam kết KTT 24/07/2026 (hạn: BC dòng tiền & SS dòng tiền ngày 7; PnL ngày 15; phân tích lãi-lỗ vs dòng tiền & SS ngân sách ngày 18 hằng tháng). Chốt dữ liệu 01/11/2026. Toàn bộ số ngày trễ dưới đây được TÍNH LẠI bằng script từ ngày chốt (Asia/Saigon), không sao lại từ kỳ trước. Kỳ T9 bổ sung 5 dòng mới: cả 5 hạn đều đã trôi qua trong tháng 10 mà không có báo cáo nào. Hai dòng PnL T7/T8 giữ trạng thái \"Đã nhận\" theo dấu thời gian phát hành 16/09/2026. Các báo cáo kỳ T10 (hạn 07/11, 15/11, 18/11/2026) chưa đến hạn nên chưa đưa vào bảng.",
+  "rows": [
+   {
+    "n": 1,
+    "name": "BC dòng tiền — kỳ T7",
+    "due": "07/08/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 86 ngày"
+   },
+   {
+    "n": 2,
+    "name": "BC so sánh KH dòng tiền vs thực tế — kỳ T7",
+    "due": "07/08/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 86 ngày"
+   },
+   {
+    "n": 3,
+    "name": "BC Kết quả Kinh doanh (PnL) — kỳ T7",
+    "due": "15/08/2026",
+    "got": "16/09/2026",
+    "status": "ok",
+    "tag": "Nhận muộn 32 ngày"
+   },
+   {
+    "n": 4,
+    "name": "BC phân tích lãi/lỗ vs dòng tiền — kỳ T7",
+    "due": "18/08/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 75 ngày"
+   },
+   {
+    "n": 5,
+    "name": "BC so sánh ngân sách KH vs thực tế — kỳ T7",
+    "due": "18/08/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 75 ngày"
+   },
+   {
+    "n": 6,
+    "name": "BC dòng tiền — kỳ T8",
+    "due": "07/09/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 55 ngày"
+   },
+   {
+    "n": 7,
+    "name": "BC so sánh KH dòng tiền vs thực tế — kỳ T8",
+    "due": "07/09/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 55 ngày"
+   },
+   {
+    "n": 8,
+    "name": "BC Kết quả Kinh doanh (PnL) — kỳ T8",
+    "due": "15/09/2026",
+    "got": "16/09/2026",
+    "status": "ok",
+    "tag": "Nhận muộn 1 ngày"
+   },
+   {
+    "n": 9,
+    "name": "BC phân tích lãi/lỗ vs dòng tiền — kỳ T8",
+    "due": "18/09/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 44 ngày"
+   },
+   {
+    "n": 10,
+    "name": "BC so sánh ngân sách KH vs thực tế — kỳ T8",
+    "due": "18/09/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 44 ngày"
+   },
+   {
+    "n": 11,
+    "name": "BC dòng tiền — kỳ T9",
+    "due": "07/10/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 25 ngày"
+   },
+   {
+    "n": 12,
+    "name": "BC so sánh KH dòng tiền vs thực tế — kỳ T9",
+    "due": "07/10/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 25 ngày"
+   },
+   {
+    "n": 13,
+    "name": "BC Kết quả Kinh doanh (PnL) — kỳ T9",
+    "due": "15/10/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 17 ngày"
+   },
+   {
+    "n": 14,
+    "name": "BC phân tích lãi/lỗ vs dòng tiền — kỳ T9",
+    "due": "18/10/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 14 ngày"
+   },
+   {
+    "n": 15,
+    "name": "BC so sánh ngân sách KH vs thực tế — kỳ T9",
+    "due": "18/10/2026",
+    "got": "—",
+    "status": "late",
+    "tag": "Quá hạn 14 ngày"
+   }
+  ]
+ },
+ "timeline": [
+  {
+   "d": "07/10",
+   "who": "TCKT",
+   "level": "red",
+   "t": "HẠN phát hành BC dòng tiền và BC so sánh KH dòng tiền vs thực tế kỳ T9 — không có báo cáo nào",
+   "note": "Tính đến ngày chốt 01/11 hai dòng này quá hạn 25 ngày. Cùng thời điểm, các dòng tương ứng của kỳ T7 quá hạn 86 ngày và kỳ T8 quá hạn 55 ngày."
+  },
+  {
+   "d": "15/10",
+   "who": "TCKT",
+   "level": "red",
+   "t": "HẠN phát hành PnL kỳ T9 — không phát hành qua bất kỳ kênh nào quan sát được",
+   "note": "Quá hạn 17 ngày tại ngày chốt. Đáng chú ý vì PnL kỳ T8 đã về chỉ trễ 1 ngày — cải thiện của kỳ trước không duy trì được."
+  },
+  {
+   "d": "18/10",
+   "who": "TCKT",
+   "level": "red",
+   "t": "HẠN phát hành BC phân tích lãi/lỗ vs dòng tiền và BC so sánh ngân sách KH vs thực tế kỳ T9 — không phát hành",
+   "note": "Quá hạn 14 ngày tại ngày chốt. Hoàn tất một kỳ T9 trống cả 5/5 báo cáo cam kết."
+  },
+  {
+   "d": "21/10",
+   "who": "Đối tác môi giới / Pháp chế",
+   "level": "amber",
+   "t": "Đối tác môi giới phát công văn đề nghị thanh toán công nợ đã quá hạn (bản scan qua email, bản cứng gửi sau)",
+   "note": "Tiếp nối chuỗi phí môi giới đã theo dõi từ kỳ trước (cảnh báo #11). Đối tác dẫn mốc hồ sơ thanh toán đã gửi scan 17/09 và bản cứng 18/09, viện thời hạn thanh toán 20 ngày theo hợp đồng. Chưa quan sát được văn bản phản hồi hay hồ sơ nghiệm thu hoàn tất từ phía Công ty."
+  },
+  {
+   "d": "26/10",
+   "who": "KTT / CĐT",
+   "level": "amber",
+   "t": "Phát hành cập nhật ngân sách vận hành Q4/2026 theo tiến độ bàn giao mới, kèm bảng thực hiện ngân sách lũy kế T1→T9/2026",
+   "note": "Căn cứ điều chỉnh: tiến độ bàn giao thay đổi ở cả hai dự án (một phân khu trung tầng ở Vinh lùi 1 tháng sang T11/2026; ở Long An PK6 và PK9 lùi sang T1/2027, PK2 lùi sang T2/2027; một số phân khu khác đã bàn giao sớm hơn kế hoạch) và tình hình thực hiện KHNS Q3/2026. Ngân sách Opex Q4: Vinh 34.029.212.885 → 30.675.829.455 đ (−9,85%); Long An 17.154.162.382 → 14.489.305.205 đ (−15,53%); tổng giảm 6.018.240.607 đ (−11,76%). Gửi PTGĐ TT và GĐ ở vai trò CC \"để báo cáo\"; đầu mối thực hiện là phía CĐT."
+  },
+  {
+   "d": "26/10",
+   "who": "Vận hành / KSNB",
+   "level": "info",
+   "t": "Phát hành Bảng kiểm tuân thủ tháng 09/2026 — Vận hành",
+   "note": "Báo cáo kiểm tuân thủ vận hành định kỳ, kênh riêng, không thay thế nhóm báo cáo tài chính của TCKT. Ghi nhận là chốt kiểm soát đang hoạt động."
+  },
+  {
+   "d": "27/10",
+   "who": "BLĐ",
+   "level": "info",
+   "t": "Họp giao ban tháng 10/2026",
+   "note": "Biên bản họp giao ban được phát hành trong kỳ. Chưa rà soát được nội dung có đề cập tình trạng chậm báo cáo tài chính hay không — ngoài phạm vi quét của kỳ này."
+  },
+  {
+   "d": "29/10",
+   "who": "KTT / CĐT",
+   "level": "red",
+   "t": "Ấn định mốc phản hồi 30/10 và thông báo hóa đơn phí DVVH tháng 10 sẽ xuất theo SỐ CŨ, chênh lệch dồn sang T11–T12/2026",
+   "note": "Nguyên văn: do 30/10 là ngày làm việc cuối tháng nên \"sẽ xuất hóa đơn theo đúng số liệu hợp đồng và ngân sách đã phê duyệt\", phần chênh lệch theo ngân sách cập nhật \"sẽ được điều chỉnh vào phí tháng 11 và tháng 12/2026\". Thư gắn mức độ quan trọng Cao. KSNB lưu ý: xuất hóa đơn theo số đã biết là sẽ bị điều chỉnh làm phát sinh nghĩa vụ điều chỉnh hóa đơn/doanh thu ở hai tháng sau, cần xác nhận cách xử lý thuế GTGT và thời điểm ghi nhận doanh thu."
+  },
+  {
+   "d": "31/10",
+   "who": "KTT / CĐT",
+   "level": "red",
+   "t": "Thư chốt: nếu hết ngày 31/10 không có phản hồi thì xem như CĐT đã thống nhất số liệu và sẽ tiến hành các bước tiếp theo",
+   "note": "Đây là cơ chế đồng thuận bằng im lặng áp lên một điều chỉnh doanh thu 11.142.346.998 đ (−24,67% phí DVVH Q4). Trong phạm vi hộp thư quan sát được đến 01/11 KHÔNG thấy phản hồi của phía CĐT, cũng không thấy văn bản phê duyệt nội bộ của Omni cho số mới."
+  },
+  {
+   "d": "01/11",
+   "who": "KSNB",
+   "level": "info",
+   "t": "Chốt kỳ tháng 10 — không có số tài chính định kỳ mới; giữ nguyên toàn bộ phần tiền/thanh khoản ở mốc 30/06/2026 và dán nhãn chưa cập nhật",
+   "note": "Nguồn: hộp thư Outlook PTGĐ TT và thư mục Drive 09 TCKT (file mới nhất trong thư mục vẫn là bản 25/09/2026), kiểm tra thêm nhóm chat Teams — không có báo cáo tài chính nào trong cửa sổ quét. Mọi số ngày trễ, tỷ lệ % và tổng cộng trong kỳ này được tính lại độc lập bằng script từ ngày chốt 01/11/2026 (Asia/Saigon)."
+  }
+ ],
+ "cash": {
+  "note": "⚠ chưa cập nhật — KHÔNG có số dư tiền thực tế tháng 7, 8, 9 hay 10/2026; TCKT chưa phát hành báo cáo dòng tiền nào cho cả bốn tháng. Bảng dưới GIỮ NGUYÊN từ kỳ trước: mốc thực tế gần nhất vẫn là 30/06/2026 (38.876.331.030 đ), nay đã cũ 4 tháng; cột 31/07 là ƯỚC TÍNH theo kế hoạch, không phải số thực tế. Không có cột nào phản ánh 31/08, 30/09 hay 31/10/2026. Không suy luận số dư tiền từ bảng thực hiện ngân sách T1–T9 vì đó là cơ sở chi phí, không phải thực thu thực chi.",
+  "rows": [
+   {
+    "k": "Tiền gửi ngân hàng",
+    "a": "13.656.057.577",
+    "b": "8.832.021.030",
+    "c": null,
+    "d": "8.470.287.824"
+   },
+   {
+    "k": "Tiền mặt",
+    "a": "—",
+    "b": "44.310.000",
+    "c": null,
+    "d": "—"
+   },
+   {
+    "k": "Sổ tiết kiệm",
+    "a": "15.000.000.000",
+    "b": "30.000.000.000",
+    "c": null,
+    "d": "25.000.000.000"
+   },
+   {
+    "k": "Tổng tiền sẵn có",
+    "a": "28.656.057.577",
+    "b": "38.876.331.030",
+    "c": null,
+    "d": "~33.807.606.624",
+    "total": true
+   }
+  ]
+ },
+ "realFlow": {
+  "note": "⚠ chưa cập nhật — không có dòng tiền thực tế tháng 7 đến tháng 10/2026. Bảng dưới là KẾ HOẠCH tháng 7 từ kỳ trước, giữ nguyên để tham chiếu, không phải số thực hiện.",
+  "rows": [
+   {
+    "k": "Tổng thu",
+    "raw": "27.190.000.000",
+    "adj": "−20.000.000.000 (rút TK)",
+    "real": "7.190.000.000"
+   },
+   {
+    "k": "Tổng chi",
+    "raw": "27.258.724.406",
+    "adj": "−15.000.000.000 (gửi TK)",
+    "real": "12.258.724.406"
+   },
+   {
+    "k": "Thu − Chi",
+    "raw": "−68.724.406",
+    "adj": "",
+    "real": "−5.068.724.406",
+    "total": true
+   }
+  ],
+  "comment": "So với tháng liền trước: tháng 6/2026 thực tế có dòng tiền thực chất DƯƠNG 5.198.891.520 đ (thu thực chất 15.190.981.009 đ, chi thực chất 9.992.089.489 đ). Kế hoạch T7 đảo chiều 10.267.615.926 đ do thu phí DVVH chỉ 7,0 tỷ đ (Bên liên quan A 3,0 tỷ + Bên liên quan B 4,0 tỷ) so với 15,0 tỷ đ tháng 6, đồng thời chi thực chất tăng 2.266.634.917 đ (+22,7%) chủ yếu vì kế hoạch nộp thuế TNDN 2,0 tỷ đ. CẬP NHẬT 01/11: sau 4 tháng vẫn không có bất kỳ báo cáo dòng tiền thực tế nào để kiểm chứng kế hoạch T7 nói trên, nên toàn bộ nhận định đảo chiều dòng tiền của kỳ trước vẫn ở trạng thái CHƯA KIỂM CHỨNG. Rủi ro giám sát tăng theo thời gian: khoảng trống dữ liệu dòng tiền hiện đã dài hơn một quý."
+ },
+ "runway": [
+  {
+   "k": "Tiền sẵn có",
+   "a": "38.876.331.030",
+   "b": "~33.807.606.624",
+   "th": "Dưới 25 tỷ = CAM; dưới 15 tỷ = ĐỎ",
+   "level": "ok"
+  },
+  {
+   "k": "Cầm cự theo chi lõi (6,97 tỷ/tháng)",
+   "a": "5,58 tháng",
+   "b": "~4,85 tháng",
+   "th": "Dưới 4 = CAM; dưới 3 = ĐỎ",
+   "level": "ok"
+  },
+  {
+   "k": "Cầm cự gồm thuế & capex (9,68 tỷ/th)",
+   "a": "4,02 tháng",
+   "b": "~3,49 tháng",
+   "th": "Dưới 3 tháng = ĐỎ",
+   "level": "amber"
+  }
+ ],
+ "receivables": "THAY ĐỔI TRỌNG YẾU TRONG KỲ — phần doanh thu phí dịch vụ vận hành bị điều chỉnh GIẢM mạnh. Theo chuỗi email ngân sách với CĐT ngày 26/10/2026: phí DVVH Q4/2026 giảm từ 45.165.134.660 đ xuống 34.022.787.662 đ trước VAT (giảm 11.142.346.998 đ, −24,67%); sau VAT 37.425.066.429 đ. Chi tiết: Vinh 30.675.829.455 → 21.489.641.651 đ trước VAT (sau VAT 23.638.605.817 đ), mức giảm 9.186.187.803 đ; Long An 14.489.305.205 → 12.533.146.011 đ trước VAT (sau VAT 13.786.460.612 đ), mức giảm 1.956.159.193 đ. Giá trị Omni giữ lại theo cơ chế 10% LN sau thuế cộng thuế TNDN tạm tính: Vinh 16.399.532.471 đ, Long An 6.698.305.273 đ. Bảng còn ghi khoản điều chỉnh giảm Q3.26 của Vinh 2.418.081.847 đ — KHỚP với số đã theo dõi ở cảnh báo #9 — cùng một dòng mới \"phần thiếu\" 75.133.585 đ chưa có thuyết minh. PHÍ DVVH Q3 (40.253.699.290 đ trước VAT, 44.279.069.220 đ sau VAT, chốt 24/08): đến 01/11 VẪN chưa quan sát được văn bản CĐT phê duyệt, hồ sơ trình ký hay lệnh giải ngân — đã 69 ngày kể từ ngày chốt giá, rủi ro vẫn nằm ở khâu THU TIỀN ĐÚNG HẠN. Số phải thu ⚠ chưa cập nhật, giữ nguyên mốc 30/06/2026: Bên liên quan A còn phải thu 3.498.534.044 đ; Bên liên quan B đã thanh toán đủ Q1+Q2 (20.085.642.910 đ); số ngày phải thu ~9,8 ngày. Chưa có số liệu phải thu 31/07, 31/08, 30/09 hay 31/10/2026.",
+ "variance": {
+  "t7": [
+   {
+    "k": "Chi lương, thưởng (dòng tiền)",
+    "plan": "5.602.458.717",
+    "act": "5.064.459.618",
+    "diff": "−537.999.099 (−9,6%)",
+    "level": "ok"
+   },
+   {
+    "k": "Chi phí nhân sự (AOP kế toán)",
+    "plan": "11.116.640.715",
+    "act": "6.046.145.761",
+    "diff": "−5.070.494.954 (−45,6%)",
+    "level": "info"
+   },
+   {
+    "k": "  – Khối hỗ trợ (14 người)",
+    "plan": "715.474.801",
+    "act": "788.842.317",
+    "diff": "+73.367.516 (+10,3%) — VƯỢT AOP",
+    "level": "red"
+   },
+   {
+    "k": "  – BQL Dự án A (311 người)",
+    "plan": "7.052.391.628",
+    "act": "3.531.692.116",
+    "diff": "−3.520.699.512 (−49,9%)",
+    "level": "info"
+   },
+   {
+    "k": "  – BQL Dự án B (151 người)",
+    "plan": "3.348.774.285",
+    "act": "1.725.611.328",
+    "diff": "−1.623.162.957 (−48,5%)",
+    "level": "info"
+   }
+  ],
+  "t7note": "KHÔNG có bảng lương tháng 8 trong kỳ quét; số dưới đây là tháng 7 (bảng lương P.HCNS ngày 05/08), giữ nguyên từ kỳ trước để theo dõi. Lưu ý tiếp tục: con số lũy kế chênh AOP nhân sự 27.603.431.530 đ VẪN chưa đối chiếu độc lập được, do bảng lương T7 có 3 lỗi (thiếu hẳn mục II; cộng dọc 476 nhưng dòng tổng ghi 477; cột AOP − thực tế lệch 152.010.784 đ). Phải đính chính trước khi dùng làm căn cứ đàm phán với CĐT. CẬP NHẬT 20/09: PnL tháng 7 vừa công bố ghi chi phí nhân sự 6.983.652.201 đ — CAO HƠN 937.506.440 đ so với con số 6.046.145.761 đ lấy từ báo cáo lương P.HCNS đang dùng làm căn cứ đàm phán với CĐT. Hai nguồn chưa đối chiếu được với nhau; đề nghị KHÔNG dùng con số nào trong hai con số cho tới khi TCKT xác nhận phạm vi tài khoản của từng báo cáo. CẬP NHẬT 01/11 — số thực tế chi phí đầu tiên sau nhiều kỳ, nhưng đến từ email đàm phán ngân sách với CĐT (26/10) chứ không phải báo cáo cam kết: bảng thực hiện ngân sách lũy kế T1→T9/2026 ghi tổng ngân sách 106.328.201.831 đ, thực tế 69.594.801.658 đ, đạt 65,45%. Phân rã theo đơn vị: Eco Central Park Vinh ngân sách 69.220.761.310 đ / thực tế 40.340.178.520 đ = 58,3% (dưới ngân sách 28.880.582.790 đ); Eco Retreat Long An 27.680.482.310 đ / 18.224.370.759 đ = 65,8% (dưới ngân sách 9.456.111.551 đ); Văn phòng HO 9.426.958.211 đ / 11.030.252.379 đ = 117,0% — VƯỢT ngân sách 1.603.294.168 đ. Thuế TNDN tạm tính kèm theo: Vinh 5.615.787.141 đ + Long An 1.730.892.893 đ = 7.346.680.034 đ, bảng gốc ghi tổng 7.346.680.035 đ (lệch 1 đ do làm tròn). KSNB lưu ý: khối duy nhất vượt ngân sách là khối không trực tiếp tạo doanh thu, trong khi hai khối tạo doanh thu đều chi dưới ngân sách — cần giải trình cơ cấu phần vượt của HO. Bảng này KHÔNG thay thế BC so sánh ngân sách theo cam kết và không cho biết số dư tiền.",
+  "carry": [
+   {
+    "k": "Chi mua sắm CCDC, TTB dài hạn (mua ô tô)",
+    "plan": "0",
+    "act": "1.525.120.000",
+    "diff": "+1.525.120.000 — ngoài kế hoạch hoàn toàn",
+    "level": "red"
+   },
+   {
+    "k": "Chi khác cho người lao động (team building đợt 1)",
+    "plan": "331.560.414",
+    "act": "1.768.914.883",
+    "diff": "+1.437.354.469 (+433,5%)",
+    "level": "red"
+   },
+   {
+    "k": "Chi khác cho hoạt động kinh doanh",
+    "plan": "884.161.103",
+    "act": "381.397.556",
+    "diff": "−502.763.547 (−56,9%)",
+    "level": "ok"
+   },
+   {
+    "k": "BHXH, BHYT, BHTN, KPCĐ",
+    "plan": "663.120.827",
+    "act": "0",
+    "diff": "−663.120.827 — dồn sang kỳ sau",
+    "level": "info"
+   },
+   {
+    "k": "Thuế TNCN",
+    "plan": "276.300.345",
+    "act": "0",
+    "diff": "−276.300.345 — dồn sang kỳ sau",
+    "level": "info"
+   }
+  ],
+  "carrynote": "Hai khoản ĐỎ vượt đồng thời cả hai ngưỡng trọng yếu (trên 20% VÀ trên 500 triệu đ). NGHĨA VỤ CHUYỂN TIẾP SANG THÁNG 7: BHXH 663.120.827 đ + thuế TNCN 276.300.345 đ chưa nộp trong tháng 6, cộng phần chi phí gắn kết đã ghi nhận nhưng chưa chi tiền khoảng 1.010.021.941 đ — tổng khoảng 1,95 tỷ đ không nằm trong kế hoạch dòng tiền tháng 7. Chưa kiểm chứng được vì thiếu số liệu T7."
+ },
+ "pnl": {
+  "note": "⚠ chưa cập nhật — PnL kỳ T9/2026 (hạn 15/10) KHÔNG được phát hành, nên bảng dưới vẫn là lũy kế T1–T8 và riêng tháng 8, giữ nguyên từ kỳ trước. Không có số doanh thu, chi phí hay lợi nhuận tháng 9 và tháng 10/2026.",
+  "h1label": "Lũy kế T1–T8/2026",
+  "t6label": "Riêng tháng 8",
+  "rows": [
+   {
+    "k": "Doanh thu",
+    "h1": "89.859.147.954",
+    "t6": "12.150.562.673",
+    "c": "Lũy kế T1–T8 · riêng T8 giảm 8,04% so với T7 (13.213.467.665)"
+   },
+   {
+    "k": "Tổng chi phí",
+    "h1": "60.518.863.296",
+    "t6": "9.447.606.291",
+    "c": "Lũy kế T1–T8 · riêng T8 tăng 19,89% so với T7 (7.880.786.119)"
+   },
+   {
+    "k": "Lợi nhuận trước thuế",
+    "h1": "29.972.547.655",
+    "t6": "2.831.619.577",
+    "c": "Biên lũy kế T1–T8 33,36%; riêng T8 chỉ 23,30% — thấp nhất kể từ tháng 2/2026"
+   },
+   {
+    "k": "Chi phí nhân sự",
+    "h1": "53.782.158.081",
+    "t6": "8.690.382.237",
+    "c": "59,86% DT lũy kế; riêng T8 71,52% DT — VƯỢT ngưỡng CAM 65% (T7: 52,85%, trong ngưỡng)"
+   },
+   {
+    "k": "Lợi nhuận sau thuế",
+    "h1": "23.978.038.124",
+    "t6": "2.265.295.662",
+    "c": "Thuế TNDN tạm tính lũy kế 5.994.509.531 đ"
+   }
+  ],
+  "comment": "Bảng gốc \"Doanh thu bên thứ ba\" của kỳ trước không có trong báo cáo BOD tháng 7/8 (báo cáo tổng hợp cấp BOD không tách dòng này) — chưa xác nhận được số phát sinh T7/T8, giữ nguyên hạn chế đã nêu. Đối chiếu nội bộ: lũy kế T1–T7 (77.708.585.281 đ DT, 27.140.928.078 đ LNTT) cộng số tháng 8 khớp đúng với lũy kế T1–T8 công bố (89.859.147.954 đ DT, 29.972.547.655 đ LNTT) — khớp."
+ },
+ "flags": [
+  {
+   "n": 1,
+   "title": "Chi cho vay / thu hồi cho vay (mã 1103.03 / 1104.03) — đã truy được trọn chuỗi",
+   "level": "red",
+   "since": "08/05/2026",
+   "detail": "TIẾN TRIỂN TRONG KỲ: nay đã truy được đầy đủ từ sheet giao dịch chi tiết. Ngày 08/05/2026 chi 20.000.000.000 đ cho MỘT CÁ NHÂN (mã khách hàng nội bộ), hạch toán qua tài khoản phải thu khác. Ngày 12/05/2026 thu hồi đủ gốc và thu lãi 6.720.430 đ — lãi suất quy đổi 3,07%/năm, THẤP HƠN lãi tiết kiệm kỳ hạn 1 tháng của chính công ty (4,75%/năm). CÙNG NGÀY 08/05 công ty rút 2 sổ tiết kiệm trước hạn tổng 10 tỷ đ, lãi thực nhận 493.151 đ so với lãi kế hoạch 39.691.781 đ, mất 39.198.630 đ. Chênh lệch kinh tế: −32.478.200 đ. Ngày 19/05 có phiếu thu TIỀN MẶT 39.690.000 đ từ một cá nhân là nhân sự nội bộ, diễn giải “Thu lãi tiền gửi ngắn hạn” — lệch đúng 1.781 đ so với khoản lãi đã mất; KSNB ghi nhận sự trùng khớp giá trị nhưng CHƯA kiểm chứng được có mối liên hệ hay không. Cột hợp đồng, khế ước và ghi chú của cả 3 bút toán đều TRỐNG. Giá trị khoản vay bằng 76,7% tiền sẵn có tại 30/04/2026."
+  },
+  {
+   "n": 2,
+   "title": "Giao dịch từ 500 triệu đ ngoài ngân sách, không phê duyệt trước",
+   "level": "red",
+   "since": "30/06/2026",
+   "detail": "Tháng 7: KHÔNG ĐO ĐƯỢC do thiếu dữ liệu. H1/2026: có 90 giao dịch từ 500 triệu đ trở lên; KSNB chưa có quyền truy cập hồ sơ phê duyệt nên chưa đối chiếu được từng giao dịch. MẪU HÌNH MỚI PHÁT HIỆN: ngày 04/06/2026, hai khoản chi cho cùng một nhà cung cấp sự kiện, theo CÙNG một hợp đồng, CÙNG diễn giải “TT lần 1”, được tách thành 422.240.000 đ và 499.000.000 đ (tổng 921.240.000 đ). Cả hai đều nằm dưới ngưỡng 500 triệu đ; khoản thứ hai thấp hơn ngưỡng đúng 1.000.000 đ. KSNB mô tả sự việc, không kết luận về nguyên nhân."
+  },
+  {
+   "n": 3,
+   "title": "Chi mua sắm tài sản (capex) ngoài kế hoạch dòng tiền — đã định danh",
+   "level": "red",
+   "since": "19/06/2026",
+   "detail": "Đã bóc tách được chi tiết: cọc xe 50.000.000 đ (19/06), thanh toán tiền xe 1.420.120.000 đ (22/06), biển số 40.100.000 đ (22/06), bảo hiểm 14.900.000 đ (26/06) — tổng 1.525.120.000 đ cho một xe ô tô 7 chỗ. Dòng “Chi mua sắm CCDC, TTB dài hạn” trong kế hoạch dòng tiền 2026 bằng 0 cho cả 12 tháng, tức 100% ngoài kế hoạch. Chưa tìm thấy tờ trình chủ trương hay biên bản lựa chọn nhà cung cấp trong phạm vi đã rà soát. Kế hoạch capex vẫn chưa được cập nhật lại sau sự kiện này."
+  },
+  {
+   "n": 4,
+   "title": "Dòng giá trị lớn bị bỏ trống cột ghi chú",
+   "level": "red",
+   "since": "31/05/2026",
+   "detail": "Đã đếm chính xác: trong H1/2026 có 90 giao dịch từ 500 triệu đ trở lên, trong đó 89 giao dịch KHÔNG CÓ ghi chú — tỷ lệ 98,9%. Giao dịch duy nhất có ghi chú là một khoản lương 584.873.704 đ với nội dung “Sai dự án → sửa sang HO”. Nghịch lý: chính những giao dịch bất thường nhất (khoản cho vay 20 tỷ, mua ô tô 1,53 tỷ) lại không có một dòng thuyết minh nào."
+  },
+  {
+   "n": 5,
+   "title": "Đối chiếu số liệu giữa các file — đã xác định nguyên nhân gốc",
+   "level": "red",
+   "since": "30/06/2026",
+   "detail": "Chênh 94.908.000 đ VẪN TỒN TẠI nhưng nay đã rõ nguyên nhân: tổng các cột tháng T1–T6 của dòng “DÒNG TIỀN VÀO” là 134.298.017.554 đ, trong khi ô Total của chính dòng đó ghi 134.203.109.554 đ. Lý do: dòng “Thu DV tiện ích” (94.908.000 đ, phát sinh T6) có số ở cột tháng nhưng ô Total của dòng đó ĐỂ TRỐNG. Đây là lỗi công thức cộng, không phải khác biệt bản chất giữa hai file — số liệu gốc trong file Cashflow là đúng. PHÁT HIỆN THÊM: ô “Tổng tiền sẵn có” trong sheet CF_YTD ghi 38.832.021.030 đ, bỏ sót quỹ tiền mặt 44.310.000 đ; giá trị đúng là 38.876.331.030 đ. Sai lệch nhỏ nhưng làm lệch mọi chỉ số tính trên tiền sẵn có."
+  },
+  {
+   "n": 6,
+   "title": "Mất lãi do rút sổ tiết kiệm trước hạn",
+   "level": "red",
+   "since": "24/02/2026",
+   "detail": "NÂNG TỪ CAM LÊN ĐỎ sau khi tính lại đầy đủ. Lũy kế H1/2026: 154.480.823 đ, gồm (a) lần tất toán tháng 2/2026 phần 8 tỷ đ của sổ gửi 24/12/2025 — lãi kế hoạch 117.123.288 đ, thực nhận 1.841.095 đ, mất 115.282.193 đ; (b) hai sổ rút trước hạn ngày 08/05/2026 — mất 39.198.630 đ. Ngưỡng cảnh báo là 20 triệu đ/năm, thực tế đã vượt 7,7 lần. ĐIỂM MÙ THÁNG 7: có 4 sổ tiết kiệm đáo hạn trong tháng 7 (15/07, 18/07, 19/07, 25/07), mỗi sổ 5 tỷ đ, tổng 20 tỷ đ, lãi kế hoạch 78.082.192 đ — cột “lãi thực nhận” và “đã tất toán” của cả 4 sổ đều TRỐNG. Không xác định được đã tái tục hay đã rút. Cơ cấu kỳ hạn vẫn kém: tại 30/06 chỉ 10/30 tỷ đ (33,3%) gửi kỳ hạn từ 6 tháng (lãi 8,0%/năm), 20 tỷ còn lại kỳ hạn 1 tháng (4,75%/năm) — chênh 3,25 điểm phần trăm trên 20 tỷ tương đương khoảng 650 triệu đ/năm cơ hội bỏ lỡ."
+  },
+  {
+   "n": 7,
+   "title": "Góp vốn điều lệ",
+   "level": "red",
+   "since": "31/10/2025",
+   "detail": "KHÔNG CÓ CẬP NHẬT MỚI trong 36 ngày quét email. Tình trạng giữ nguyên: đăng ký 10 tỷ đ, thực góp 3,43 tỷ đ (34,3%); cổ đông nắm 65% chưa góp đồng nào (còn thiếu 6,57 tỷ đ). Đây là nghĩa vụ pháp lý quá hạn, không phải vấn đề quản trị nội bộ."
+  },
+  {
+   "n": 8,
+   "title": "Email liên quan thuế, hóa đơn rủi ro, kiểm toán",
+   "level": "amber",
+   "since": "27/07/2026",
+   "detail": "Không có email nào từ cơ quan thuế hoặc đơn vị kiểm toán trong cửa sổ quét 16/10–01/11/2026. Bốn nội dung theo dõi giữ nguyên trạng, không có hồ sơ mới: (a) Thông tư 89/2026/TT-BTC hiệu lực 01/07/2026 nhưng TCKT phổ biến nội bộ 27/07 — sau 26 ngày; (b) hợp đồng ủy quyền chi hộ vẫn chưa ký trong khi đã chi trước; (c) hóa đơn tư vấn môi giới BĐS (300 triệu đ chưa VAT) xuất 23/06 rồi điều chỉnh địa chỉ 01/07; (d) thuế TNDN tạm tính Q1+Q2 là 4,3 tỷ đ, kế hoạch nộp 2,0 tỷ đ trong T7 — vẫn CHƯA xác nhận được đã nộp hay chưa. BỔ SUNG TRONG KỲ: bảng ngân sách 26/10 ghi thuế TNDN tạm tính lũy kế của hai dự án là 7.346.680.034 đ (Vinh 5.615.787.141 đ + Long An 1.730.892.893 đ) — cao hơn con số 4,3 tỷ đ đang theo dõi, nhưng khác kỳ và khác phạm vi, CHƯA đối chiếu được với nghĩa vụ thuế đã nộp."
+  },
+  {
+   "n": 9,
+   "level": "red",
+   "since": "12/08/2026",
+   "title": "Phí DVVH Q3 đã chốt giá 69 ngày nhưng vẫn chưa quan sát được phê duyệt hay giải ngân",
+   "detail": "NÂNG TỪ CAM LÊN ĐỎ vì thời gian treo. Số chốt ngày 24/08/2026 — Vinh 26.653.934.757 đ + Long An 13.599.764.533 đ = 40.253.699.290 đ trước VAT (44.279.069.220 đ sau VAT) — đến ngày chốt kỳ 01/11/2026 đã 69 ngày mà KSNB vẫn CHƯA quan sát được (a) văn bản CĐT phê duyệt số chốt, (b) hồ sơ trình ký thanh toán, (c) lệnh giải ngân. Trong kỳ này còn xuất hiện thêm một khoản \"phí DVVH điều chỉnh giảm Q3.26 — phần thiếu\" 75.133.585 đ ở cột tính phí Q4 của Vinh, chưa có thuyết minh về nguồn gốc. Việc một khoản doanh thu trên 40 tỷ đ treo hơn hai tháng không có dấu vết phê duyệt là rủi ro thanh khoản trực tiếp, nhất là khi không có báo cáo dòng tiền nào để đối chiếu đã thu được bao nhiêu."
+  },
+  {
+   "n": 10,
+   "level": "red",
+   "since": "07/08/2026",
+   "title": "Chậm phát hành báo cáo — TÁI PHÁT NẶNG: kỳ T9 trống cả 5/5, tổng 13/15 chưa nhận",
+   "detail": "NÂNG LẠI TỪ CAM LÊN ĐỎ. Kỳ trước mục này được hạ nhiệt vì PnL T7/T8 đã về (16/09), trong đó PnL T8 chỉ trễ 1 ngày. Cải thiện đó KHÔNG duy trì được: cả 5 báo cáo kỳ T9 (hạn 07/10, 07/10, 15/10, 18/10, 18/10) đều không được phát hành qua bất kỳ kênh nào quan sát được — không Outlook, không thư mục Drive 09 TCKT, không nhóm chat Teams. Tính đến 01/11/2026: 13/15 báo cáo đã đến hạn ở trạng thái CHƯA NHẬN, dòng lâu nhất quá hạn 86 ngày. Diễn biến này cho thấy lần phát hành 16/09 là một sự kiện đơn lẻ dưới áp lực, không phải thay đổi quy trình bền vững. Hệ quả giám sát: khoảng trống dữ liệu dòng tiền đã dài hơn một quý và mọi chỉ số thanh khoản trên dashboard vẫn neo ở 30/06/2026."
+  },
+  {
+   "n": 11,
+   "level": "amber",
+   "since": "08/09/2026",
+   "title": "Phí môi giới BĐS — đối tác đã phát công văn đề nghị thanh toán công nợ quá hạn",
+   "detail": "DIỄN BIẾN MỚI trong kỳ: ngày 21/10/2026 đối tác môi giới phát công văn chính thức đề nghị thanh toán các khoản công nợ ĐÃ QUÁ HẠN (bản scan qua email, bản cứng gửi tới văn phòng). Đối tác dẫn mốc: hồ sơ thanh toán đã gửi bản scan 17/09/2026 và bản cứng 18/09/2026, thời hạn thanh toán theo hợp đồng là 20 ngày. Tổng hai khoản đang treo giữ nguyên 88.691.252 đ. Bốn điều kiện hồ sơ nêu từ kỳ trước VẪN chưa quan sát được là đã hoàn tất: (a) biên bản nghiệm thu ghi rõ công thức tính ra 73.909.377 đ; (b) văn bản xác nhận diện tích lấp đầy 220,28 m² và bằng chứng giới thiệu khách trong thời hạn hợp đồng còn hiệu lực theo Điều 3.2 — rủi ro hợp đồng thuê ký TRƯỚC hợp đồng môi giới 9 ngày chưa được hồ sơ hóa giải; (c) hóa đơn GTGT; (d) xác nhận thẩm quyền phê duyệt. Tình huống nay có thêm áp lực pháp lý từ phía đối tác. Nội dung mô tả tình trạng hồ sơ, không kết luận về hành vi hay động cơ; đã ẩn danh."
+  },
+  {
+   "n": 12,
+   "level": "red",
+   "since": "16/09/2026",
+   "title": "MỚI — Chi phí nhân sự tháng 8/2026 vượt ngưỡng cảnh báo nội bộ 65% doanh thu",
+   "detail": "Theo PnL tháng 8 vừa công bố (16/09): chi phí nhân sự 8.690.382.237 đ trên doanh thu 12.150.562.673 đ = 71,52% — vượt ngưỡng cảnh báo CAM 65% đã nêu ở các kỳ trước (từng chạm 68,17% ở tháng 6, nhưng tháng 7 đã về 52,85%, trong ngưỡng). Đây là bằng chứng THỰC TẾ đầu tiên (không phải ước tính) cho thấy chi phí nhân sự đang tăng nhanh hơn doanh thu: chi phí nhân sự tăng 24,44% (+1.706.730.036 đ) trong khi doanh thu GIẢM 8,04% (−1.062.904.992 đ) so với tháng liền trước. Hệ quả trực tiếp: biên lợi nhuận trước thuế tháng 8 chỉ 23,30%, thấp nhất kể từ tháng 2/2026 và thấp hơn 17,95 điểm phần trăm so với tháng 7. KSNB mô tả số liệu quan sát được, chưa có đủ thông tin (cơ cấu nhân sự tháng 8, biến động lương/thưởng, khoản chi một lần nếu có) để kết luận nguyên nhân — đề nghị TCKT giải trình cơ cấu chi phí nhân sự tháng 8 trước khi đưa vào báo cáo HĐQT."
+  },
+  {
+   "n": 13,
+   "level": "amber",
+   "since": "16/09/2026",
+   "title": "MỚI — Hai con số chi phí nhân sự tháng 7 chưa đối chiếu được, đang dùng song song để đàm phán với CĐT",
+   "detail": "PnL tháng 7 (công bố 16/09) ghi chi phí nhân sự 6.983.652.201 đ. Báo cáo lương P.HCNS (05/08), dùng làm căn cứ tính \"chênh AOP nhân sự lũy kế 27,60 tỷ đ\" để đàm phán phí DVVH Q3 với CĐT, ghi con số thực tế T7 là 6.046.145.761 đ. Chênh lệch: 937.506.440 đ (15,5%). Hai nguồn có thể khác phạm vi tài khoản (PnL có thể gồm cả trích lập BHXH/BHYT/KPCĐ, thưởng dồn tích mà báo cáo lương thuần không có) nhưng KSNB CHƯA xác nhận được giả thuyết này. Rủi ro: nếu con số 6,05 tỷ đang dùng để đàm phán với CĐT thấp hơn thực tế kế toán ghi nhận, lập luận \"AOP lớn hơn thực tế nhiều\" mà Công ty dùng để phản bác đề xuất cắt ngân sách của CĐT có thể bị suy yếu. Đề nghị TCKT xác nhận phạm vi từng con số bằng văn bản TRƯỚC khi dùng bất kỳ số nào trong đàm phán tiếp theo."
+  },
+  {
+   "n": 14,
+   "level": "red",
+   "since": "26/10/2026",
+   "title": "MỚI — Văn phòng HO vượt ngân sách 117,0% lũy kế T1–T9, trong khi hai khối tạo doanh thu đều chi dưới ngân sách",
+   "detail": "Theo bảng thực hiện ngân sách T1→T9/2026 trong email ngân sách Q4 ngày 26/10: Văn phòng HO chi thực tế 11.030.252.379 đ trên ngân sách 9.426.958.211 đ — đạt 117,0%, VƯỢT 1.603.294.168 đ. Cùng kỳ, hai khối trực tiếp tạo doanh thu đều chi DƯỚI ngân sách: Eco Central Park Vinh 40.340.178.520 / 69.220.761.310 đ = 58,3%; Eco Retreat Long An 18.224.370.759 / 27.680.482.310 đ = 65,8%. Tổng toàn công ty 69.594.801.658 / 106.328.201.831 đ = 65,45%. Đây là lần đầu KSNB có số thực tế theo đơn vị cho 9 tháng, và mẫu hình là bất đối xứng: khối không tạo doanh thu là khối duy nhất vượt ngân sách. Chưa có thuyết minh cơ cấu phần vượt của HO (nhân sự, dịch vụ mua ngoài, hay khoản một lần) nên KSNB mô tả số liệu, chưa kết luận nguyên nhân. Lưu ý thêm: phần vượt của HO xuất hiện trong khi cảnh báo #12 (chi phí nhân sự T8 chiếm 71,52% doanh thu) vẫn chưa được TCKT giải trình."
+  },
+  {
+   "n": 15,
+   "level": "red",
+   "since": "31/10/2026",
+   "title": "MỚI — Điều chỉnh doanh thu 11,14 tỷ đồng được chốt bằng cơ chế \"không phản hồi là đồng thuận\"",
+   "detail": "Chuỗi email ngân sách Q4 với CĐT đặt ba mốc liên tiếp: 26/10 gửi số liệu và đề nghị phản hồi; 29/10 ấn định mốc 30/10 (mức độ quan trọng Cao); 31/10 ghi rõ \"trường hợp đến hết ngày hôm nay bên em chưa nhận được phản hồi, em xin phép hiểu là … thống nhất với số liệu Omni đã gửi và sẽ tiến hành các bước tiếp theo\". Đối tượng của cơ chế này là một điều chỉnh giảm phí DVVH Q4 trị giá 11.142.346.998 đ trước VAT (−24,67%). Rủi ro kiểm soát: (a) một thay đổi doanh thu trọng yếu có thể được coi là đã chốt mà KHÔNG có văn bản phê duyệt của cấp có thẩm quyền của cả hai bên; (b) trong phạm vi hộp thư quan sát được đến 01/11 không thấy phản hồi của CĐT, cũng không thấy văn bản phê duyệt nội bộ của Omni cho số mới; (c) PTGĐ TT và GĐ chỉ ở vai trò nhận CC \"để báo cáo\", không phải đầu mối phê duyệt, nên chốt kiểm soát cấp lãnh đạo không được kích hoạt bằng một hành vi phê duyệt rõ ràng. KSNB đề nghị thay im lặng bằng văn bản xác nhận hai chiều trước khi xuất hóa đơn điều chỉnh."
+  },
+  {
+   "n": 16,
+   "level": "amber",
+   "since": "29/10/2026",
+   "title": "MỚI — Hóa đơn phí DVVH tháng 10 xuất theo số CŨ, chênh lệch dồn sang tháng 11 và 12",
+   "detail": "Thư ngày 29/10 nêu: do 30/10 là ngày làm việc cuối tháng nên hóa đơn phí dịch vụ vận hành tháng 10 \"sẽ xuất theo đúng số liệu hợp đồng và ngân sách đã phê duyệt\", còn phần chênh lệch theo ngân sách cập nhật \"sẽ được điều chỉnh vào phí tháng 11 và tháng 12/2026\". Nghĩa là Công ty chủ động xuất hóa đơn theo một con số đã biết trước là sẽ bị điều chỉnh giảm. Các điểm cần làm rõ trước khi thực hiện: (a) cách xử lý thuế GTGT của phần điều chỉnh — hóa đơn điều chỉnh giảm hay bù trừ vào hóa đơn kỳ sau; (b) thời điểm ghi nhận doanh thu cho đúng kỳ kế toán, tránh ghi nhận vượt ở T10 rồi đảo ở T11–T12; (c) tác động tới số liệu quý 4 và báo cáo thuế nếu phần điều chỉnh rơi vào kỳ quyết toán. Chưa quan sát được ý kiến của bộ phận thuế/pháp chế về cách xử lý này."
+  }
+ ],
+ "flagsNote": "Các mục #1–#8 là cảnh báo tồn đọng từ H1/2026; trong cửa sổ quét 16/10–01/11 KHÔNG có hồ sơ mới làm thay đổi trạng thái đóng/mở của chúng. Mục #9 NÂNG LÊN ĐỎ vì khoản phí DVVH Q3 đã treo 69 ngày không dấu vết phê duyệt. Mục #10 NÂNG LẠI LÊN ĐỎ: kỳ T9 trống cả 5/5 báo cáo, tổng 13/15 chưa nhận — cải thiện của kỳ trước không duy trì được. Mục #11 có diễn biến mới là công văn đòi nợ của đối tác ngày 21/10. Mục #12 (CPNS/DT tháng 8 vượt ngưỡng) và #13 (hai con số chi phí nhân sự T7 chưa đối chiếu) GIỮ NGUYÊN trạng thái mở — chưa có văn bản giải trình nào của TCKT trong kỳ, dù hạn yêu cầu là 23/09/2026. Ba mục #14, #15, #16 là phát hiện MỚI của kỳ tháng 10, đều phát sinh từ chuỗi email ngân sách Q4 với CĐT. Nội dung mô tả tình trạng hồ sơ quan sát được, không kết luận về hành vi hay động cơ cá nhân; tài liệu đã ẩn danh.",
+ "riskSummary": {
+  "red": 7,
+  "amber": 4,
+  "yellow": 2,
+  "score": 195,
+  "scoreAfter": 90,
+  "note": "Thay đổi ròng kỳ này: KHÔNG có rủi ro nào được đóng lại, hai mục bị NÂNG CẤP (#9 và #10 lên ĐỎ) và ba mục MỚI được mở (#14 HO vượt ngân sách — ĐỎ; #15 chốt doanh thu bằng im lặng — ĐỎ; #16 hóa đơn T10 theo số cũ — CAM). Hai yêu cầu giải trình gửi TCKT ở kỳ trước với hạn 23/09/2026 (cơ cấu chi phí nhân sự T8 và chênh lệch 937.506.440 đ) đến 01/11 vẫn KHÔNG có văn bản phản hồi — tức đã quá hạn 39 ngày. Điểm rủi ro gộp 195/90 GIỮ NGUYÊN và CHƯA được tái tính: Đăng ký rủi ro nguồn vẫn dừng ở bản 202606 và không có số tài chính thực tế mới (dòng tiền, PnL) để tính lại, nên con số này KHÔNG phản ánh năm mục #12–#16.",
+  "momNote": "So với bản chốt 20/09: kỳ tháng 10 xấu đi trên cả hai mặt. Về tuân thủ, cải thiện duy nhất của kỳ trước — PnL về gần đúng hạn — đã mất; kỳ T9 trống cả 5/5 báo cáo và tổng số báo cáo chưa nhận tăng từ 8/10 lên 13/15. Về nội dung, thay đổi trọng yếu nhất của kỳ lại không đi qua hệ thống báo cáo định kỳ mà qua một chuỗi email đàm phán với CĐT: phí DVVH Q4 giảm 11.142.346.998 đ (−24,67%) và được chốt bằng cơ chế im lặng-là-đồng-thuận, trong khi bộ phận kiểm soát nội bộ chỉ biết nhờ vai trò nhận CC. Điểm sáng duy nhất: nhờ chính email đó, KSNB lần đầu có số thực tế chi phí theo đơn vị cho 9 tháng — và số đó lập tức cho thấy Văn phòng HO vượt ngân sách 117,0%."
+ },
+ "actions": [
+  {
+   "n": 1,
+   "level": "red",
+   "tag": "RẤT KHẨN",
+   "due": "05/11/2026",
+   "t": "Yêu cầu văn bản xác nhận HAI CHIỀU cho số phí DVVH Q4/2026 mới (34.022.787.662 đ trước VAT) TRƯỚC khi xuất bất kỳ hóa đơn điều chỉnh nào. Không để cơ chế \"không phản hồi là đồng thuận\" làm căn cứ chốt một điều chỉnh doanh thu 11.142.346.998 đ. Nêu rõ cấp có thẩm quyền phê duyệt phía Omni."
+  },
+  {
+   "n": 2,
+   "level": "red",
+   "tag": "RẤT KHẨN",
+   "due": "05/11/2026",
+   "t": "Phát văn bản chính thức yêu cầu TCKT phát hành NGAY 13 báo cáo còn thiếu của các kỳ T7, T8 và T9/2026 — gồm toàn bộ nhóm dòng tiền và so sánh ngân sách của cả ba kỳ, cùng PnL kỳ T9. Dòng quá hạn lâu nhất là 86 ngày. Kèm yêu cầu một lịch cam kết mới có ghi người chịu trách nhiệm từng báo cáo."
+  },
+  {
+   "n": 3,
+   "level": "red",
+   "tag": "RẤT KHẨN",
+   "due": "07/11/2026",
+   "t": "Nhắc lại hai yêu cầu giải trình đã QUÁ HẠN 39 ngày (hạn cũ 23/09/2026): cơ cấu chi phí nhân sự tháng 8 (71,52% doanh thu) và chênh lệch 937.506.440 đ giữa chi phí nhân sự T7 trên PnL và trên báo cáo lương. Nếu không có phản hồi bằng văn bản, leo thang lên TGĐ và đưa vào chương trình họp HĐQT gần nhất."
+  },
+  {
+   "n": 4,
+   "level": "amber",
+   "tag": "KHẨN",
+   "due": "10/11/2026",
+   "t": "Yêu cầu giải trình phần VƯỢT ngân sách của Văn phòng HO lũy kế T1–T9: 11.030.252.379 đ trên ngân sách 9.426.958.211 đ (117,0%, vượt 1.603.294.168 đ), phân rã theo nhóm chi phí, trong khi hai khối tạo doanh thu chỉ chi 58,3% và 65,8% ngân sách."
+  },
+  {
+   "n": 5,
+   "level": "amber",
+   "tag": "KHẨN",
+   "due": "10/11/2026",
+   "t": "Xác nhận trạng thái phí DVVH Q3/2026 (40.253.699.290 đ trước VAT, đã chốt giá 24/08, treo 69 ngày): CĐT đã phê duyệt bằng văn bản chưa, hồ sơ trình ký và lệnh giải ngân đã phát hành chưa, và đã THỰC THU được bao nhiêu."
+  },
+  {
+   "n": 6,
+   "level": "amber",
+   "tag": "KHẨN",
+   "due": "10/11/2026",
+   "t": "Lấy ý kiến bộ phận thuế và pháp chế về cách xử lý việc xuất hóa đơn phí DVVH tháng 10 theo số cũ rồi điều chỉnh vào tháng 11–12: hình thức điều chỉnh hóa đơn GTGT, thời điểm ghi nhận doanh thu đúng kỳ, và tác động tới số liệu quý 4 cùng báo cáo thuế."
+  },
+  {
+   "n": 7,
+   "level": "info",
+   "tag": "TRUNG BÌNH",
+   "due": "15/11/2026",
+   "t": "Xử lý công văn đòi nợ của đối tác môi giới ngày 21/10: hoàn tất đủ 4 điều kiện hồ sơ đã nêu (biên bản nghiệm thu có công thức, xác nhận diện tích và bằng chứng giới thiệu khách theo Điều 3.2, hóa đơn GTGT, xác nhận thẩm quyền phê duyệt) hoặc phát văn bản trả lời chính thức nêu rõ điều kiện còn thiếu. Tổng treo 88.691.252 đ."
+  },
+  {
+   "n": 8,
+   "level": "info",
+   "tag": "TRUNG BÌNH",
+   "due": "20/11/2026",
+   "t": "Yêu cầu cập nhật Đăng ký rủi ro (bản nguồn vẫn dừng ở 202606) để tái tính điểm rủi ro gộp, bổ sung năm mục #12–#16 hiện chưa được phản ánh trong con số 195/90 đang hiển thị."
+  },
+  {
+   "n": 9,
+   "level": "info",
+   "tag": "TRUNG BÌNH",
+   "due": "20/11/2026",
+   "t": "CHUYỂN TIẾP (chưa thực hiện từ kỳ trước): đưa vốn điều lệ góp thiếu 6,57 tỷ đ (cổ đông 65%) và mô hình chi hộ CĐT chưa có hợp đồng ủy quyền vào chương trình họp HĐQT gần nhất, kèm ý kiến pháp chế về hậu quả pháp lý."
+  }
+ ],
+ "actionsExtra": "Khác với kỳ trước, kỳ này KHÔNG có điểm sáng nào về tuân thủ báo cáo để ghi nhận: kênh gửi báo cáo trực tiếp tới PTGĐ TT được khen ở kỳ tháng 9 đã không được dùng lần nào trong tháng 10. Hai chốt kiểm soát vẫn hoạt động bình thường và đáng ghi nhận là Bảng kiểm tuân thủ vận hành tháng 09 (phát hành 26/10) và quy trình trình ký điện tử. Đề nghị trọng tâm của kỳ tới: chuyển việc phát hành báo cáo tài chính định kỳ từ \"phát hành khi được nhắc\" sang có người chịu trách nhiệm theo từng báo cáo và theo dõi bằng chính bảng tuân thủ này.",
+ "sources": [
+  "Hộp thư Outlook của PTGĐ TT, quét 16/10/2026 – 01/11/2026 bằng nhiều truy vấn độc lập: theo người gửi phụ trách báo cáo tài chính; theo từ khóa báo cáo dòng tiền / PnL / kết quả kinh doanh / so sánh ngân sách; theo từ khóa thuế / cơ quan thuế / kiểm toán / quyết toán. Kết quả: KHÔNG có báo cáo tài chính định kỳ nào từ TCKT, và KHÔNG có email nào từ cơ quan thuế hay đơn vị kiểm toán trong cửa sổ.",
+  "Thư mục Drive 09 TCKT, phân giải theo folderId (không theo đường dẫn): liệt kê toàn bộ nội dung. File mới nhất trong thư mục vẫn là bản ngày 25/09/2026; KHÔNG có file báo cáo nào được tạo mới sau mốc đó. Tìm bổ sung trên toàn Drive theo từ khóa PnL / Cashflow / dòng tiền / ngân sách với mốc sửa đổi sau 26/09/2026 — không có báo cáo TCKT mới nào.",
+  "Nhóm chat Teams mà PTGĐ TT là thành viên: tìm trong tháng 10/2026 theo từ khóa PnL / dòng tiền / kết quả kinh doanh / báo cáo / ngân sách — KHÔNG có kết quả. Kênh này được kiểm tra vì kỳ trước PnL được phát hành qua một nhóm chat báo cáo tài chính.",
+  "Chuỗi email \"Cập nhật ngân sách vận hành Q4/2026 theo tiến độ bàn giao mới\" — ba thư ngày 26/10, 29/10 và 31/10/2026 do KTT phát hành tới đầu mối phía CĐT, PTGĐ TT và GĐ nhận CC \"để báo cáo\". Đây là nguồn của toàn bộ số ngân sách Q4, bảng thực hiện ngân sách lũy kế T1→T9/2026, cơ chế chốt bằng im lặng và thông báo xuất hóa đơn tháng 10 theo số cũ.",
+  "Email cam kết lịch báo cáo của KTT ngày 24/07/2026 (5 báo cáo, hạn ngày 7 / 15 / 18 hằng tháng) — căn cứ của đồng hồ tuân thủ 15 dòng.",
+  "Công văn đề nghị thanh toán các khoản công nợ đã quá hạn do đối tác môi giới phát hành ngày 21/10/2026 (bản scan qua email, bản cứng gửi tới văn phòng).",
+  "Bảng kiểm tuân thủ tháng 09/2026 — Vận hành (phát hành 26/10/2026) và biên bản họp giao ban tháng 10/2026 (27/10/2026): ghi nhận đã phát hành, chưa rà soát nội dung chi tiết.",
+  "Các mốc tài chính thực tế gần nhất giữ nguyên từ các kỳ trước: file Cashflow / PnL / Kế hoạch dòng tiền / Đăng ký rủi ro bản 202606 — chưa có bản cập nhật cho T7, T8, T9 hay T10/2026.",
+  "Toàn bộ số ngày trễ, tỷ lệ % và tổng cộng của kỳ này được tính lại độc lập bằng script từ ngày chốt 01/11/2026 (Asia/Saigon): 15 dòng tuân thủ; ngân sách Opex Q4 51.183.375.267 → 45.165.134.660 đ (−6.018.240.607 đ, −11,76%); phí DVVH Q4 45.165.134.660 → 34.022.787.662 đ trước VAT (−11.142.346.998 đ, −24,67%), sau VAT 23.638.605.817 + 13.786.460.612 = 37.425.066.429 đ; thực hiện ngân sách T1–T9 69.594.801.658 / 106.328.201.831 = 65,45%, trong đó HO 11.030.252.379 / 9.426.958.211 = 117,0%. Ba điểm lệch 1 đ do làm tròn trong bảng gốc (tổng thuế TNDN tạm tính và hai dòng phí Q4 mới) — đã ghi nhận, không trọng yếu."
+ ],
+ "limits": [
+  "Toàn bộ số liệu dòng tiền THỰC TẾ của tháng 7, 8, 9 và 10/2026 — TCKT chưa phát hành báo cáo nào. Tiền sẵn có, số tháng cầm cự và mọi chỉ số thanh khoản trên trang này vẫn là số 30/06/2026, đã cũ 4 tháng.",
+  "PnL tháng 9 và tháng 10/2026 — chưa phát hành; không có doanh thu, chi phí hay lợi nhuận của hai tháng này để đưa vào chuỗi MoM.",
+  "File đính kèm email ngân sách ngày 26/10 (sheet \"3. Phí DVVH sau điều chỉnh\") — CHƯA mở để đối chiếu. Các số phí Q4 trên trang này lấy từ bảng trong thân thư và đã được kiểm tra nhất quán nội bộ, nhưng cách hình thành khoản điều chỉnh giảm 9.186.187.803 đ (Vinh) và 1.956.159.193 đ (Long An) chưa truy được.",
+  "Cơ cấu phần vượt ngân sách 1.603.294.168 đ của Văn phòng HO theo nhóm chi phí — bảng nguồn chỉ có số tổng theo đơn vị.",
+  "Phản hồi của phía CĐT đối với số liệu ngân sách Q4 — không quan sát được trong hộp thư đến 01/11/2026; KHÔNG loại trừ việc đã có phản hồi qua kênh khác (điện thoại, họp trực tiếp, chat ngoài Teams) mà phạm vi rà soát này không thấy.",
+  "Nhóm chat báo cáo tài chính đã dùng để phát hành PnL ở kỳ trước: nếu nhóm này không nằm trên Teams thì nằm NGOÀI phạm vi quan sát được. Kết luận \"kỳ T9 không có báo cáo nào\" dựa trên ba kênh kiểm tra được là Outlook, thư mục Drive 09 TCKT và Teams.",
+  "Hai yêu cầu giải trình gửi TCKT với hạn 23/09/2026 — chưa xác nhận được chúng đã được phát hành thành văn bản chính thức hay chưa, nên việc \"không có phản hồi\" có thể một phần do văn bản yêu cầu chưa được phát hành.",
+  "Văn bản CĐT phê duyệt phí DVVH Q3 và lệnh giải ngân tương ứng — vẫn chưa quan sát được đến 01/11/2026, cũng không biết đã thực thu được bao nhiêu.",
+  "Các cảnh báo đỏ tồn đọng #1–#8 không có dữ liệu mới trong kỳ để cập nhật trạng thái đóng/mở.",
+  "Nội dung chi tiết của Bảng kiểm tuân thủ tháng 09 và biên bản họp giao ban tháng 10 — chỉ ghi nhận đã phát hành, chưa đọc để đối chiếu với các phát hiện trên trang này.",
+  "Điểm rủi ro gộp 195/90 CHƯA được tái tính: Đăng ký rủi ro nguồn vẫn là bản 202606 và không có số tài chính thực tế mới để tính lại, nên con số này không phản ánh các mục #12–#16."
+ ],
+ "legal": "Bốn nội dung cần lưu ý pháp lý trong kỳ. (a) MỚI — cơ chế chốt số liệu bằng im lặng: việc coi \"không phản hồi đến hết 31/10\" là đồng thuận với một điều chỉnh doanh thu 11.142.346.998 đ cần được rà soát về giá trị pháp lý. Hợp đồng dịch vụ vận hành và quy chế phê duyệt nội bộ có cho phép thay đổi giá trị hợp đồng theo phương thức mặc nhiên đồng thuận hay không, và nếu sau này CĐT phủ nhận đã đồng ý thì căn cứ của Omni là gì — cần ý kiến pháp chế TRƯỚC khi xuất hóa đơn điều chỉnh. (b) MỚI — việc xuất hóa đơn phí DVVH tháng 10 theo số liệu đã biết trước là sẽ bị điều chỉnh giảm, rồi bù vào tháng 11 và 12: cần ý kiến thuế về hình thức điều chỉnh hóa đơn GTGT và thời điểm ghi nhận doanh thu đúng kỳ, tránh ghi nhận vượt ở T10 rồi đảo ở hai tháng sau. (c) phí môi giới BĐS: đối tác đã phát công văn đòi nợ ngày 21/10, trong khi điều kiện hồ sơ theo Điều 3.2 (bằng chứng giới thiệu khách trong thời hạn hợp đồng còn hiệu lực — hợp đồng thuê ký trước hợp đồng môi giới 9 ngày) vẫn chưa được hóa giải; cần xác định rõ nghĩa vụ thanh toán phát sinh đến đâu trước khi trả lời bằng văn bản. (d) Ba nội dung tồn đọng VẪN cần ý kiến chuyên môn ĐỘC LẬP, không phải đơn vị đang làm sổ sách cho công ty: mọi điều chỉnh hồi tố chi phí H1 nếu còn được nêu lại; khoản 20 tỷ đ cho một cá nhân vay — bản chất kế toán, bản chất thuế và thẩm quyền phê duyệt; và vốn điều lệ chưa góp đủ (thiếu 6,57 tỷ đ) cùng mô hình chi hộ CĐT chưa có hợp đồng ủy quyền.",
+ "appendix": {
+  "title": "Dự thảo văn bản yêu cầu TCKT giải trình",
+  "intro": "Soạn từ kỳ tháng 7 để yêu cầu TCKT giải trình khoản cho vay 20 tỷ đ và các giao dịch liên quan; đến ngày chốt 01/11/2026 vẫn CHƯA quan sát được văn bản này đã phát hành hay có phản hồi — đã treo hơn ba tháng. Giữ nguyên để phát hành. Đề xuất gửi trực tiếp Kế toán trưởng, CC Tổng Giám đốc, và gộp cùng các yêu cầu giải trình đang quá hạn nêu ở phần hành động.",
+  "body": [
+   {
+    "p": "Kính gửi: Kế toán trưởng",
+    "b": true
+   },
+   {
+    "p": "Đồng kính gửi: Tổng Giám đốc",
+    "b": true
+   },
+   {
+    "p": "V/v: Yêu cầu giải trình khoản cho vay 20.000.000.000 đồng phát sinh tháng 5/2026 và các giao dịch liên quan",
+    "b": true
+   },
+   {
+    "p": "Qua rà soát dữ liệu kế toán, bộ phận Kiểm soát Nội bộ ghi nhận chuỗi giao dịch sau:"
+   },
+   {
+    "li": [
+     "Ngày 08/05/2026: chi 20.000.000.000 đồng cho một cá nhân, mã dòng tiền 1103.03 “Chi cho đối tượng khác vay”, hạch toán qua tài khoản phải thu khác.",
+     "Ngày 08/05/2026, cùng ngày: rút trước hạn 2 sổ tiết kiệm tổng 10.000.000.000 đồng, lãi thực nhận 493.151 đồng so với lãi kế hoạch 39.691.781 đồng.",
+     "Ngày 08/05/2026: chuyển nội bộ 1.000.000.000 đồng giữa hai tài khoản vận hành.",
+     "Ngày 12/05/2026: thu hồi đủ gốc 20.000.000.000 đồng và thu lãi vay 6.720.430 đồng.",
+     "Ngày 19/05/2026: phiếu thu tiền mặt 39.690.000 đồng từ một cá nhân là nhân sự nội bộ, diễn giải “Thu lãi tiền gửi ngắn hạn”."
+    ]
+   },
+   {
+    "p": "Các cột “Hợp đồng”, “Khế ước” và “Ghi chú” của những bút toán nêu trên đều để trống. Đề nghị Phòng Tài chính Kế toán cung cấp:",
+    "b": true
+   },
+   {
+    "li": [
+     "Hợp đồng cho vay hoặc khế ước nhận nợ: bản sao đầy đủ, có chữ ký các bên",
+     "Thông tin định danh bên vay: mã số thuế cá nhân, địa chỉ, và mối quan hệ (nếu có) với Công ty, với các bên liên quan, hoặc với người có liên quan của người quản lý doanh nghiệp",
+     "Văn bản phê duyệt giao dịch, ban hành TRƯỚC ngày giải ngân 08/05/2026: nghị quyết HĐQT hoặc quyết định của người có thẩm quyền, ghi rõ ngày và người ký",
+     "Sao kê tài khoản ngân hàng giai đoạn 01/05/2026 – 31/05/2026, bản do ngân hàng phát hành",
+     "Cơ sở xác định lãi suất: chứng từ tính lãi dẫn tới con số 6.720.430 đồng, và lý do mức lãi suất quy đổi 3,07%/năm thấp hơn lãi tiền gửi kỳ hạn 1 tháng của chính công ty (4,75%/năm)",
+     "Lý do rút 2 sổ tiết kiệm trước hạn cùng ngày, và văn bản phê duyệt việc chấp nhận mất 39.198.630 đồng tiền lãi",
+     "Bản chất khoản thu tiền mặt 39.690.000 đồng ngày 19/05/2026: chứng từ gốc, nguồn tiền, và mối liên hệ (nếu có) với khoản lãi tiết kiệm bị mất ngày 08/05/2026",
+     "Giải trình vì sao giao dịch bằng 76,7% tổng tiền sẵn có của công ty tại 30/04/2026 không được thuyết minh trong bất kỳ báo cáo định kỳ nào gửi Ban Tổng Giám đốc"
+    ]
+   },
+   {
+    "p": "Đề nghị bổ sung, đối với hai khoản chi ngoài ngân sách tháng 6/2026:",
+    "b": true
+   },
+   {
+    "li": [
+     "Mua ô tô 1.525.120.000 đồng: tờ trình chủ trương, biên bản lựa chọn nhà cung cấp, và văn bản phê duyệt — trong khi kế hoạch dòng tiền 2026 cho khoản mục này bằng 0 ở cả 12 tháng",
+     "Chi phí gắn kết 1.768.914.883 đồng (vượt kế hoạch 1.437.354.469 đồng, tương đương 433,5%): hợp đồng, và giải trình vì sao khoản thanh toán lần 1 theo cùng một hợp đồng, cùng ngày 04/06/2026, được tách thành hai lệnh chi 422.240.000 đồng và 499.000.000 đồng — cả hai đều dưới ngưỡng phê duyệt 500 triệu đồng"
+    ]
+   },
+   {
+    "p": "Thời hạn phản hồi: 05 ngày làm việc kể từ ngày nhận văn bản này.",
+    "b": true
+   },
+   {
+    "p": "Trường hợp một phần hoặc toàn bộ hồ sơ nêu trên không tồn tại, đề nghị Phòng Tài chính Kế toán xác nhận rõ điều đó bằng văn bản, để tôi có cơ sở báo cáo Hội đồng Quản trị và đề xuất biện pháp khắc phục quy trình."
+   }
+  ]
+ }
+}
