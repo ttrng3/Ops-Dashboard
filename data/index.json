@@ -1,7 +1,12 @@
 {
- "generatedUtc": "2026-11-01T06:12:53Z",
- "asof": "01/11/2026",
+ "generatedUtc": "2026-11-15T06:10:06Z",
+ "asof": "15/11/2026",
  "periods": [
+  {
+   "id": "2026-11",
+   "label": "Tháng 11/2026",
+   "asOf": "15/11/2026"
+  },
   {
    "id": "2026-10",
    "label": "Tháng 10/2026",
@@ -188,13 +193,21 @@
     "cp": null,
     "ln": null,
     "ns": null,
-    "note": "Quá hạn 17 ngày tại 01/11/2026 — PnL kỳ T9 (hạn 15/10/2026) KHÔNG được phát hành. Không có doanh thu, chi phí hay lợi nhuận tháng 9 để đưa vào chuỗi."
+    "note": "Quá hạn 31 ngày tại 15/11/2026 — PnL kỳ T9 (hạn 15/10/2026) KHÔNG được phát hành. Không có doanh thu, chi phí hay lợi nhuận tháng 9 để đưa vào chuỗi."
+   },
+   {
+    "m": "T10/26",
+    "dt": null,
+    "cp": null,
+    "ln": null,
+    "ns": null,
+    "note": "PnL kỳ T10 đến hạn 15/11/2026 — đúng ngày chốt kỳ — và chưa nhận được tại thời điểm chốt. Hai kỳ PnL liên tiếp không về. Báo cáo chi phí lương tháng 10 (05/11) có số nhân sự thực tế khoảng 6,744 tỷ đ nhưng thuộc kênh báo cáo lương, khác phạm vi PnL (xem cảnh báo #13), nên KHÔNG được đưa vào chuỗi này."
    }
   ],
   "MOM_CALLOUT": {
    "level": "red",
-   "head": "Chuỗi PnL đứt ngay sau một tháng: kỳ T9 không có báo cáo, nên phát hiện chi phí nhân sự vượt ngưỡng của tháng 8 vẫn chưa thể xác nhận là một lần hay một xu hướng",
-   "body": "Tính đến 01/11/2026, PnL kỳ T9/2026 quá hạn 17 ngày (hạn 15/10) và không được phát hành qua bất kỳ kênh nào quan sát được, nên cột T9/26 trong chuỗi vẫn TRỐNG. Điểm dữ liệu thực tế gần nhất vẫn là tháng 8/2026, công bố 16/09. Hệ quả giám sát rất cụ thể: phát hiện nặng nhất của kỳ trước — chi phí nhân sự tháng 8 chiếm 71,52% doanh thu, vượt ngưỡng cảnh báo 65%, kéo biên LNTT từ 41,25% (T7) xuống 23,30% (T8) — đến nay VẪN không thể kết luận là biến động một lần hay xu hướng, vì không có tháng thứ ba để so sánh. Yêu cầu TCKT giải trình cơ cấu chi phí nhân sự tháng 8 (hạn 23/09/2026) cũng chưa có văn bản phản hồi, tức đã quá hạn 39 ngày. Mọi số liệu tiền và thanh khoản trong trang này vẫn neo ở mốc 30/06/2026."
+   "head": "Chuỗi PnL đứt hai kỳ liền: cả T9 và T10 đều không có báo cáo, nên phát hiện chi phí nhân sự vượt ngưỡng của tháng 8 bước sang kỳ giám sát thứ ba mà vẫn không có tháng nào để đối chứng",
+   "body": "Tính đến 15/11/2026, PnL kỳ T9/2026 quá hạn 31 ngày (hạn 15/10) và PnL kỳ T10/2026 đến hạn đúng ngày chốt 15/11 mà chưa nhận được; không kỳ nào được phát hành qua bất kỳ kênh nào quan sát được, nên hai cột T9/26 và T10/26 trong chuỗi đều TRỐNG. Điểm dữ liệu thực tế gần nhất vẫn là tháng 8/2026, công bố 16/09 — nay đã 60 ngày. Hệ quả giám sát rất cụ thể: phát hiện nặng nhất của kỳ tháng 9 — chi phí nhân sự tháng 8 chiếm 71,52% doanh thu, vượt ngưỡng cảnh báo 65%, kéo biên LNTT từ 41,25% (T7) xuống 23,30% (T8) — đến nay VẪN không thể kết luận là biến động một lần hay xu hướng, vì không có tháng thứ ba để so sánh. Báo cáo chi phí lương tháng 10 phát hành 05/11 có cho biết chi phí nhân sự theo kênh báo cáo lương giảm từ khoảng 7,097 tỷ đ (T9) xuống khoảng 6,744 tỷ đ (T10), nhưng đó là kênh khác phạm vi tài khoản so với PnL — chênh lệch cùng loại ở tháng 7 là 937.506.440 đ — và không có doanh thu T9/T10 để tính tỷ lệ, nên không thay thế được PnL. Yêu cầu TCKT giải trình cơ cấu chi phí nhân sự tháng 8 (hạn 23/09/2026) cũng chưa có văn bản phản hồi, tức đã quá hạn 53 ngày. Mọi số liệu tiền và thanh khoản trong trang này vẫn neo ở mốc 30/06/2026, nay đã cũ 138 ngày."
   }
  },
  "pages": "https://ttrng3.github.io/Ops-Dashboard/",
